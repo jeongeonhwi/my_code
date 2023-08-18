@@ -1,7 +1,7 @@
 import sys
 sys.stdin = open('input.txt')
 
-def deq():
+def pizza1():
     global front
     global count
     global count2
@@ -16,8 +16,7 @@ def deq():
     if count2 == size-1:
         return front
     front = (front+1)%size
-
-    return deq()
+    return pizza1()
 
 T = int(input())
 for tc in range(1, T+1):
@@ -35,11 +34,11 @@ for tc in range(1, T+1):
     # print(Q)
     # print(Q_idx)
     for i in range(size, pizza_num):
-        a = deq()
+        a = pizza1()
         arr[a] = 0
         Q[a] = arr[i]
         Q_idx[a] = i
-    deq()
+    pizza1()
     ab = 0
     for i in range(len(Q)):
         if Q[i] != 0:
