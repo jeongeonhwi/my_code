@@ -21,6 +21,7 @@ for tc in range(1, T+1):
     for _ in range(N):
         a = list(input().split())
         arr.append(a)
+    # print(arr)
     for i in range(N):
         if len(arr[i]) == 4:
             pstr[int(arr[i][0])] = arr[i][1]
