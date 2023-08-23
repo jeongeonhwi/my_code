@@ -23,10 +23,10 @@ for tc in range(1, T+1):
             nj = jj + dj[k]
             if 0<=ni<N and 0<=nj<N:
                 if fake[ni][nj] != num and fake[ni][nj] != 0:
-                    try:
-                        for i in range(1, N):
-                            nni = ii+di[k]*i
-                            nnj = jj+dj[k]*i
+                    for i in range(1, 100):
+                        nni = ii+di[k]*i
+                        nnj = jj+dj[k]*i
+                        try:
                             if fake[nni][nnj] != 0:
                                 if fake[nni][nnj] == num:
                                     for j in range(1, i):
@@ -36,8 +36,8 @@ for tc in range(1, T+1):
                                     break
                             else:
                                 break
-                    except:
-                        pass
+                        except:
+                            pass
     B_count = 0
     W_count = 0
     for i in range(N):
