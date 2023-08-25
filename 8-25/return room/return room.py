@@ -19,23 +19,9 @@ for tc in range(1, T+1):
             for i in range(room//2, now//2+1):
                 a.append(i)
         arr.append(a)
-    
-    total = 1
-    while arr:
-        count = 0
-        # print(arr)
-        b = arr.pop()
-        if arr:
-            for i in range(len(arr)):
-                for j in range(len(arr[i])):
-                    for k in range(len(b)):
-                        if arr[i][j] == b[k]:
-                            count += 1
-                            break
-                    if count > 0:
-                        break
-                if count > 0:
-                    break
-            if count > 0:
-                total += 1
-    print(f'#{tc} {total}')
+    b = [0]*500
+    for i in arr:
+        for j in i:
+            b[j] += 1
+    b.sort()
+    print(f'#{tc} {b[-1]}')
