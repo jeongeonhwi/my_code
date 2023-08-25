@@ -19,7 +19,7 @@ for tc in range(1, T+1):
             for i in range(room//2, now//2+1):
                 a.append(i)
         arr.append(a)
-    print(arr)
+    
     total = 1
     while arr:
         count = 0
