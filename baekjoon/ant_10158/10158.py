@@ -1,33 +1,32 @@
 import sys
 sys.stdin = open('input.txt', 'r')
 
-#오른쪽 위, 오른쪽 아래, 왼쪽 위, 왼쪽 아래
-di = [-1, 1, -1, 1]
-dj = [1, 1, -1, -1]
-
-
 w, h = map(int, input().split())
-p, q = map(int, input().split())
+st_j, st_i = map(int, input().split())
 t = int(input())
-fake = [[0]*w for _ in range(h)]
-i_idx = h-q
-j_idx = p
-print(q, p)
-print(i_idx, j_idx)
-count = 0
-k_idx = 0
-while True:
-    if count == t:
-        break
-    ni = i_idx+di[k_idx%4]
-    nj = j_idx+dj[k_idx%4]
-    if 0<=ni<h and 0<=nj<w:
-        i_idx = ni
-        j_idx = nj
-        count += 1
-        print(i_idx, j_idx)
-    else:
-        k_idx += 1
-        print(k_idx)
-print(count)
-print(j_idx, h-i_idx)
+total_i = h
+total_j = w
+time_i = t%(total_i*2)
+time_j = t%(total_j*2)
+i = time_i+st_i
+j = time_j+st_j
+result = []
+if i == total_i:
+    result.append(i)
+elif i < total_i:
+    result.append(i)
+elif i > total_i and i <= 2*total_i:
+    result.append(total_i-(i-total_i))
+elif i > 2*total_i:
+    result.append(i-total_i*2)
+
+if j == total_j:
+    result.append(j)
+elif j < total_j:
+    result.append(j)
+elif j > total_j and j <= 2*total_j:
+    result.append(total_j-(j-total_j))
+elif j > 2*total_j:
+    result.append(j-total_j*2)
+result.reverse()
+print(*result)
