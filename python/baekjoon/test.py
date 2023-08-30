@@ -1,7 +1,8 @@
-s = [1, 2, 3, 4]
-b = [5, 6]
-
-if set(s)&set(b):
-    print('yes')
-else:
-    print('no')
+a = [2,3]
+b = [3,2]
+c = []
+c.append(a)
+c.append(b)
+print(c)
+for i in a:
+    print(a.count(i))
