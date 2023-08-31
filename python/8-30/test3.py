@@ -23,3 +23,5 @@ for i in range(1,1<<N-1):   # //2를 하게 되면 중복되는 값도 없고 �
     if r1 and r2:
         if min_v > abs(total1-total2):
             pass
+
+# 부분집합

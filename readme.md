@@ -306,7 +306,30 @@ count = 0
 permutation(0)
 print(count)
 ```
+```python
+#순열 만드는 공식. 중간에 p값을 더해서 최소값보다 p값이 커진다면 재귀를 차단하여 연산값을 줄일 수 있음
+def f(i, N, K):     # i 이전에 고른 개수, N개에서 K개를 고르는 순열
+    if i ==K:       # 순열 완성 : k개르 ㄹ모두 고른 경우
+        print(p)
+        return
+    else:       # p[i]에 들어갈 숫자를 결정
+        for j in range(N):
+            if used[j]==0:      # 아직 사용되기 전이면
+                p[i] = card[j]
+                used[j] = 1
+                f(i+1, N, K)
+                used[j] = 0
 
+
+# card = list(map(int, input()))
+card = [1, 2, 3, 4, 5]
+N = 5       #N개의 숫자에서
+K = 3       #K개를 골라 만드는 순열
+used = [0]*N #이미 사용한 카드인지 표시
+p = [0]*3
+f(0, 5, 3)
+
+```
 
 트리
 ------------------------
@@ -488,6 +511,36 @@ last = 0
         - 각 원소가 포함되거나 포함되지 않는 2가지 경우의 수를 계산하면 모든 부분집합의 수가 계산된다.
 2. i&(1<<j)
     * 계산 결과는 i의 j번째 비트가 1인지 아닌지를 의미한다.
+```python
+'''
+부분집합생성방법 : 바이너리 카운팅
+아주 중요한 내용!!!!!!!!!!!!!!!!!!!!
+A형 1번문제 풀이 방법.
+'''
+
+arr = [3,6,7,1,5,4]
+N = 6
+for i in range(1,1<<N-1):   # //2를 하게 되면 중복되는 값도 없고 앞에 1덕분에 비어있는 집합도 없다.
+    group1 = []             # 1<<(N-1) == (1<<N)//2
+    group2 = []
+    total1 = 0
+    total2 = 0
+    for j in range(N):
+        if i&(1<<j):        # j번 비트가 0이 아니면
+            group1.append(arr[j])
+            total1 += arr[j]
+        else:
+            group2.append(arr[j])
+            total2 += arr[j]
+    r1 = f(group1)
+    r2 = f(group2)
+    if r1 and r2:
+        if min_v > abs(total1-total2):
+            pass
+
+# 부분집합
+
+```
 
 
 진수
