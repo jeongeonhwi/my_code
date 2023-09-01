@@ -541,7 +541,24 @@ for i in range(1,1<<N-1):   # //2를 하게 되면 중복되는 값도 없고 �
 # 부분집합
 
 ```
+```python
+# 부분집합의 합을 구하는 문제
+T = int(input())
+for tc in range(1, T+1):
+    N, K = map(int, input().split())
+    arr = list(map(int, input().split()))
+    subset = []
+    total = 0
+    for i in range(1<<N):
+        tmp = []
+        for j in range(N):
+            if i&(1<<j):
+                tmp.append(arr[j])
+        if sum(tmp) == K:
+            total += 1
+    print(f'#{tc} {total}')
 
+```
 
 진수
 -------
@@ -562,3 +579,44 @@ n^2이 3의 배수이면 n은 3의 배수임을 증명하라.
 수와 표현
 - 프로그램에서 log밑은 2이다.
 
+
+# 순열
+```python
+def f(i, N, K):     # i 이전에 고른 개수, N개에서 K개를 고르는 순열
+    if i ==K:       # 순열 완성 : k개르 ㄹ모두 고른 경우
+        print(p)
+        return
+    else:       # p[i]에 들어갈 숫자를 결정
+        for j in range(N):
+            if used[j]==0:      # 아직 사용되기 전이면
+                p[i] = card[j]
+                used[j] = 1
+                f(i+1, N, K)
+                used[j] = 0
+
+
+# card = list(map(int, input()))
+card = [1, 2, 3, 4, 5]
+N = 5       #N개의 숫자에서
+K = 3       #K개를 골라 만드는 순열
+used = [0]*N #이미 사용한 카드인지 표시
+p = [0]*3
+f(0, 5, 3)
+
+```
+
+```python
+# 자리를 바꿔줘면서 순열을 구하는 법
+def my_perm(time, N):
+    if time == N:
+        if max_v < value:
+            max_v = value
+        return
+    else:
+        for i in range(N):
+            for j in range(i+1, N):
+                numbers[i], numbers[j] = numbers[j], numbers[i]
+                my_perm(time+1, N)
+                numbers[i], numbers[j] = numbers[j], numbers[i]
+
+```
