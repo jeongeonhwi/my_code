@@ -1,6 +1,7 @@
 import sys
 sys.stdin = open('input.txt', 'r')
 
+
 def sunyeol(i, eight):
     if i == eight:
         c = p[:]
@@ -17,10 +18,8 @@ def sunyeol(i, eight):
 
 # 0과 3번 인덱스는 교체한채 3번 인덱스 고정
 N = int(input())
-arr = []
-for _ in range(N):
-    a = list(map(int, input().split()))
-    arr.append(a)
+arr = [list(map(int, input().split())) for _ in range(N)]
+# print(arr)
 num = [1, 2, 3, 4, 5, 6, 7, 8]
 eight = 8
 used = [0] * 8
@@ -28,40 +27,105 @@ p = [0] * 8
 numbers = []
 sunyeol(0, eight)
 score = 0
-for i in range(len(numbers)):
+for nu in numbers:
+    tmparr = []
+    for i in range(len(arr)):
+        tmp = []
+        for n in range(10):
+            for nuu in range(len(nu)):
+                if n == nu[nuu]:
+                    tmp.append(arr[i][nuu+1])
+        tmp = tmp[:3] + [arr[i][0]] + tmp[3:]
+        # tmp.insert(3, arr[i][0])
+        tmparr.append(tmp)
     outpoint = 0
-    current = 0%8
-    ground = []
-    for j in range(len(numbers[i])):
-        for n in range(N):
-            if arr[n][numbers[i][j]] == 0:
-                outpoint += 1
-            elif arr[n][numbers[i][j]] == 1:
-                if len(ground) == 3:
-                    score += 1
-                    ground = [1, 2, 3]
-                elif len(ground) == 2:
-                    if 1 in ground and 2 in ground:
-                        ground = [1, 2, 3]
-                    elif 1 in ground and 3 in ground:
-                        score += 1
-                        ground = [1, 2]
-                    elif 2 in ground and 3 in ground:
-                        score += 1
-                        ground = [1, 3]
-            elif arr[n][numbers[i][j]] == 2:
-                # 여기까지 세부적인 조건 넣다가 그만둠
-                if len(ground) == 3:
-                    score += 2
-                    ground = [2, 3]
-                elif len(ground) == 2:
-                    if 1 in ground and 2 in ground:
-                        ground = [1, 2, 3]
-                    elif 1 in ground and 3 in ground:
-                        score += 1
-                        ground = [1, 2]
-                    elif 2 in ground and 3 in ground:
-                        score += 1
-                        ground = [1, 3]
-            elif arr[n][numbers[i][j]] == 3:
-                ground.append(3)
+    current = 0
+    ru1 = False
+    ru2 = False
+    ru3 = False
+    ining = 0
+    tmpscore = 0
+    while ining < N:
+        if tmparr[ining][current%9] == 0:
+            outpoint +=1
+            current += 1
+        elif tmparr[ining][current%9] == 1:
+            if ru1:
+                if ru2:
+                    if ru3:
+                        tmpscore += 1
+                    else:
+                        ru3 = True
+                else:
+                    ru2 = True
+                    if ru3:
+                        tmpscore += 1
+                        ru3 = False
+            else:
+                ru1 = True
+                if ru2:
+                    if ru3:
+                        tmpscore += 1
+                        ru2 = False
+                    else:
+                        ru3 = True
+                        ru2 = False
+                else:
+                    if ru3:
+                        tmpscore += 1
+                        ru3 = False
+            current += 1
+        elif tmparr[ining][current%9] == 2:
+            if ru2:
+                tmpscore += 1
+            else:
+                ru2 = True
+            if ru3:
+                tmpscore += 1
+                if ru1:
+                    ru1 = False
+                else:
+                    ru3 = False
+            else:
+                if ru1:
+                    ru3 = True
+                    ru1 = False
+            current +=1
+        elif tmparr[ining][current%9] == 3:
+            if ru1:
+                tmpscore += 1
+                ru1 = False
+            if ru2:
+                tmpscore += 1
+                ru2 = False
+            if ru3:
+                tmpscore += 1
+            else:
+                ru3 = True
+            current += 1
+        elif tmparr[ining][current%9] == 4:
+            if ru1:
+                tmpscore += 1
+                ru1 = False
+            if ru2:
+                tmpscore += 1
+                ru2 = False
+            if ru3:
+                tmpscore += 1
+                ru3 = False
+            tmpscore += 1
+            current += 1
+        if outpoint >= 3:
+            ining += 1
+            outpoint = 0
+            if ru1:
+                ru1 = False
+            if ru2:
+                ru2 = False
+            if ru3:
+                ru3 = False
+    
+    if tmpscore >= score:
+        score = tmpscore
+print(score)
+            
