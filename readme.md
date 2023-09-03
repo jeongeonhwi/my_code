@@ -279,7 +279,26 @@ for tc in range(1, T+1):
     ans = bfs(sti, stj, N)
     print(f'#{tc} {ans}')
 ```
+```python
+def dfs(n, V, adj_arr):
+    stack = []
+    visit = [0]*(V+1)
+    visit[n] = 1
+    while True:
+        for w in range(V+1):
+            if adj_arr[n][w] == 1 and visit[w] == 0:
+                stack.append(n)
+                n = w
+                visit[n] = 1
+                break
+        else:
+            if stack:
+                n = stack.pop()
+            else:
+                break
+    return visit
 
+```
 
 순열
 ---------
