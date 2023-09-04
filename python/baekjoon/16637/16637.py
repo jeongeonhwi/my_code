@@ -37,11 +37,18 @@ idx = 0
 while s:
     tmp = s.pop(0)
     if tmp != '(':
-        if susik and susik[-1] != ')':
+        if susik:
+            if susik[-1] != ')':
+                susik.append(stack.pop(0))
+                susik.append(tmp)
+                susik.append(stack.pop(0))
+            else:
+                susik.append(tmp)
+                susik.append(stack.pop(0))
+        else:
             susik.append(stack.pop(0))
             susik.append(tmp)
             susik.append(stack.pop(0))
-            # 여기까지함
     else:
         a = susik.pop()
         susik.append(tmp)
@@ -51,6 +58,8 @@ while s:
         susik.append(stack.pop(0))
         tmp = s.pop(0)
         susik.append(tmp)
-        
-        
-        
+s = []
+stack = []
+while susik:
+    #여기까지
+    pass
