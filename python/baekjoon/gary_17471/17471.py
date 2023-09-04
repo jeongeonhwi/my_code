@@ -15,13 +15,14 @@ def dfs(start, N, arr, ch):
     visit = [0]*(N+1)
     visit[start] = 1
     town = []
+    town.append(start)
     while True:
-        town.append(start)
         for w in range(N+1):
             if arr[start][w] == 1 and visit[w] == 0 and w in ch:
                 stack.append(start)
                 start = w
                 visit[start] = 1
+                town.append(start)
                 break
         else:
             if stack:
@@ -61,10 +62,12 @@ for i in range(1<<N):
         check = False
         town1 = dfs(part1[0], N, arr, part1)
         town2 = dfs(part2[0], N, arr, part2)
+        # print(town1)
         town1 = set(town1)
         town2 = set(town2)
         town1 = list(town1)
         town2 = list(town2)
+        # print(town1)
         part1.sort()
         town1.sort()
         if part1 != town1:
