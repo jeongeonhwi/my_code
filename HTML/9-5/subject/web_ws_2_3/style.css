@@ -1,0 +1,318 @@
+.totalbox {
+width: 800px;
+height: 800px;
+border: 1px black solid;
+position: relative;
+}
+
+.box1 {
+width: 100px;
+height: 100px;
+position: absolute;
+left: 100px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box2 {
+width: 100px;
+height: 100px;
+position: absolute;
+left: 300px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box3 {
+width: 100px;
+height: 100px;
+position: absolute;
+left: 500px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box4 {
+width: 100px;
+height: 100px;
+position: absolute;
+left: 700px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box5 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 100px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box6 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 100px;
+left: 200px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box7 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 100px;
+left: 400px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box8 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 100px;
+left: 600px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box9 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 200px;
+left: 100px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box10 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 200px;
+left: 300px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box11 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 200px;
+left: 500px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box12 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 200px;
+left: 700px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box13 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 300px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box14 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 300px;
+left: 200px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box15 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 300px;
+left: 400px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box16 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 300px;
+left: 600px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box17 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 400px;
+left: 100px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box18 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 400px;
+left: 300px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box19 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 400px;
+left: 500px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box20 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 400px;
+left: 700px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box21 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 500px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box22 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 500px;
+left: 200px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box23 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 500px;
+left: 400px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box24 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 500px;
+left: 600px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box25 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 600px;
+left: 100px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box26 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 600px;
+left: 300px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box27 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 600px;
+left: 500px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box28 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 600px;
+left: 700px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box29 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 700px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box30 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 700px;
+left: 200px;
+border: 1px black solid;
+background-color: black;
+}
+
+.box31 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 700px;
+left: 400px;
+border: 1px black solid;
+background-color: black;
+}
+  
+.box32 {
+width: 100px;
+height: 100px;
+position: absolute;
+top: 700px;
+left: 600px;
+border: 1px black solid;
+background-color: black;
+}

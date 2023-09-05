@@ -1,0 +1,20 @@
+.totalbox {
+  width: 800px;
+  height: 800px;
+  border: 1px black solid;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box1 {
+  width: 100px;
+  height: 100px;
+}
+
+.box2 {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  border: 0;
+}

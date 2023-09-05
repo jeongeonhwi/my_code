@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 자식은 직계 자식 요소를 지칭하는 것이고 자손은 해당 요소에 포함되어있는 요소이다. */
+    div p {
+      color: blue;
+    }
+    div > p {
+      color: crimson;
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    <p>자식</p>
+    <ul>
+      <p>자손</p>
+    </ul>
+    <p>자식</p>
+  </div>
+</body>
+</html>
