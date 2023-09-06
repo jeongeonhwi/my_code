@@ -114,3 +114,26 @@ block 타입과 inline 타입이 존재
 2. 더 큰 값을 가진 요소가 작은 값의 요소를 덮음
 ### CSS Flexbox
 요소를 행과 열 형태로 배치하는 1차원 레이아웃 방식
+### Bootstrap
+bootstrap 기본 사용법  
+mt-5 는 margin 같은 요소의 앞자, top, -뒤의 숫자는 사이즈이다.
+### 대표적인 Component
+1. Alerts (경보해주기)
+2. Badges
+3. Buttons
+4. cards
+5. Navbar
+### 대표적인 semantic element
+div만 사용하면 개발자들이 코드를 읽을 때 힘들기 때문에 div와 기능은 같지만 이름이 구별되는 요소들을 만듬
+1. header
+2. nav
+3. main
+4. article
+5. section
+6. aside
+7. footer
+### OOCSS
+object oriented css : 객체 지향적 접근법을 적용하여 css를 구성하는 방법론  
+css를 효율적이고 유지 보수가 용이하게 작성하기 위한 일련의 가이드라인
+1. 구조와 스킨을 분리
+2. 컨테이너와 콘텐츠를 분리
