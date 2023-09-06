@@ -1,20 +1,7 @@
 import sys
 sys.stdin = open('input.txt', 'r')
 
-def game(i, K, time):
-    global min_v
-    if time > min_v:
-        return
-    if i == K:
-        min_v = min(min_v, time)
-        return
-    if i > K:
-        min_v = min(min_v, time+i-K)
-        return
-    else:
-        game(i*2, K, time+1)
-        game(i*2-1, K, time+1+1)
-        game(i+1, K, time+1)
+from collections import deque
 
 
 N, K = map(int, input().split())
@@ -26,9 +13,16 @@ elif N>K:
     print(N-K)
     check = False
 if check:
-    visited = [0]*K*2
-    min_v = K-N
-    game(N, K, 0)
-    print(min_v)
-
-
+    min_v = float('inf')
+    q = deque()
+    visited = [0]*100001
+    q.append(N)
+    while q:
+        i = q.popleft()
+        if i == K:
+            print(visited[i])
+            break
+        for k in (1, -1, i):
+            if 0<=i+k<100001 and visited[i+k] == 0:
+                q.append(i+k)
+                visited[i+k] = visited[i]+1
