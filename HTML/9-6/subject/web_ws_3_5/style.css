@@ -1,0 +1,25 @@
+body {
+  height: 2000px;
+}
+
+.nav-height {
+  height: 70px;
+}
+
+.logo-img {
+  height: 70px;
+}
+
+.header-margin {
+  margin-top: 70px;
+}
+
+.header-img {
+  background-image: url(images/header.jpg);
+  background-size: cover;
+  height: 600px;
+}
+
+.section-img {
+  width: 256px;
+}

@@ -1,0 +1,63 @@
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.frontpage {
+  height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.background-img {
+  background: linear-gradient(
+    to left,
+    rgba(20, 20, 20, 0) 10%,
+    rgba(255, 255, 255, 0.25) 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.75) 75%,
+    rgb(250, 249, 249) 100%
+    ), url(images/river.jpg);
+  background-size: cover;
+}
+
+.imgsize {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+}
+
+.displaymax {
+  height: 600px;
+  background-color: gainsboro;
+}
+
+@media (max-width: 500px) {
+  .imgsize {
+    display: none;
+  }
+  .background-img {
+    display: none;
+  }
+  .frontpage {
+    height: 600px;
+  }
+  .display-max {
+    height: 300px;
+    background-color: gainsboro;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 500px) {
+  .display-max {
+    display: none;
+  }
+}
+
+.intro {
+  background-color: blue;
+}
