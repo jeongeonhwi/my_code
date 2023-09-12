@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% for fru in fruit_list %}
+    {% if fru not in hate %}
+      {% if fru|length > 1 %}
+        {% if fru|length <= 3 %}
+          <p>{{fru}}</p>
+        {% else %}
+          {{ fru|truncatechars:3 }}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+</body>
+</html>
