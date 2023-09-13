@@ -98,3 +98,115 @@ render(request, 템플릿위치, data)
 2. template_name : 템플릿 이름의 경로
 3. context : 템플릿에서 사용할 데이터(딕셔너리 타입으로 작성)
   - 반드시 키 값과 벨류값의 변수명을 같게 하기
+### Django Template system
+데이터 표현을 제어하면서, 표현과 관련된 부분을 담당
+### Django Template Language (DTL)
+Template에서 조건, 반복, 변수 등의 프로그래밍적 기능을 제공하는 시스템
+1. Variable
+  - render 함수의 세번째 인자로 딕셔너리 데이터를 사용
+  - 딕셔너리 key에 해당하는 문자열이 template에서 사용 가능한 변수명이 됨
+  - dot(.)를 사용하여 변수 속성에 접근할 수 있음
+2. Filters
+  - 표시할 변수를 수정할 때 사용
+  - chained가 가능하며 일부 필터는 인자를 받기도 함
+  - 약 60개의 built-in template filters를 제공
+3. Tags
+  - 반복 또는 논리를 수행하여 제어 흐름을 만듦
+  - 일부 태그는 시작과 종료태그가 필요함
+  - 약 24개의 built-in template tags를 제공
+### 템플릿 상속
+페이지의 공통요소를 포함하고, 하위 템플릿이 재정의 할 수 있는 공간을 정의하는 기본 'skeleton'템플릿을 작성하여 상속 구조를 구축
+### block 블락의 이름
+상속할 부모의 어느 위치에 내용을 채울지 block과 block의 이름으로 지정  
+상속받은 자식은 블락과 블락의 이름을 설정한 뒤 그 안의 내용을 채우면 된다.
+```html
+{% block 블락이름 %}{% endblock 블락이름 %}
+```
+### extends 태그 {% extends "articles/base.html" %}
+자식템플릿이 부모 템플릿을 확장한다는 것을 알림  
+반드시 템플릿 최상단에 작성되어야함 (2개 이상 사용 불가)
+```html
+{% extends 주소위치 %}
+```
+### action 과 method
+데이터를 어디로(action) 어떤 방식(method)으로 요청할지
+```html
+# throw.html
+{% block content %}
+<h1>fake naver</h1>
+  <form action="/catch/" method='GET'>
+    <label for="message">message : </label>
+    <input type="text" name='message' id='message'>
+    <input type="submit">
+  </form>
+{% endblock content %}
+
+# catch.html
+{% extends "articles/base.html" %}
+
+{% block content %}
+<h1>Throw로 부터 {{message}}를 받았다!!!</h1>
+{% endblock content %}
+```
+### HTTP request 객체
+form으로 전송한 데이터 뿐만 아니라 모든 요청 관련 데이터가 담겨 있음(view함수의 첫번째 인자)
+```python
+def throw(request):
+    return render(request, 'articles/throw.html')
+
+def catch(request):
+    message = request.GET.get('message')
+    context = {
+        'message' : message
+    }
+    return render(request, 'articles/catch.html', context)
+```
+### 'input' 요소
+사용자의 데이터를 입력 받을 수 있는 요소 (type 속성 값에 따라 다양한 유형의 입력 데이터를 받음)
+### 'name' attribute (입력 데이터에 붙이는 이름(key))
+데이터를 제출했을 때 서버는 name 속성에 설정된 값을 통해서만 사용자가 입력한 데이터에 접근할 수 있음
+### 만약 앱 내부의 templates를 외부에서 탐색하고 싶을때
+settings 내부의 코드를 수정한다.  
+DIRS를 공란에서 아래 코드로 바꾼다.
+```
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+```
+### Variable Routing
+URL 일부에 변수를 포함시키는 것 (변수는 view함수의 인자로 전달 할 수 있음)
+### Variable routing 작성법
+```python
+path('hello/<str:name>/', views.greeting),
+path('articles/<int:num>', views.detail),
+path('<str:name>/<int:num>/', views.detail),
+
+# 이름과 숫자는 반드시 해당 함수의 인자로 받아줘야한다.
+def greeting(request, name):
+    context = {
+        'name' : name,
+    }
+    return render(request, 'articles/greeting.html', context)
+
+def detail(request, num):
+    context = {
+        'num' : num
+    }
+    return render(request, 'articles/detail.html', context)
+
+def detail(request, name, num):
+    context = {
+        'name' : name,
+        'num' : num,
+    }
+    return render(request, 'articles/detail.html', context)
+```
+### URL dispatcher (url 분배기)
+url 패턴을 정의하고 해당 패턴이 일치하는 요청을 처리할 view 함수를 연결(매핑)
+### Variable routing
+```python
+# 페이지가 많아질 경우 일일이 주소명을 지어줄 수 없으므로 변수명을 입력함
+# 앱의 url들 끼리 
+path('<str:user_id>/<int:article_pk>/', views.detail, name='detail')
+```
