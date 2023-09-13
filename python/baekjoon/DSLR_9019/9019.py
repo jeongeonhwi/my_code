@@ -34,7 +34,8 @@ def make_R(A):
     return A
 
 
-def per(start, end):
+def bfs(start):
+    visted = [0]*10001
     
 
 
