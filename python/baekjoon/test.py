@@ -1,6 +1,9 @@
-context = {}
-num = [1, 2, 3]
-for idx,i in enumerate(num):
-    context[idx+1] = i
+c = 3
+d = 4
 
-print(context)
+
+context = {
+    'a' : c+d
+}
+
+print(context['a'])

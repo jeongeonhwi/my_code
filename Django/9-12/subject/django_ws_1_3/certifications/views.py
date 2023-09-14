@@ -9,7 +9,7 @@ def certi1(request):
         'age':random.choice(data.age),
         'grade':random.choice(data.grade),
     }
-    return render(request, 'certifitations/certifitations1.html', context)
+    return render(request, 'certifications/certification1.html', context)
 
 def certi2(request):
     context = {
@@ -17,7 +17,7 @@ def certi2(request):
         'age':random.choice(data.age),
         'grade':random.choice(data.grade),
     }
-    return render(request, 'certifitations/certifitations2.html', context)
+    return render(request, 'certifications/certification2.html', context)
 
 def certi3(request):
     context = {
@@ -25,4 +25,4 @@ def certi3(request):
         'age':random.choice(data.age),
         'grade':random.choice(data.grade),
     }
-    return render(request, 'certifitations/certifitations3.html', context)
+    return render(request, 'certifications/certification3.html', context)

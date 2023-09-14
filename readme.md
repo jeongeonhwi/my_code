@@ -40,7 +40,7 @@ pip list
 ### Django 프로젝트 생성 전 루틴
 1. python -m venv venv  
 2. source venv/Scripts/activate  
-3. pip install django
+3. pip install -r django
 4. pip freeze > requirements.txt  (새로운 패키지 다운받았으므로 requirements 업데이트)
 ### Django 프로젝트 생성
 django-admin startproject firstpjt .  
@@ -209,4 +209,103 @@ url 패턴을 정의하고 해당 패턴이 일치하는 요청을 처리할 vie
 # 페이지가 많아질 경우 일일이 주소명을 지어줄 수 없으므로 변수명을 입력함
 # 앱의 url들 끼리 
 path('<str:user_id>/<int:article_pk>/', views.detail, name='detail')
+```
+### Django Model
+db의 테이블을 정의하고 데이터를 조작(생성/수정/삭제)할 수 있는 기능들을 제공  
+테이블 구조를 설계하는 '청사진(blueprint)
+### model 클래스
+```python
+class Article(models.Model):
+  title = models.CharField(max_length=10)
+  content = models.TextField()
+  # 작성한 위의 모델 클래스는 최종적으로 DB에 다음과 같은 테이블 구조를 만듦
+  # 앱 내부의 models.py파일 내부에 작성함.
+```
+* 클래스 변수명
+ - 테이블의 각 '필드(열)' 이름
+### Migrations 과정
+model class(설계도 초안) --(makemigrations)--> migration 파일(최종 설계도) --(migrate)--> db.sqlite3(DB)
+* Migrations 핵심 명령어 2가지
+```bash
+$ python manage.py makemigrations
+# model class를 기반으로 최종 설계도(migration)작성
+
+$ python manage.py migrate
+# 최종 설계도를 DB에 전달하여 반영
+
+# SQlite를 사용하면 데이터베이스를 오픈할 수 있다.
+```
+### 추가 Migrations
+이미 생성된 테이블에 필드를 추가해야 한다면?  
+```python
+class Article(models.Model):
+  title = models.CharField(max_length=10)
+  content = models.TextField()
+  # 여기서부터 추가
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+```
+* 변경을 하고 makemigrations 명령어를 내리면 option을 선택하라고 말한다.
+* 1번 입력은 현재 대화를 유지하면서 직접 기본값을 입력하는 방법
+* 2번 입력은 현재 대화에서 나간 후 models.py에 기본 값 관련 설정을 하는 방법
+* 추가하는 기본값은 장고가 제안하는 기본값을 사용하는 것을 권장 그냥 엔터누르면 된다.
+### 추가 Migrations 순서
+1. model class에 변경사항이 생겼다.
+2. 새로운 설계도 생성 : makemigrations
+3. DB에 반영하기 : migrate
+### Model Field
+DB 테이블의 필드(열)을 정의하며 해당 필드에 저장되는 데이터 타입과 제약조건을 정의
+### CharField()
+길이의 제한이 있는 문자열을 넣을 때 사용  
+(필드의 최대 길이를 결정하는 max_length는 필수 인자. 없으면 작동안함)
+### TextField()
+글자의 수가 많을 때 사용
+### DateTimeField()
+날짜와 시간을 넣을 때 사용  
+* DateTimeField의 선택인자
+1. auto_now : 데이터가 저장될 때마다 자동으로 현재 날짜시간을 저장
+2. auto_now_add : 데이터가 처음 생성될 때만 자동으로 현재 날짜시간을 저장
+
+### Automatic admin interface
+Django는 추가 설치 및 설정 없이 자동으로 관리자 인터페이스를 제공  
+데이터 확인 및 테스트 등을 진행하는데 매우 유용
+### admin 계정 생성
+```bash
+$ python manage.py createsuperuser
+```
+### admin에 모델 클래스 등록
+```python
+from django.contrib import admin
+#명시적 상대경로
+from .models import Article
+# Register your models here.
+
+# Article 모델 사이트를 admin site에 등록
+# admin site에 등록(register)한다. 
+admin.site.register(Article)
+
+# admin.py에 작성한 모델 클래스를 등록해야만 admin site에서 확인 가능
+```
+### 데이터베이스 초기화
+1. migration 파일 삭제
+2. db.sqlite3파일 삭제
+* **migrations폴더나 init.py 파일을 지우지 않도록 주의**
+### Migrations 기타 명령어
+```bash
+$ python manage.py showmigrations
+# migrations 파일들이 migrate 됐는지 안됐는지 여부를 확인하는 명령어
+# [X] 표시가 있으면 migrate가 완료되었음을 의미
+
+$ python manage.py sqlmigrate articles 0001
+# 어떤 앱에 몇번째 설계도 인지를 맨 끝 두 단어에 적용
+# 해당 migrations 파일이 SQL 언어(DB에서 사용하는 언어)로
+# 어떻게 번역되어 DB에 전달되는지 확인하는 명령어
+```
+### form action 주소 넣는 방법
+```html
+<!-- 평소에는 액션 안에 /주소/를 직접 넣었지만 -->
+<form action="/주소/" method='GET'>
+
+<!-- 앱 이름과 패스의 이름으로 주소를 설정해줌 -->
+<form action="{% url "throw_catch:throw_catch1" %}" method='GET'>
 ```
