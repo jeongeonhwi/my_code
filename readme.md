@@ -402,4 +402,5 @@ $ python manage.py shell_plus
 # 데이터 삭제
 >>> article.delete()
 ```
-
+### url의 path 내부의 주소에는 .을 쓰고 render 내부의 html참조하는 주소에는 /를 쓰는 이유
+path에서 참조하는 앱폴더는 내부에 init파일이 있어 패키지로 인식된다.

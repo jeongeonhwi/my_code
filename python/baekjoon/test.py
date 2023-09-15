@@ -1,9 +1,7 @@
-c = 3
-d = 4
-
-
-context = {
-    'a' : c+d
-}
-
-print(context['a'])
+myfile = open('input.txt', 'r')
+myline = myfile.readlines()
+print(myline)
+myline = myfile.readlines()
+print(myline)
+myline = myfile.readlines()
+print(myline)
