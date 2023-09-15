@@ -309,3 +309,97 @@ $ python manage.py sqlmigrate articles 0001
 <!-- 앱 이름과 패스의 이름으로 주소를 설정해줌 -->
 <form action="{% url "throw_catch:throw_catch1" %}" method='GET'>
 ```
+### ORM
+객체 지향 프로그래밍 언어를 사용하여 호환되지 않는 유형의 시스템 간에 데이터를 변환하는 기술
+### QuerySet API
+ORM에서 데이터를 검색, 필터링, 정렬 및 그룹화 하는데 사용하는 도구  
+- API를 사용하여 SQL이 아닌 Python 코드로 데이터를 처리
+### QuerySet API 구문
+modelclass.manager.QuerySet API  
+== Article.objects.all()
+### Query
+* 데이터베이스에 특정한 데이터를 보여달라는 요청
+* 쿼리문을 작성한다. --> 원하는 데이터를 얻기 위해 데이터베이스에 요청을 보낼 코드를 작성한다.
+* 파이썬으로 작성한 코드가 ORM에 의해 SQL로 변환되어 데이터베이스에 전달되며, 데이터베이스의 응답 데이터를 ORM이 QuerySet이라는 자료 형태로 변환하여 우리에게 전달
+### QuerySet
+* 데이터베이스에게서 전달받은 객체 목록(데이터 모음) : 순회가 가능한 데이터
+* Django ORM을 통해 만들어진 자료형
+* 단, 데이터베이스가 단일한 객체를 반환 할 때는 Queryset이 아닌 모델(class)의 인스턴스로 반환됨
+### QuerySet API 실습 사전 준비
+```bash
+$ pip install ipython
+$ pip install django-extensions
+$ pip freeze > requirements.txt
+```
+### 앱 등록 권장 순서
+```python
+INSTALLED_APPS = [
+    # app 등록 권장 순서
+    # 1. normal app
+    'articles',
+    # 2. third party app
+    'django_extensions',
+    # 3. django app
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+### Django shell
+Django 환경 안에서 실행되는 python shell  
+(입력하는 QuerySet API 구문이 Django 프로젝트에 영향을 미침)
+```bash
+$ python manage.py shell_plus
+```
+### 터미널 정리하는법
+키보드 ctrl + L
+### 데이터 객체를 만드는 방법
+```bash
+# class로부터 instance 생성
+>>> article = Article()
+
+# 인스턴스 변수(title)에 값을 할당
+>>> article.title = 'first'
+
+# 인스턴스 변수(content)에 값을 할당
+>>> article.content = 'django!'
+
+# 저장
+>>> article.save()
+```
+### QuerySet API 실습
+1. all()
+- 전체 데이터 조회
+2. get()
+- 객체를 찾을 수 없으면 DoesNotExist 예외를 발생시키고, 둘 이상의 객체를 찾으면 MultipleObjectsReturned 예외를 발생시킴
+- 위와 같은 특징을 가지고 있기 때문에 pk(primary key)와 같이 고유성을 보장하는 조회에서 사용해야함.
+3. filter()
+- 특정 조건 데이터 조회
+4. save()
+- 객체를 데이터베이스에 저장하는 메서드
+- 자료를 찾던, 한개 찾던, 세개찾던 쿼리셋으로 리턴한다.
+### 데이터 수정
+인스턴스 변수를 변경 후 save 메서드 호출
+```bash
+# 수정할 인스턴스 조회
+>>> article = Article.objects.get(pk=1)
+
+# 인스턴스 변수를 변경
+>>> article.title = 'bye'
+
+# 저장
+>>> article.save()
+```
+### 데이터 삭제
+삭제하려는 데이터 조회 후 delete 메서드 호출
+```bash
+# 삭제할 인스턴스 조회
+>>> article = Article.objects.get(pk=1)
+
+# 데이터 삭제
+>>> article.delete()
+```
+
