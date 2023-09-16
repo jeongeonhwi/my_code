@@ -1,10 +1,13 @@
 import sys
 sys.stdin = open('input.txt', 'r')
+# sys.stdout = open('output.txt', 'w')
 
-from collections import deque
 
+
+di = [0,1,1]
+dj = [1,1,0]
 N = int(input())
-arr = [[0]*100 for _ in range(100)]
+arr = [[0]*102 for _ in range(102)]
 for _ in range(N):
     x, y, d, g = map(int, input().split())
     cnt = 0
@@ -17,31 +20,102 @@ for _ in range(N):
             if d == 0:
                 arr[y][x+1] = 1
                 cj += 1
+                q.append((ci,cj))
             elif d == 1:
                 arr[y-1][x] = 1
                 ci -= 1
+                q.append((ci,cj))
             elif d == 2:
                 arr[y][x-1] = 1
                 cj -= 1
+                q.append((ci,cj))
             elif d == 3:
                 arr[y+1][x] = 1
                 ci += 1
+                q.append((ci,cj))
         else:
+            tmpci, tmpcj = 0, 0
             tmpq = q[:]
-            tmpci, tmpcj = tmpq.pop(0)
-            q.append((ci,cj))
-            ci += tmpcj - cj
-            cj += tmpci - ci
             while tmpq:
+                check = False
                 i, j = tmpq.pop()
-                ni = ci + (j - cj)
-                nj = cj + (i - ci)
-                arr[ni][nj] = 1
-                q.append((ni,nj))
-        print(q)
+                if i == y and j == x:
+                    check = True
+                if ci==i and cj<j:
+                    tmpi = i-ci
+                    tmpj = j-cj
+                    i = ci+tmpj
+                    j = cj
+                    q.append((i,j))
+                    arr[i][j] = 1
+                elif ci>i and cj<j:
+                    tmpi = i-ci
+                    tmpj = j-cj
+                    i = ci+tmpj
+                    j = cj-tmpi
+                    q.append((i,j))
+                    arr[i][j] = 1
+                elif ci==i and cj>j:
+                    tmpi = i-ci
+                    tmpj = j-cj
+                    i = ci+tmpj
+                    j = cj
+                    q.append((i,j))
+                    arr[i][j] = 1
+                elif ci<i and cj>j:
+                    tmpi = i-ci
+                    tmpj = j-cj
+                    i = ci+tmpj
+                    j = cj-tmpi
+                    q.append((i,j))
+                    arr[i][j] = 1
+                elif ci<i and cj<j:
+                    tmpi = i-ci
+                    tmpj = j-cj
+                    i = ci+tmpj
+                    j = cj-tmpi
+                    q.append((i,j))
+                    arr[i][j] = 1
+                elif ci<i and cj==j:
+                    tmpi = i-ci
+                    tmpj = j-cj
+                    i = ci
+                    j = cj-tmpi
+                    q.append((i,j))
+                    arr[i][j] = 1
+                elif ci>i and cj>j:
+                    tmpi = i-ci
+                    tmpj = j-cj
+                    i = ci+tmpj
+                    j = cj-tmpi
+                    q.append((i,j))
+                    arr[i][j] = 1
+                elif ci>i and cj==j:
+                    tmpi = i-ci
+                    tmpj = j-cj
+                    i = ci
+                    j = cj-tmpi
+                    q.append((i,j))
+                    arr[i][j] = 1
+                if check:
+                    tmpci = i
+                    tmpcj = j
+            ci = tmpci
+            cj = tmpcj
         if cnt == g:
             break
         else:
             cnt += 1
-# for a in arr:
-#     print(a)
+ans = 0
+for i in range(102):
+    for j in range(102):
+        if arr[i][j] == 1:
+            tmp = 0
+            for k in range(3):
+                ni = i+di[k]
+                nj = j+dj[k]
+                if arr[ni][nj] == 1:
+                    tmp += 1
+            if tmp == 3:
+                ans += 1
+print(ans)
