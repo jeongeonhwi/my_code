@@ -3,7 +3,6 @@ sys.stdin = open('input.txt', 'r')
 
 
 import copy
-from collections import deque
 
 def find_first():
     arr2 = copy.deepcopy(arr)
@@ -14,16 +13,15 @@ def find_first():
                 stack.append((i,j))
                 arr2[i][j] = 0
                 return stack
-    return False
+    return False, False
 
 
-def find_second():
+def find_second(one, two):
     arr2 = copy.deepcopy(arr)
-    stack = find_first()
-    stack = deque(stack)
-    if stack:
+    stack = [(one, two)]
+    if one:
         while stack:
-            i, j = stack.popleft()
+            i, j = stack.pop()
             arr2[i][j] = 0
             for k in range(4):
                 ni = i+di[k]
@@ -73,7 +71,8 @@ arr = [list(map(int, input().split())) for _ in range(N)]
 result = 0
 cnt = 0
 while True:
-    check = find_second()
+    one, two = find_first()
+    check = find_second(one, two)
     if check:
         break
     elif check == 5:

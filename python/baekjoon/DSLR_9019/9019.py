@@ -1,57 +1,33 @@
 import sys
-sys.stdin = open('input.txt', 'r')
+# sys.stdin = open('input.txt', 'r')
 
 
 from collections import deque
 
 def make_D(A):
-    A = int(A)
-    A = A*2
-    if A > 9999:
-        A = A%10000
-    return str(A)
+    A = A*2%10000
+    return A
 
 
 def make_S(A):
-    A = int(A)
-    if A == 0:
-        A = 9999
-    else:
-        A -= 1
-    return str(A)
+    A = (A-1)%10000
+    return A
 
 
 def make_L(A):
-    A = list(A)
-    A = deque(A)
-    tmp = A.popleft()
-    A.append(tmp)
-    if len(A) > 1:
-        A = ''.join(A)
-    else:
-        A = A[0]
-    A = int(A)
-    A = str(A)
+    A = A//1000 + (A%1000)*10
     return A
 
 
 def make_R(A):
-    A = list(A)
-    tmp = [A.pop()]
-    A = tmp + A
-    if len(A) > 1:
-        A = ''.join(A)
-    else:
-        A = A[0]
-    A = int(A)
-    A = str(A)
+    A = A//10+(A%10)*1000
     return A
 
 
 def bfs(A):
-    visited = [0]*10002
+    visited = [0]*10001
     q = [[A,'']]
-    visited[int(A)] = 1
+    visited[A] = 1
     q = deque(q)
     while True:
         i,j = q.popleft()
@@ -80,6 +56,6 @@ def bfs(A):
 
 T = int(input())
 for tc in range(1, T+1):
-    A, B = list(input().split())
+    A, B = list(map(int, input().split()))
     ans = bfs(A)
     print(ans)
