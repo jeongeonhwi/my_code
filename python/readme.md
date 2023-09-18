@@ -639,3 +639,149 @@ def my_perm(time, N):
                 numbers[i], numbers[j] = numbers[j], numbers[i]
 
 ```
+# 알고리즘 설계 기법의 종류
+1. 전체를 다 보자 (BRute Force - 완전탐색)
+    - 배열 : 반복문을 다 돌리기
+    - 그래프 : DFS, BFS
+2. 상황마다 좋은 걸 고르자 (Greedy - 탐욕)
+    - 규칙을 찾는 것
+    - 주의사항 : 항상 좋은 것을 뽑아도, 최종 결과가 제일 좋다고 보장되지 않는다.
+3. 하나의 큰 문제를 작은 문제로 나누어 부분적으로 해결하자 (Dynamic Programming)
+    - Memoization 기법을 활용
+    - 점화식(bottom-up), 재귀(top-down)
+4. 큰 문제를 작은 문제로 쪼개서 해결하자 (Divide and Conquer - 분할 정복)
+5. 전체를 중, 가능성 없는 것을 빼고 보자(Backtracking - 백트래킹)
+    - 가지치기
+### 분할정렬 코드
+```python
+'''
+재밌는점. if len(arr)==1으로 리턴이 나오지 않으면 뒤의 재귀식들이 대기한다.
+그리고 리턴이 되면 그때 재귀식이 시작되어 올라간다.
+'''
+
+def merge_sort(arr):
+    if len(arr) == 1:
+        return arr
+    left = merge_sort(arr[:len(arr)//2])
+    right = merge_sort(arr[len(arr)//2:])
+    return merge(left, right)
+
+
+def merge(left, right):
+    global cnt
+    result = left+right
+    if left[-1] > right[-1]:
+        cnt+=1
+    idx = 0
+    lidx = 0
+    ridx = 0
+    while len(left)>lidx and len(right)>ridx:
+        if left[lidx] < right[ridx]:
+            result[idx] = left[lidx]
+            idx += 1
+            lidx += 1
+        elif left[lidx] > right[ridx]:
+            result[idx] = right[ridx]
+            idx += 1
+            ridx += 1
+        else:
+            result[idx] = left[lidx]
+            idx+= 1
+            lidx+=1
+            result[idx] = right[ridx]
+            idx+=1
+            ridx+=1
+    if len(left) > lidx:
+        while len(left) > lidx:
+            result[idx] = left[lidx]
+            idx+= 1
+            lidx+=1
+    else:
+        while len(right) > ridx:
+            result[idx] = right[ridx]
+            idx += 1
+            ridx += 1
+    return result
+
+```
+### 퀵정렬 코드
+```python
+def quick(lst, s, e):
+    if s < e:
+        a = partition(lst, s, e)
+        quick(lst, s, a - 1)
+        quick(lst, a + 1, e)
+ 
+ 
+def partition(lst, s, e):
+    p = lst[s]
+    i = s
+    j = e
+    while i <= j:
+        while i <= j and p >= lst[i]:
+            i += 1
+        while i <= j and p <= lst[j]:
+            j -= 1
+        if i < j:
+            lst[i], lst[j] = lst[j], lst[i]
+    lst[s], lst[j] = lst[j], lst[s]
+    return j
+```
+### 이진 검색 **아주중요(코테단골문제)**
+* 코딩 테스트의 메인 알고리즘 중 하나
+* 목적 : 원하는 값을 빠리 찾는 것
+* 시간 : O(logN)
+* Parametric Search (이진 검색 심화 버전)
+    - 특정 범위 검색
+    - lower bound
+    - upper bound
+        - 여러 개의 데이터 중 2가 처음 나온 시점
+        - 2~9 사이의 데이터는 몇개인가?
+```python
+'''
+이진검색 - 반복문
+문제에서 데이터가 정렬되어 있다 라는 조건이 없다면
+반드시 정렬을 먼저 수행해야 한다.
+첫번째 와일문으로 풀기
+두번째 재귀로 풀기
+'''
+
+arr = [2, 4, 7, 9, 11, 19, 23]
+arr. sort()
+
+def binarySearch(target):
+    low = 0
+    high = len(arr) -1
+
+    # low >= high 라면 데이터를 못찾은 경우
+    while low <= high:
+        mid = (low + high) // 2
+
+        # 1. 가운데 값이 정답인 경우
+        if arr[mid] == target:
+            return mid
+        # 2. 가운데 값이 정답보다 작은 경우
+        elif arr[mid] < target:
+            low = mid+1
+        # 3. 가운데 값이 정답보다 큰 경우
+        else:
+            high = mid -1
+    return '해당 데이터는 없습니다.'
+
+# 함수 한번 호출 때마다 low, high 변수가 바뀌어서 사용됨
+def binarySearch2(low, high, target):
+    # 기저 조건: 언제까지 재귀호출을 반복할 것인가?
+    # low > high 데이터를 못찾음
+    if low > high:
+        return '해당 데이터는 없습니다.'
+    mid = (low+high)//2
+    # 1. 가운데 값이 정답인 경우
+    if arr[mid] == target:
+        return mid
+    # 2. 가운데 값이 정답보다 작은 경우
+    elif arr[mid] < target:
+        return binarySearch2(mid+1, high, target)
+    # 3. 가운데 값이 정답보다 큰 경우
+    else:
+        return binarySearch2(low, mid-1, target)
+```
