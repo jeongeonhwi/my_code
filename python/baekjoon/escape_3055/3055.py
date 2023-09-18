@@ -24,6 +24,7 @@ def bfs(start, arr):
     visited[a][b] = 1
     q = [start]
     q = deque(q)
+    water = 1
     while q:
         i, j = q.popleft()
         if arr[i][j] == 'D':
@@ -33,17 +34,21 @@ def bfs(start, arr):
             if 0<=ni<R and 0<=nj<C and arr[ni][nj] != 'X' and visited[ni][nj] == 0 and arr[ni][nj] != '*':
                 visited[ni][nj] = visited[i][j]+1
                 q.append((ni,nj))
-        stack = []
-        for ii in range(R):
-            for jj in range(C):
-                if arr[ii][jj] == '*':
-                    stack.append((ii,jj))
-        while stack:
-            ii,jj = stack.pop()
-            for k in range(4):
-                ni, nj = ii+di[k], jj+dj[k]
-                if 0<=ni<R and 0<=nj<C and arr[ni][nj] != 'X' and arr[ni][nj] != 'D':
-                    arr[ni][nj] = '*'
+                if water != visited[ni][nj]:
+                    water = visited[ni][nj]
+                    stack = []
+                    for ii in range(R):
+                        for jj in range(C):
+                            if arr[ii][jj] == '*':
+                                stack.append((ii,jj))
+                    while stack:
+                        ii,jj = stack.pop()
+                        for kk in range(4):
+                            nni, nnj = ii+di[kk], jj+dj[kk]
+                            if 0<=nni<R and 0<=nnj<C and arr[nni][nnj] != 'X' and arr[nni][nnj] != 'D':
+                                arr[nni][nnj] = '*'
+                    if arr[ni][nj] == '*':
+                        q.pop()
     return 'KAKTUS'
 
 
