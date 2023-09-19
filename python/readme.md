@@ -785,3 +785,128 @@ def binarySearch2(low, high, target):
     else:
         return binarySearch2(low, mid-1, target)
 ```
+### 백트래킹(Backtracking) 개념
+여러가지 선택지들이 존재하는 상황에서 한가지를 선택한다.  
+선택이 이루어지면 새로운 선택지들의 집합이 생성된다.
+이런 선택을 반복하면서 최종 상태에 도달한다.
+    - 올바른 선택을 계속하면 목표상태(goal state)에 도달한다.
+```python
+#{ 1,2,3} 집합에서 3개의 숫자를 선택하는 기본적인 예제
+
+arr = [i for i in range(1,4)]
+path = [0]*3
+def backtracking(cnt):
+    # 기저 조건
+    # 숫자 3개를 골랐을 때 종료
+    if cnt == 3:
+        print(*path)
+        return
+    for num in arr:
+        # 가지치기 - 중복된 숫자 제거
+        if num in path:
+            continue
+        # 들어가기 전 로직
+        path[cnt] = num
+        # 다음 재귀 함수 호출
+        backtracking(cnt+1)
+        # 돌아와서 할 로직
+        path[cnt] = 0
+backtracking(0)
+
+```
+### 이진트리
+자녀 노드가 둘 이하인 트리
+1. 이진 트리 종류
+    - 완전 이진 트리
+        - 마지막 레벨을 제외한 모든 레벨은 꽉 차있어야 한다.
+        - 마지막 레벨 노드는 왼쪽부터 채워져야 한다.
+    - 포화 이진 트리
+        - 모든 레벨이 꽉 차있는 것
+    - 나머지 이진 트리
+2. 순회 방법
+    - 전위 (부모 -> 좌 -> 우)
+    - 중위 (좌 -> 부모 -> 우)
+    - 후위 (좌 -> 우 -> 부모)
+3. 트리 저장 방법
+```python
+# 이것은 개발용...
+# 이진트리를 전위, 중위, 후위 순회하고 방문한 노드 번호를 출력하시오
+
+# 0. 이진트리저장
+#   - 일차원 배열 저장 - 보기 어려워서 안씀
+# 1. 연결 리스트로 저장 - 개발용
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+    # 삽입 함수
+    def insert(self, childNode):
+        # 왼쪽 자식이 없을 경우
+        if not self.left:
+            self.left = childNode
+            return
+        # 오른쪽 자식이 없을 경우
+        if not self.right:
+            self.right = childNode
+            return
+        return
+    # 순회
+    def preorder(self):
+        # 아무것도 없는 트리를 조회할 때
+        if self != None:
+            # 전위순회 확인 프린트
+            # print(self.value, end=' ')
+            # 왼쪽이 있다면 왼쪽 자식 조회
+            if self.left:
+                self.left.preorder()
+            # 중위순회 확인 프린트
+            # print(self.value, end=' ')
+            # 오른쪽이 있다면 오른쪽 자식 조회
+            if self.right:
+                self.right.preorder()
+            # 후위순회 확인 프린트
+            # print(self.value, end=' ')
+
+arr = [1, 2, 1, 3, 2, 4, 3, 5, 3, 6]
+# 이진 트리 만들기
+nodes = [TreeNode(i) for i in range(0, 14)]
+for i in range(0, len(arr), 2):
+    parentNode = arr[i]
+    childNode = arr[i+1]
+    nodes[parentNode].insert(nodes[childNode])
+
+nodes[1].preorder()
+
+```
+코테용 이진트리코드
+```python
+# 우리가 실제로 코테때 사용할 이진트리 코드
+# 이진트리를 전위, 중위, 후위 순회하고 방문한 노드 번호를 출력하시오
+arr = [1, 2, 1, 3, 2, 4, 3, 5, 3, 6]
+# 이진 트리 만들기
+nodes = [[] for _ in range(0, 14)]
+for i in range(0, len(arr), 2):
+    parentNode = arr[i]
+    childNode = arr[i+1]
+    nodes[parentNode].append(childNode)
+
+for i in range(len(nodes)):
+    print(nodes[i])
+
+# 자식이 더 이상 없다는 걸 표현하기 위해 None 을 삽입
+for li in nodes:
+    for _ in range(len(li), 2):
+        li.append(None)
+
+def preorder(nodeNumber):
+    if nodeNumber == None:
+        return
+    # print(nodeNumber, end=' ')
+    preorder(nodes[nodeNumber][0])
+    # print(nodeNumber, end=' ')
+    preorder(nodes[nodeNumber][1])
+    print(nodeNumber, end=' ')
+
+preorder(1)
+```
