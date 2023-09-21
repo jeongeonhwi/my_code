@@ -956,3 +956,214 @@ else:
 print(find_set(t_x))
 print(find_set(t_y))
 ```
+### 최소 신장 트리 (MST)
+우선순위 큐 사용을 위해 힙(heap) 기본적인 사용법
+```python
+# 우선순위 큐를 제공하는 내장라이브러리
+import heapq
+
+def prim(start):
+    heap = []
+    heapq.heappush(heap, (-3,2))
+    heapq.heappush(heap, (-1,1))
+    heapq.heappush(heap, (-2,3))
+    print(type(heap))
+    print(heapq.heappop(heap))
+    print(heapq.heappop(heap))
+    print(heapq.heappop(heap))
+    print(heap)
+
+prim(0)
+```
+우선순위 힙을 사용하여 선택할 수 있는 길 중에서 가중치가 제일 적은 길만 찾아 방문하기
+```python
+'''
+prim 알고리즘
+그리디를 사용해서 가장 가중치가 적은 길만 찾아 방문하기
+출발정점, 도착정점, 가중치
+7 11
+0 1 32
+0 2 31
+0 5 60
+0 6 51
+1 2 21
+2 4 46
+2 6 25
+3 4 34
+3 5 18
+4 5 40
+4 6 51
+'''
+# 우선순위 큐를 제공하는 내장라이브러리
+import heapq
+
+def prim(start):
+    heap = []
+    # MST 에 포함되었는지 여부
+    MST = [0]*V
+    # 가중치와 정점 정보
+    heapq.heappush(heap, (0, start))
+    # 누적합
+    sum_weight = 0
+    while heap:
+        # 가장 적은 가중치를 가진 정점을 꺼냄
+        weight, v = heapq.heappop(heap)
+        # 이미 방문한 노드라면 pass
+        if MST[v]:
+            continue
+        # 방문 체크
+        MST[v] = 1
+        # 누적합 추가
+        sum_weight += weight
+        # 갈 수 있는 노드들을 체크
+        for next in range(V):
+            # 갈 수 없거나 이미 방문했다면 pass
+            if graph[v][next] == 0 or MST[next]:
+                continue
+            heapq.heappush(heap, (graph[v][next], next))
+    return sum_weight
+
+V, E = map(int, input().split())
+# 인접행렬
+graph = [[0]*V for _ in range(V)]
+for _ in range(E):
+    f, t, w = map(int, input().split())
+    graph[f][t] = w
+    graph[t][f] = w  # 무방향 그래프, 정보를 3개 담기위해 인접 리스트말고 행렬사용
+result = prim(0)
+print(f'최소 비용은 {result}이다.')
+```
+위와 같은 문제, 우선순위 힙 말고 유니온 파인드 sort를 사용해서 풀기
+```python
+'''
+7 11
+0 1 32
+0 2 31
+0 5 60
+0 6 51
+1 2 21
+2 4 46
+2 6 25
+3 4 34
+3 5 18
+4 5 40
+4 6 51
+'''
+V, E = map(int, input().split())
+edge = []
+for _ in range(E):
+    f, t, w = map(int, input().split())
+    edge.append([f, t, w])
+# w 를 기준으로 정렬
+edge.sort(key=lambda x: x[2])
+# 사이클 발생 여부를 union find로 해결
+parents = [i for i in range(V)]
+
+def find_set(x):
+    if parents[x] == x:
+        return x
+    parents[x] = find_set(parents[x])
+    return parents[x]
+
+def union(x, y):
+    x = find_set(x)
+    y = find_set(y)
+    if x == y:
+        return
+    if x < y:
+        parents[y] = x
+    else:
+        parents[x] = y
+
+# 현재 방문한 정점 수
+cnt = 0
+sum_weight = 0
+for f, t, w in edge:
+    # 싸이클이 발생하지 않는 다면
+    if find_set(f) != find_set(t):
+        cnt += 1
+        sum_weight += w
+        union(f, t)
+        # MST 구성이 끝나면
+        if cnt == V:
+            break
+print(f'최소 비용은 {sum_weight}이다.')
+```
+### 최단 경로 정의
+하나의 시작 정점에서 끝 정점까지의 최단 경로
+1. 다익스트라(dijkstra) 알고리즘
+    - 음의 가중치를 허용하지 않음
+2. 벨만-포드(Bellman-Ford) 알고리즘
+    - 음의 가중치를 허용
+3. 플로이드-워샬(Floyd-Warshall) 알고리즘
+    - 모든 정점들에 대한 최단 경로
+### 다익스트라(dijkstra)
+내가 도달해야 하는 위치까지 가장 최단거리로 도달할 수 있는 알고리즘
+```python
+'''
+6 8
+0 1 2
+0 2 4
+1 2 1
+1 3 7
+2 4 3
+3 4 2
+3 5 1
+4 5 5
+'''
+# 최단 거리 문제 유형
+# 1. 특정 지점 -> 도착 지점까지의 최단 거리 : 다익스트라
+# 2. 가중치에 음수가 포함되어 있다면 다익스트라를 사용해서는 안된다. 밸만포드 사용하자
+# 3. 여러 지점 -> 여러 지점까지의 최단 거리 : 플로이드-워샬
+#     - 여러지점 다익스트라 돌리기 그러나 시간 복잡도 계산 잘해야함
+# 내가 갈 수 있는 경로 중 누적거리가 제일 짧은 것부터 고르자
+import heapq
+# 입력
+n, m = map(int, input().split())
+# 인접리스트
+graph = [[] for i in range(n)]
+for _ in range(m):
+    f, t, w = map(int, input().split())
+    graph[f].append([t,w])
+# 1. 누적 거리를 계속 저장
+INF = int(1e9) # 최대값으로 1억 -  대충 엄청 큰 수
+distance = [INF] *n
+
+def dijkstra(start):
+    # 2. 우선순위 큐
+    pq = []
+    # 출발점 초기화
+    heapq.heappush(pq, (0,start))
+    distance[start] = 0
+    while pq:
+        # 누적 거리가 가장 짧은 노드에 대한 정보 꺼내기
+        dist, now = heapq.heappop(pq)
+        # 이미 방문한 지점 + 누적 거리가 더 짧게 방문한 적이 있다면 pass
+        if distance[now] < dist:
+            continue
+        # 인접 노드를 확인
+        for next in graph[now]:
+            next_node = next[0]
+            cost = next[1]
+            # next_node 로 가기 위한 누적 거리
+            new_cost = dist + cost
+            # 누적거리가 기존보다 크다면
+            if distance[next_node] <= new_cost:
+                continue
+            distance[next_node] = new_cost
+            heapq.heappush(pq, (new_cost, next_node))
+dijkstra(0)
+print(distance)
+```
+### 알고리즘 마지막주에 배운 내용
+**앞으로 혼자 공부해야하는 내용**
+1. 그래프 탐색
+    - 완전 탐색 : DFS, BFS
+2. 서로소 집합
+    - 대표 데이터 비교
+    - 그래프에서는 싸이클 판별
+3. 최소 비용
+    - 최소 신장 트리(MST)
+        - 전체 그래프에서 총합이 최소인 신장 트리
+    - 최단 거리(다익스트라)
+        - 정점 사이의 거리가 최단인 경로 찾기
