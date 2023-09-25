@@ -309,6 +309,19 @@ $ python manage.py sqlmigrate articles 0001
 <!-- 앱 이름과 패스의 이름으로 주소를 설정해줌 -->
 <form action="{% url "throw_catch:throw_catch1" %}" method='GET'>
 ```
+### input 보낸 사용자 데이터 받는 방법
+```
+def throw(request):
+    return render(request, 'articles/throw.html')
+
+  # throw에서 catch로 입력값을 보낼때 id를 설정해주고 
+  # catch에서 그 id를 받아주면 된다.
+def catch(request):
+    hi = request.GET.get('hi')
+    key = request.GET.get('key')
+    
+    return render(request, 'articles/catch.html')
+```
 ### ORM
 객체 지향 프로그래밍 언어를 사용하여 호환되지 않는 유형의 시스템 간에 데이터를 변환하는 기술
 ### QuerySet API
@@ -357,6 +370,7 @@ $ python manage.py shell_plus
 ### 터미널 정리하는법
 키보드 ctrl + L
 ### 데이터 객체를 만드는 방법
+첫번째 방법
 ```bash
 # class로부터 instance 생성
 >>> article = Article()
@@ -369,6 +383,16 @@ $ python manage.py shell_plus
 
 # 저장
 >>> article.save()
+```
+두번째 방법 (일반적으로 이 방법이 사용됨)
+```bash
+article = Article(title='second', content='django!')
+# save를 호출해야 저장됨
+article.save()
+```
+세번째 방법
+```bash
+Article.objects.create(title='third', content='django!')
 ```
 ### QuerySet API 실습
 1. all()
@@ -404,3 +428,77 @@ $ python manage.py shell_plus
 ```
 ### url의 path 내부의 주소에는 .을 쓰고 render 내부의 html참조하는 주소에는 /를 쓰는 이유
 path에서 참조하는 앱폴더는 내부에 init파일이 있어 패키지로 인식된다.
+### HTTP request methods
+데이터(리소스)에 어떤 요청(행동)을 원하는지를 나타내는 것
+1. GET
+2. POST
+### 'GET' Method
+특정 리소스를 조회하는 요청(GET으로 데이터를 전달하면 Query String형식으로 보내짐)
+### 'POST' Method
+특정 리소스에 변경(생성, 수정, 삭제)을 요구하는 요청(POST로 데이터를 전달하면 HTTP Body에 담겨 보내짐)
+### POST 방법 사용시
+```python
+  # 포스트 요청은 form 아래에 csrt_token을 넣어줘야 한다.
+  <form action="{% url "articles:create" %}" method='POST'>
+    {% csrf_token %}
+```
+## 게시글 생성 저장 삭제 수정 하는 법
+### 요청 시 CSRF Token을 함께 보내야 하는 이유
+* 장고 서버는 해당 요청이 장고가 직접 제공한 페이지에서 작성한 것인지에 대한 확인 수단이다.
+* 더이상 URL에 데이터가 표기되지 않음
+### 게시글 생성하고 메인 페이지로 이동시키는 redirect 함수
+```python
+from django.shortcuts import render, redirect
+from .models import Article
+
+def new(request):
+    return render(request, 'articles/new.html')
+
+# 일반적으로 두번째 방법을 사용하도록
+def create(request):
+    title = request.POST.get('title')
+    content = request.POST.get('content')
+    # 첫번째 방법
+    # article = Article()
+    # article.title = title
+    # article.content = content
+    # article.save()
+    # 두번째 방법
+    article = Article(title=title, content=content)
+    article.save()
+    # 세번째 방법
+    # Article.objects.create(title=title, content=content)
+    # return render(request, 'articles/create.html')
+    return redirect('articles:index')
+
+# new.html 내부
+  <h1>NEW</h1>
+  <form action="{% url "articles:create" %}" method='POST'>
+    {% csrf_token %}
+    <div>
+      <label for="title">제목 : </label>
+      <input type="text" id="title" name='title'>
+    </div>
+    <div>
+      <label for="content">내용 : </label>
+      <textarea name="content" id="content" cols="30" rows="10"></textarea>
+    </div>
+    <input type="submit">
+  </form>
+```
+### delete 게시글 삭제하는 방법
+```python
+#urls 내부
+path('<int:pk>/delete/', views.delete, name='delete'),
+#views 내부
+def delete(request, pk):
+    # 몇번 게시글을 삭제할 것인지 조회
+    article = Article.objects.get(pk=pk)
+    # 조회한 게시글 삭제
+    article.delete()
+    return redirect('articles:index')
+#삭제할 페이지 상세페이지 내부
+<form action="{% url "articles:delete" article.pk %}" method='POST'>
+  {% csrf_token %}
+  <input type="submit" value='삭제'>
+```

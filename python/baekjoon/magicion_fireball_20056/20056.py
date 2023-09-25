@@ -6,7 +6,11 @@ N, M, K = map(int, input().split())
 arr = [[0]*N for _ in range(N)]
 for _ in range(M):
     i, j, m, s, d = map(int, input().split())
-    arr[i-1][j-1] = [[i-1,j-1,m,s,d]]
+    if d%2 == 0:
+        dd = 2
+    else:
+        dd = 1
+    arr[i-1][j-1] = [i-1,j-1,m, s ,d, s, 1, dd]
 direction = [[-1, 0], [-1, 1], [0, 1], [1,1], [1, 0], [1,-1], [0,-1], [-1, -1]]
 all_d = [0,2,4,6]
 else_d = [1,3,5,7]
@@ -15,60 +19,54 @@ for k in range(K):
     for i in range(N):
         for j in range(N):
             if arr[i][j] != 0 and visited[i][j] == 0:
-                if len(arr[i][j]) == 1:
-                    arr[i][j][0][0] = (arr[i][j][0][0]+direction[arr[i][j][0][4]][0]*arr[i][j][0][3])%N
-                    arr[i][j][0][1] = (arr[i][j][0][1]+direction[arr[i][j][0][4]][1]*arr[i][j][0][3])%N
-                    if arr[arr[i][j][0][0]][arr[i][j][0][1]] == 0:
-                        arr[arr[i][j][0][0]][arr[i][j][0][1]] = [arr[i][j][0]]
-                        visited[arr[i][j][0][0]][arr[i][j][0][1]] = 1
+                if len(arr[i][j]) != 4:
+                    arr[i][j][0] = (arr[i][j][0]+direction[arr[i][j][4]][0]*arr[i][j][3])%N
+                    arr[i][j][1] = (arr[i][j][1]+direction[arr[i][j][4]][1]*arr[i][j][3])%N
+                    if arr[arr[i][j][0]][arr[i][j][1]] == 0:
+                        arr[arr[i][j][0]][arr[i][j][1]] = arr[i][j]
+                        visited[arr[i][j][0]][arr[i][j][1]] = 1
                     else:
-                        arr[arr[i][j][0][0]][arr[i][j][0][1]].append(arr[i][j][0])
-                        visited[arr[i][j][0][0]][arr[i][j][0][1]] = 1
+                        arr[arr[i][j][0]][arr[i][j][1]][2] += arr[i][j][2]
+                        arr[arr[i][j][0]][arr[i][j][1]][5] += arr[i][j][3]
+                        arr[arr[i][j][0]][arr[i][j][1]][6] += 1
+                        visited[arr[i][j][0]][arr[i][j][1]] = 1
                     arr[i][j] = 0
                 else:
                     for ii in range(4):
                         arr[i][j][ii][0] = (arr[i][j][ii][0] + direction[arr[i][j][ii][4]][0] * arr[i][j][ii][3]) % N
                         arr[i][j][ii][1] = (arr[i][j][ii][1] + direction[arr[i][j][ii][4]][1] * arr[i][j][ii][3]) % N
                         if arr[arr[i][j][ii][0]][arr[i][j][ii][1]] == 0:
-                            arr[arr[i][j][ii][0]][arr[i][j][ii][1]] = [arr[i][j][ii]]
+                            arr[arr[i][j][ii][0]][arr[i][j][ii][1]] = arr[i][j][ii]
                             visited[arr[i][j][ii][0]][arr[i][j][ii][1]] = 1
                         else:
-                            arr[arr[i][j][ii][0]][arr[i][j][ii][1]].append(arr[i][j][ii])
+                            arr[arr[i][j][ii][0]][arr[i][j][ii][1]][2] += arr[i][j][ii][2]
+                            arr[arr[i][j][ii][0]][arr[i][j][ii][1]][5] += arr[i][j][ii][3]
+                            arr[arr[i][j][ii][0]][arr[i][j][ii][1]][6] += 1
+                            if arr[arr[i][j][ii][0]][arr[i][j][ii][1]][7] == 1 and arr[i][j][ii][7]%2==0:
+                                arr[arr[i][j][ii][0]][arr[i][j][ii][1]][7] = 0
+                            elif arr[arr[i][j][ii][0]][arr[i][j][ii][1]][7] == 2 and arr[i][j][ii][7]%2==1:
+                                arr[arr[i][j][ii][0]][arr[i][j][ii][1]][7] = 0
                             visited[arr[i][j][ii][0]][arr[i][j][ii][1]] = 1
                     arr[i][j] = 0
     for i in range(N):
         for j in range(N):
-            if type(arr[i][j]) == list and len(arr[i][j]) > 1:
-                even = 0
-                old = 0
-                total_m = 0
-                total_s = 0
-                for ii in range(len(arr[i][j])):
-                    total_m += arr[i][j][ii][2]
-                    total_s += arr[i][j][ii][3]
-                    if arr[i][j][ii][4]%2 == 1:
-                        old += 1
+            tmp = []
+            if type(arr[i][j]) == list and arr[i][j][6] > 1:
+                if arr[i][j][2]//5 > 0:
+                    if arr[i][j][7] == 0:
+                        for dd in else_d:
+                            tmp.append([arr[i][j][0], arr[i][j][1], arr[i][j][2]//5, arr[i][j][5]//arr[i][j][5], dd, arr[i][j][5]//arr[i][j][5], 1, 1])
                     else:
-                        even += 1
-                total_m = total_m//5
-                total_s = total_s//len(arr[i][j])
-                if total_m == 0:
-                    arr[i][j] = 0
-                    continue
-                else:
-                    arr[i][j] = []
-                if len(arr[i][j]) == old or len(arr[i][j]) == even:
-                    for dd in all_d:
-                        arr[i][j].append([i,j,total_m,total_s,dd])
-                else:
-                    for dd in else_d:
-                        arr[i][j].append([i, j, total_m, total_s, dd])
+                        for dd in all_d:
+                            tmp.append([arr[i][j][0], arr[i][j][1], arr[i][j][2]//5, arr[i][j][5]//arr[i][j][5], dd, arr[i][j][5]//arr[i][j][5], 1, 2])
+                    arr[i][j] = tmp
 ans = 0
-# for a in arr:
-#     print(a)
 for i in range(N):
     for j in range(N):
         if arr[i][j] != 0:
-            for ii in arr[i][j]:
-                ans += ii[2]
+            if len(arr[i][j]) == 8:
+                ans += arr[i][j][2]
+            else:
+                for ii in arr[i][j]:
+                    ans += ii[2]
 print(ans)
