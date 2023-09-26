@@ -442,10 +442,25 @@ path에서 참조하는 앱폴더는 내부에 init파일이 있어 패키지로
   <form action="{% url "articles:create" %}" method='POST'>
     {% csrf_token %}
 ```
-## 게시글 생성 저장 삭제 수정 하는 법
 ### 요청 시 CSRF Token을 함께 보내야 하는 이유
 * 장고 서버는 해당 요청이 장고가 직접 제공한 페이지에서 작성한 것인지에 대한 확인 수단이다.
 * 더이상 URL에 데이터가 표기되지 않음
+## 게시글 생성 디테일화면생성 삭제 수정 하는 법
+### 게시글 생성 하는 법
+1. moduls.py에서 클래스를 생성해주고 migrate를 해준다.
+```python
+# 모듈파일 내부
+from django.db import models
+
+# Create your models here.
+class Article(models.Model):
+    title = models.CharField(max_length=10)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+```
+2. migrate를 해주었다면 게시글을 생성해주는 생성 창을 만들고 그 창에서 수정한 내용을 create함수로 받아 게시글을
+생성하고 redirect로 메인화면에 생성된 게시글을 띄운다.
 ### 게시글 생성하고 메인 페이지로 이동시키는 redirect 함수
 ```python
 from django.shortcuts import render, redirect
@@ -486,6 +501,38 @@ def create(request):
     <input type="submit">
   </form>
 ```
+### 메인화면에서 세부내용을 눌러 디테일한 화면을 띄우는 방법
+```python
+# 1. 메인페이지에서 해당 디테일 페이지로 이동하는 하이퍼링크 만들기
+# 메인페이지 html 내부
+  <a href="{% url "articles:detail" article.pk %}">
+    <p>글 제목 : {{ article.title }}</p>
+  </a>
+# 2. urls 내부에 베리어벌변수 만들기
+path('<int:pk>/', views.detail, name='detail'),
+# 3. views 내부에 디테일 함수로 받아서 디테일 창 띄우기
+def detail(request, pk):
+    article = Article.objects.get(pk=pk)
+    context = {
+        'article':article,
+    }
+    return render(request, 'articles/detail.html', context)
+# 4. 디테일 창 내부에 수정과 삭제 하이퍼 링크를 생성하기.
+  <h2>DETAIL</h2>
+  <h3>{{ article.pk }} 번째 글</h3>
+  <hr>
+  <p>{{ article.title }}</p>
+  <p>{{ article.content }}</p>
+  <p>{{ article.created_at }}</p>
+  <p>{{ article.updated_at }}</p>
+  <hr>
+  <a href="{% url "articles:edit" article.pk %}">EDIT</a>
+  <form action="{% url "articles:delete" article.pk %}" method='POST'>
+    {% csrf_token %}
+    <input type="submit" value='삭제'>
+  </form>
+  <a href="{% url "articles:index" %}">[back]</a>
+```
 ### delete 게시글 삭제하는 방법
 ```python
 #urls 내부
@@ -501,4 +548,102 @@ def delete(request, pk):
 <form action="{% url "articles:delete" article.pk %}" method='POST'>
   {% csrf_token %}
   <input type="submit" value='삭제'>
+```
+### 게시글 수정하는 방법
+```python
+# detail.html 내부
+# 이걸로 아티클의 프라임키를 보낸다.
+  <a href="{% url "articles:edit" article.pk %}">EDIT</a>
+# urls.py 내부 
+    path('<int:pk>/edit/', views.edit, name='edit'),
+    path('<int:pk>/update/', views.update, name='update'),
+# views.py 내부
+def edit(request, pk):
+    article = Article.objects.get(pk=pk)
+    context = {
+        'article': article,
+    }
+    return render(request, 'articles/edit.html', context)
+
+def update(request, pk):
+    article = Article.objects.get(pk=pk)
+    article.title = request.POST.get('title')
+    article.content = request.POST.get('content')
+    article.save()
+    return redirect('articles:detail', article.pk)
+# edit.html 내부
+  <form action="{% url "articles:update" article.pk %}" method="POST">
+    {% csrf_token %}
+    <div>
+      <label for="title">제목 : </label>
+      <input type="text" id="title" name="title" value="{{ article.title }}">
+    </div>
+    <div>
+      <label for="content">내용 : </label>
+      <textarea name="content" id="content" cols="30" rows="10">{{ article.content }}</textarea>
+    </div>
+    <input type="submit">
+  </form>
+  <hr>
+  <a href="{% url 'articles:index' %}">[back]</a>
+```
+### 유효성 검사
+수집한 데이터가 정확하고 유효한지 확인하는 과정
+### Django Form
+사용자 입력 데이터를 수집하고, 처리 및 유효성 검사를 수행하기 위한 도구
+### 앱 내부에 forms.py 파일 생성하고 Form class 정의
+```python
+# forms.py 내부
+from django import forms
+
+class ArticleForm(forms.Form):
+    title = forms.CharField(max_length=10)
+    # form필드에서는 CharField에서 맥스랜은 필수인자가 아니다.
+    # widget은 단순히 input요소의 속성 및 출력되는 부분을 변경하는 것
+    content = forms.CharField(widget=forms.Textarea)
+# views.py 내부
+from .forms import ArticleForm
+
+def new(request):
+    form = ArticleForm()
+    context = {
+        'form':form,
+    }
+    return render(request, 'articles/new.html', context)
+# new.html 내부
+  <form action="{% url "articles:create" %}" method="POST">
+    {% csrf_token %}
+    # .as_p : label, input 쌍을 특정 html 태그로 감싸는 옵션
+    {{ form.as_p }}
+    <input type="submit">
+  </form>
+```
+### ModelForm
+1. Form : 사용자 입력 데이터를 DB에 저장하지 않을 때(ex: 로그인)
+2. ModelForm : 사용자 입력 데이터를 DB에 저장해야 할 때 (ex: 게시글, 회원가입)
+```python
+# forms.py 내부
+from django import forms
+from .models import Article
+
+class ArticleForm(forms.ModelForm):
+    # model 등록
+    class Meta:
+        model = Article
+        # Article에서 받은 요소중 모든 요소를 입력받는다는 뜻
+        fields = '__all__'
+    # create 함수 변경하여 게시글 생성
+
+# views.py 내부
+def create(request):
+    form = ArticleForm(request.POST)
+    # 유효성 검사
+    if form.is_valid():
+        # 유효성 검사가 통과된 경우
+        form.save()
+        return redirect('articles:index')
+    context = {
+        'form':form,
+    }
+    return render(request, 'articles/new.html', context)
 ```
