@@ -647,3 +647,56 @@ def create(request):
     }
     return render(request, 'articles/new.html', context)
 ```
+### Static files 제공하기
+1. 기본 경로에서 제공하기
+  * articles/static/articles/ 경로에 이미지 파일 배치
+  * articles/static 까지 기본경로이므로 우리는 articles/이미지 파일로 접근하면 된다.
+  ```html
+  <!-- img 삽입, style.css 삽입 -->
+  <img src="{% static "articles/sample-1.png" %}" alt="샘플이미지">
+  <link rel="stylesheet" href="{% static "articles/style.css" %}">
+  ```
+2. 추가 경로에서 제공하기
+  * settings.py 내부 변경하기
+  ```python
+  STATIC_URL = 'static/'
+  # 아래에 이거 추가하기
+  STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+  ]
+  ```
+  * 앱 외부에 static 폴더 만들기
+  ```html
+  <img src="{% static "sample-2.png" %}" alt="샘플이미지2">
+  ```
+## Media files 해보기
+### 미디어 파일을 제공하기 전 준비사항
+1. settings.py 에 MEDIA_ROOT, MEDIA_URL 설정
+2. 작성한 MEDIA_ROOT와 MEDIA_URL에 대한 url 지정
+```python
+# settings.py
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = 'media/'
+# urls.py
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('articles/', include('articles.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# models.py in class in
+# 블랭크 트루를 넣지 않으면 모든 게시판에 이미지를 삽입해야한다.
+image = models.ImageField(blank=True)
+# form action은 문자열만 보내므로 enctype을 추가해줘야한다.
+# create.html
+<form action="{% url "articles:create" %}" method="POST" enctype='multipart/form-data'>
+# views.py request.POST 옆에 request.FILES추가
+def create(request):
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, request.FILES)
+# detail.html
+  {% if article.image %}
+  <img src="{{ article.image.url }}" alt="#">
+  {% endif %}
+```
