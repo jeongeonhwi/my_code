@@ -1,34 +1,41 @@
+'''
+문제접근 1. 순열과 find함수를 만들어 해결하려 했으나
+시간초과가 날 확률이 너무 크다.
+문제접근 2. 각행에 1개씩 퀸이 들어가고 맨 끝부터 몇개가
+끝까지 도착할 수 있는지 dfs로 접근하면 될것같다.
+문제접근 3. 지금은 내가 약해서 물러나지만 다음에는 풀자
+'''
+
+
 import sys
-sys.stdout = open('output.txt', 'w')
+# sys.stdout = open('output.txt', 'w')
 
 
-def find_position(arr):
+def permutation(start, end):
+    if start == end:
+        c = tuple(p)
+        my_set.add(c)
+        return
+    for j in range(end):
+        if used[j] == 0:
+            p[start] = num[j]
+            used[j] = 1
+            permutation(start+1, end)
+            used[j] = 0
+
+
+def find_Q(ntuple):
+    global cnt
+    arr = [[0]*N for _ in range(N)]
     for i in range(N):
-        for j in range(N):
-            if arr[i][j]:
-                return (i,j)
-
-
-
-di = [1, -1, 0, 0, 1, -1, -1, 1]
-dj = [0, 0, 1, -1, 1, 1, -1, -1]
+        arr[i][ntuple[i]] = 2
 
 N = int(input())
-arr = [[1]*N for _ in range(N)]
-for _ in range(N):
-    for ii in arr:
-        print(ii)
-    print()
-    i, j = find_position(arr)
-    arr[i][j] = 0
-    for k in range(8):
-        cnt = 1
-        ni, nj = i + di[k]*cnt, j + dj[k]*cnt
-        while True:
-            if 0<=i + di[k]*cnt<N and 0<=j + dj[k]*cnt<N:
-                arr[i + di[k]*cnt][j + dj[k]*cnt] = 0
-                cnt += 1
-            else:
-                break
-
-print(arr)
+num = [i for i in range(N)]
+p = [0]*N
+used = [0]*N
+my_set = set()
+permutation(0, N)
+cnt = 0
+for i in my_set:
+    find_Q(i)
