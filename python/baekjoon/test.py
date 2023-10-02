@@ -1,12 +1,3 @@
-import copy
-
-def a(arr):
-    arr2 = copy.deepcopy(arr)
-    arr2[0][0] = 100
-    return arr2
-
-
-arr = [[0,0],[1,2]]
-r = a(arr)
-arr = r
-print(arr)
+a = [(3,6), (2,3),(1,4)]
+a.sort(key=lambda x: x[1])
+print(a)
