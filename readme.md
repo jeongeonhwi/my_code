@@ -779,3 +779,80 @@ Session을 Create하는 과정
 ### get_user()
 AuthenticationForm의 인스턴스 메서드
 * 유효성 검사를 통과했을 경우 로그인 한 사용자 객체를 반환
+### 로그인 페이지 작성
+```python
+# 1
+# accounts/urls.py
+app_name = 'accounts'
+urlpatterns = [
+  path('login/', views.login, name='login'),
+]
+```
+```html
+<!-- 2 -->
+<!-- accounts/login.html -->
+  <h1>로그인</h1>
+  <form action="{% url 'accounts:login' %}" method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+  </form>
+```
+```python
+# 3
+# accounts/views.py
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as auth_login
+
+def login(request):
+  if request.method == 'POST':
+    form = AuthenticationForm(request, request.POST)
+    if form.is_valid():
+      auth_login(request, form.get_user())
+      return redirect('articles:index')
+  else:
+    form = AuthenticationForm()
+  context = {
+    'form':form,
+  }
+  return render(request, 'accounts/login.html', context)
+```
+### 로그아웃 로직 작성하기
+```python
+# 1
+# accounts/urls.py
+app_name = 'accounts'
+urlpatterns = [
+  path('login/', views.login, name='login'),
+  path('logout/', views.logout, name='logout'),
+]
+```
+```html
+<!-- 2 -->
+<!-- articles/index.html -->
+  <form action="{% url 'accounts:logout' %}" method='POST'>
+    {% csrf_token %}
+    <input type="submit" value='logout'>
+  </form>
+```
+```python
+# 3
+# accounts/views.py
+from django.contrib.auth import logout as auth_logout
+
+def logout(request):
+  auth_logout(request)
+  return redirect('articles:index')
+```
+### 로그인 상태에 따라 조건문 걸어주는 방법
+```python
+# views.py 내부일 경우
+if request.user.is_authenticated:
+  # 로그인이 되어있을경우 
+else:
+  # 로그인이 안되어있을경우
+```
+```html
+<!-- html 템플릿 내부일 경우 -->
+{% if user.is_authenticated %}
+```

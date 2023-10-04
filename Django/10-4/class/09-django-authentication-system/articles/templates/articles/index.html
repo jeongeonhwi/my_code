@@ -6,14 +6,19 @@
   <title>Document</title>
 </head>
 <body>
+  {% if user.is_authenticated %}
   <h1>INDEX</h1>
   <h3>{{ user.username }} 님 안녕하세요!</h3>
-  <a href="{% url "accounts:login" %}">로그인</a>
   <form action="{% url "accounts:logout" %}" method='POST'>
     {% csrf_token %}
     <input type="submit" value='logout'>
   </form>
+  {% else %}
+  <a href="{% url "accounts:login" %}">로그인</a>
+  {% endif %}
+  <p>
   <a href="{% url 'articles:create' %}">CREATE</a>
+  </p>
   <hr>
   {% for article in articles %}
     <p>글 번호 : {{ article.pk }}</p>
