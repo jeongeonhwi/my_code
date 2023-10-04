@@ -700,3 +700,82 @@ def create(request):
   <img src="{{ article.image.url }}" alt="#">
   {% endif %}
 ```
+### HTTP
+웹에서 이루어지는 모든 데이터 교환의 기초
+### HTTP 특징
+1. 비 연결 지향 : 서버는 요청에 대한 응답을 보낸 후 연결을 끊음
+2. 무상태 : 연결을 끊는 순간 클라이언트와 서버 간의 통신이 끝나며 상태 정보가 유지되지 않음
+### 쿠키(Cookie)
+서버가 사용자의 웹 브라우저에 전송하는 작은 데이터 조각
+1. 브라우저(클라이언트)는 쿠키를 KEY_VALUE의 데이터 형식으로 저장
+2. 이렇게 쿠키를 저장해 놓았다가, 동일한 서버에 재요청 시 저장된 쿠키를 함께 전송
+### 쿠키 사용 목적
+1. 세션 관리(Session management)
+  - 로그인, 아이디 자동완성, 공지 하루 안 보기, 팝업 체크, 장바구니 등의 정보 관리
+2. 개인화(Personalization)
+  - 사용자 선호, 테마 등의 설정
+3. 트래킹(Tracking)
+  - 사용자 행동을 기록 및 분석
+### 세션(Session)
+서버 측에서 생성되어 클라이언트와 서버 간의 상태를 유지하고 상태 정보를 저장하는 데이터 저장 방식
+### 세션 작동 원리
+1. 클라이언트가 로그인을 하면 서버가 session 데이터를 생성 후 저장
+2. 생성된 session 데이터에 인증 할 수 있는 session id를 발급
+3. 발급한 session id를 클라이언트에게 응답
+4. 클라이언트는 응답 받은 session id를 쿠키에 저장
+5. 클라이언트가 다시 동일한 서버에 접속하면 요청과 함께 쿠키(session id가 저장된)를 서버에 전달
+6. 쿠키는 요청 때마다 서버에 함께 전송 되므로 서버에서 session id를 확인해 로그인 되어있다는 것을 알도록 함
+### 쿠키와 세션의 목적
+서버와 클라이언트 간의 상태를 유지
+### Django Authentication System(인증 시스템)
+사용자 인증과 관련된 기능을 모아 놓은 시스템
+### 인증 시스템을 사용하기 위한 사전 준비
+1. 두번째 app accounts 생성 및 등록 ('accounts'로 지정하는 것을 권장)
+```python
+# 앱 생성하기
+# python manage.py startapp accounts
+
+# settings.py 에서 앱 등록하기, 프로젝트 내부 urls.py
+# include 추가해서 urls 분리해주기
+path('accounts/', include('accounts.urls')),
+
+# account 폴더 내부에 urls.py 만든다 urls.py 내부
+from django.urls import path
+from . import views
+
+app_name = 'accounts'
+urlpatterns = [
+    
+]
+```
+### Custom User model로 '대체'하기
+django가 기본적으로 제공하는 User model은 내장된 auth 앱의 user 클래스를 사용하기 때문에 변경할 수 없다. 그러므로 대체해주어야 한다.
+* **프로젝트 중간에 대체할 수 없으므로 처음 생성해주어야 한다.**
+* **첫 마이그레이트 하기 전에 생성하고 마이그레이트를 해야한다.**
+```python
+# 1. AbstractUser를 상속받는 커스텀 User 클래스 작성
+# models.py 내부
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+# Create your models here.
+class User(AbstractUser):
+    pass
+
+# 2. django 프로젝트가 사용하는 기본 User 모델을 우리가 작성한 User 모델로 지정
+# settions.py 내부
+AUTH_USER_MODEL = 'accounts.User'
+
+# 3. 기본 User 모델이 아니기 때문에 등록하지 않으면 admin site에 출력되지 않음
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import User
+# Register your models here.
+admin.site.register(User, UserAdmin)
+```
+### Login
+Session을 Create하는 과정
+### AuthenticationForm()
+로그인 인증에 사용할 데이터를 입력 받는 built-in form
+### get_user()
+AuthenticationForm의 인스턴스 메서드
+* 유효성 검사를 통과했을 경우 로그인 한 사용자 객체를 반환
