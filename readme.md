@@ -865,21 +865,175 @@ else:
 path('signup/', views.signup, name='signup'),
 
 # 2
+# accounts/forms.py
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth import get_user_model
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = get_user_model()
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = get_user_model()
+        fields = ('first_name', 'last_name', 'email')
+# 현재 프로젝트에서 활성화된 사용자 모델을 반환하는 함수
+# * **User 모델을 직접 참조하지 말고 get_user_model()을 사용하도록 필수적으로 강조한다.**
+
+# 3
 # accounts/views.py
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+
 def signup(request):
-    if request.method=='POST':
-        form = UserCreationForm(request.POST)
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            # 추가함 회원가입하고 로그인상태 유지시키기위해
+            auth_login(request, user)
             return redirect('articles:index')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     context = {
         'form':form,
     }
     return render(request, 'accounts/signup.html', context)
 ```
-### git_user_model()
-현재 프로젝트에서 활성화된 사용자 모델을 반환하는 함수
-* **User 모델을 직접 참조하지 말고 get_user_model()을 사용하도록 필수적으로 강조한다.**
+```html
+<!-- 3 -->
+<!-- accounts/signup.html -->
+  <h1>회원가입</h1>
+  <form action="{% url "accounts:signup" %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+  </form>
+```
+### 회원 탈퇴 로직 작성하기
+```python
+# 1
+# accounts/urls.py
+path('delete/', views.delete, name='delete'),
+
+# 2
+# accounts/views.py
+def delete(request):
+    request.user.delete()
+    return redirect('articles:index')
+```
+```html
+<!-- 3 -->
+<!-- accounts/index.html -->
+  <form action="{% url "accounts:delete" %}" method='POST'>
+    {% csrf_token %}
+    <input type="submit" value='회원탈퇴'>
+  </form>
+```
+### 회원 정보 수정 페이지 작성하기
+```python
+# 1
+# accounts/urls.py
+path('update/', views.update, name='update'),
+
+# 2
+# accounts/views.py
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+
+def update(request):
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    context = {
+        'form':form
+    }
+    return render(request, 'accounts/update.html', context)
+```
+```html
+<!-- 3 -->
+<!-- accounts/update.html -->
+  <h1>회원정보수정</h1>
+  <form action="{% url "accounts:update" %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+  </form>
+```
+### 비밀번호 변경 페이지 작성하기
+```python
+# 1
+# crud/urls.py
+path('<int:user_pk>/password/', views.change_password, name='change_password'),
+
+# 2
+# accounts/views.py
+from django.contrib.auth.forms import PasswordChangeForm
+
+def change_password(request, user_pk):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            # 비밀번호 변경하고 로그인 유지하는 함수
+            update_session_auth_hash(request, user)
+            return redirect('articles:index')
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        'form':form,
+    }
+    return render(request, 'accounts/change_password.html', context)
+```
+```html
+<!-- 3 -->
+<!-- accounts/change_password.html -->
+  <h1>비밀번호변경</h1>
+  <form action="{% url "change_password" user.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+  </form>
+```
+### update_session_auth_hash 적용하는법
+```python
+# accounts/views.py
+from django.contrib.auth import update_session_auth_hash
+
+update_session_auth_hash(request, user)
+```
+### 회원가입 후 로그인까지 이어서 진행하기
+```python
+def signup(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # 추가함 회원가입하고 로그인상태 유지시키기위해
+            auth_login(request, user)
+            return redirect('articles:index')
+    else:
+        form = CustomUserCreationForm()
+    context = {
+        'form':form,
+    }
+    return render(request, 'accounts/signup.html', context)
+```
+### 탈퇴 후 기존 사용자의 세션 삭제 방법
+```python
+# accounts/views.py
+def delete(request):
+    request.user.delete()
+    auth_logout(request)
+    return redirect('articles:index')
+```
+### login_required 비인가 사용자 차단하는 데코레이터
+```python
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def logout(request):
+# 비인가 사용자 차단하고 싶은 함수 위에 써주기
+```
