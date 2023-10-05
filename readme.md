@@ -856,3 +856,30 @@ else:
 <!-- html 템플릿 내부일 경우 -->
 {% if user.is_authenticated %}
 ```
+### UserCreationForm()
+회원 가입시 사용자 입력 데이터를 받을 built-in ModelForm
+### 회원가입 로직 작성하기
+```python
+# 1
+# accounts/urls.py
+path('signup/', views.signup, name='signup'),
+
+# 2
+# accounts/views.py
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+def signup(request):
+    if request.method=='POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = UserCreationForm()
+    context = {
+        'form':form,
+    }
+    return render(request, 'accounts/signup.html', context)
+```
+### git_user_model()
+현재 프로젝트에서 활성화된 사용자 모델을 반환하는 함수
+* **User 모델을 직접 참조하지 말고 get_user_model()을 사용하도록 필수적으로 강조한다.**
