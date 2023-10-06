@@ -619,7 +619,7 @@ def new(request):
   </form>
 ```
 ### ModelForm
-1. Form : 사용자 입력 데이터를 DB에 저장하지 않을 때(ex: 로그인)
+1. Form : 사용자 입력 데이터를 DB에 저장하지 않을 때(ex: 로그인)**autentication에 구현되어있기 때문에 일반적으로 사용하지 않고 모델폼을 사용함**
 2. ModelForm : 사용자 입력 데이터를 DB에 저장해야 할 때 (ex: 게시글, 회원가입)
 ```python
 # forms.py 내부
@@ -634,18 +634,33 @@ class ArticleForm(forms.ModelForm):
         fields = '__all__'
     # create 함수 변경하여 게시글 생성
 
-# views.py 내부
+# views.py 내부 modelform 적용버전
 def create(request):
-    form = ArticleForm(request.POST)
-    # 유효성 검사
-    if form.is_valid():
-        # 유효성 검사가 통과된 경우
-        form.save()
-        return redirect('articles:index')
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('movies:index')
+    form = ArticleForm()
     context = {
         'form':form,
     }
-    return render(request, 'articles/new.html', context)
+    return render(request, 'movies/create.html', context)
+  
+def update(request, pk):
+    article = Article.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('movies:index')
+    else:
+        form = ArticleForm(instance=article)
+    context = {
+        'article':article,
+        'form':form,
+    }
+    return render(request, 'movies/update.html', context)
 ```
 ### Static files 제공하기
 1. 기본 경로에서 제공하기
@@ -882,7 +897,7 @@ class CustomUserChangeForm(UserChangeForm):
 
 # 3
 # accounts/views.py
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 def signup(request):
     if request.method == 'POST':
