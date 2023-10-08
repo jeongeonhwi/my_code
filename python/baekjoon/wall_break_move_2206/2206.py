@@ -1,38 +1,39 @@
 import sys
-sys.stdin = open('input.txt', 'r')
-# input = sys.stdin.readline
+# sys.stdin = open('input.txt', 'r')
+input = sys.stdin.readline
 
 
 from heapq import heappop,heappush
 def dfs():
-    visited = [[[int(2e9)]*M for _ in range(N)] for _ in range(2)]
+    visited = [[[int(2e9)]*M for _ in range(N)] for _ in range(wall+1)]
     hq = [(1,0,0,0)]
     visited[0][0][0] = 1
     while hq:
         cnt, i,j,w = heappop(hq)
         if visited[w][i][j] < cnt:
             continue
-        for k in range(4):
-            ni,nj = i+di[k],j+dj[k]
+        for di,dj in [(0,1),(0,-1),(1,0),(-1,0)]:
+            ni,nj = i+di,j+dj
             if 0<=ni<N and 0<=nj<M and arr[ni][nj] == '0':
                 if visited[w][ni][nj] <= cnt+1:
                     continue
                 visited[w][ni][nj] = cnt+1
                 heappush(hq, (cnt+1,ni,nj,w))
             else:
-                if 0<=ni<N and 0<=nj<M and arr[ni][nj] == '1' and w == 0:
+                if 0<=ni<N and 0<=nj<M and arr[ni][nj] == '1' and w < wall:
                     if visited[w+1][ni][nj] <= cnt+1:
                         continue
-                    visited[w][ni][nj] = cnt+1
+                    visited[w+1][ni][nj] = cnt+1
                     heappush(hq, (cnt+1,ni,nj,w+1))
-    return min(visited[0][N-1][M-1], visited[1][N-1][M-1])
+    min_v = int(2e9)
+    for i in range(wall+1):
+        min_v = min(min_v, visited[i][N-1][M-1])
+    return min_v
 
 
 
 
-di = [-1, 1, 0, 0]
-dj = [0, 0, -1, 1]
-N, M = map(int, input().split())
+N, M, wall = map(int, input().split())
 arr = [input() for _ in range(N)]
 ans = dfs()
 if ans == int(2e9):
