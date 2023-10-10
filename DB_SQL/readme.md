@@ -774,3 +774,18 @@ FROM users LEFT JOIN newarticles
   ON users.id = newarticles.userId
 WHERE newarticles.userId IS NULL;
 ```
+### 레코드 추가할때 중복값 제거 혹은 디폴트 값 설정해주기
+```SQL
+CREATE TABLE users (
+  PK INTEGER PRIMARY KEY AUTOINCREMENT,
+  -- UNIQUE를 넣어주면 중복된 값이 삽입 혹은 추가되면 오류메세지를 보낸다
+  email TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  age INTEGER NOT NULL,
+  phoneNumber NOT NULL,
+  gender INTEGER,
+  -- 비워두면 안되는 주소창에 디폴트를 선언해주면 해당 필드를 비우고 새로운 값을 추가해주어도 생성된다
+  address NOT NULL DEFAULT 'no address'
+);
+
+```

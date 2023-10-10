@@ -1,0 +1,9 @@
+CREATE TABLE users (
+  PK INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  age INTEGER NOT NULL,
+  phoneNumber NOT NULL,
+  gender INTEGER,
+  address NOT NULL DEFAULT 'no address'
+);
