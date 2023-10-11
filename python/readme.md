@@ -1174,3 +1174,43 @@ print(distance)
     - 문제 해석 완료
 2. 무슨 알고리즘을 사용할까?
     - 시간복잡도를 먼저 확인하자
+### 시간복잡도를 측정하자
+```python
+import time
+start_time = time.time()
+end_time = time.time()
+print('time :',end_time-start_time)
+
+
+# 아래는 예시입니다.
+from random import randint
+import time
+arr=[]
+for _ in range(10000):
+    arr.append(randint(1,100))
+start_time=time.time()
+
+for i in range(len(arr)-1):
+    min =i
+    for j in range(i+1,len(arr)):
+        if arr[min]>arr[j]:
+            min=j
+    arr[i],arr[min]=arr[min],arr[i]
+end_time=time.time()
+
+print("성능 측정 :",end_time-start_time)
+
+arr=[]
+for _ in range(10000):
+    arr.append(randint(1,100))
+
+start_time=time.time()
+arr.sort()
+end_time=time.time()
+
+print("성능 측정 :",end_time-start_time)
+
+## 출력 결과
+성능 측정 : 13.048523664474487
+성능 측정 : 0.002000570297241211
+```

@@ -1,5 +1,6 @@
 # Django
 -----
+## start Django
 ### django
 python 기반의 대표적인 웹 프레임워크
 ### 웹의 동작 방식
@@ -1051,4 +1052,197 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def logout(request):
 # 비인가 사용자 차단하고 싶은 함수 위에 써주기
+```
+## DB : 장고
+### 댓글 모델 정의
+* ForeignKey() 클래스의 인스턴스 이름은 참조하는 모델 클래스 이름의 **단수형**으로 작성하는 것을 권장
+* ForeignKey 클래스를 작성하는 위치와 관계없이 외래 키는 테이블 필드 마지막에 생성됨
+```python
+# articles/models.py
+
+class Comment(models.Model):
+    # 케스케이드(CASCADE) : 게시글이 삭제되면 댓글도 삭제하기
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    content = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+```
+### ForeignKey(to, on_delete)
+* 외래 키가 참조하는 객체(1)가 사라졌을 때, 외래 키를 가진 객체(N)를 어떻게 처리할 지를 정의 하는 설정 (데이터 무결성)
+### Migration
+* 댓글 테이블의 article_id 필드 확인
+* 참조하는 클래스 이름의 소문자(단수형)로 작성하는 것이 권장 되었던 이유
+  - '참조 대상 클래스 이름' + '_' + '클래스 이름'
+### 댓글 생성 연습하기
+```python
+# 1
+# python manage.py shell_plus
+
+# 게시글 생성
+Article.objects.create(title='title', content='content')
+
+# 댓글 생성
+# Comment 클래스의 인스턴스 comment 생성
+comment = Comment()
+
+# 인스턴스 변수 저장
+comment = 'first comment'
+
+# 댓글 달고 싶은 게시글 조회
+article = Article.objects.get(pk=1)
+
+# 외래키 데이터 입력
+comment.article = article
+comment.save()
+
+# comment 인스턴스를 통한 article 값 참조하기
+# 클래스 변수명인 article로 조회시 해당 참조하는 게시물 객체를 조회할 수 있음
+comment.article
+=> <Article: Article object (1)>
+
+# 1번 댓글이 작성된 게시물의 pk 조회
+comment.article.pk
+=> 1
+
+# 1번 댓글이 작성된 게ㅣ물의 content 조회
+comment.article.content
+=> 'content'
+```
+### 관계 모델 참조
+#### 참조
+* 댓글이 어떤 게시글에 작성되었는지를 조회 가능 (예) : N -> 1
+#### 역참조
+* N:1 관계에서 1에서 N을 참조하거나 조회하는 것 (예) : 1 -> N
+  - N은 외래 키를 가지고 있어 물리적으로 참조가 가능하지만 1은 N에 대한 참조 방법이 존재하지 않아 별도의 역참조 이름이 필요
+#### 역참조 호출 공식
+article.comment_set.all()
+1. article = 모델 인스턴스
+2. comment_set = related manager(역참조 이름)
+3. .all() = QuerySet API
+#### related manager
+* N:1 혹은 M:N 관계에서 역참조 시에 사용하는 매니저
+  - 'objects'매니저를 통해 queryset api 를 사용했던 것처럼 related manager를 통해 queryset api를 사용할 수 있게 됨
+#### related manager 이름 규칙
+* N:1 관계에서 생성되는 Related manager의 이름은 참조하는 '모델명_set' 이름 규칙으로 만들어짐
+* 해당 댓글의 게시글 (Comment -> Article)
+  - comment.article
+* 게시글의 댓글 목록 (Article -> Comment)
+  - article.comment_set.all()
+### 댓글 구현 해보기
+#### 댓글 CREATE 구현 해보기
+```python
+# 1
+# articles/forms.py
+from .models import Article, Comment
+
+class CommentForm(forms.ModelForm):
+  class Meta:
+    model = Comment
+    # 필드값은 컨텐트만 해기 사용자에게 content내용만 받으면 되므로 '__all__' 안씀
+    fields = ('content',)
+
+# 2
+# articles/views.py
+from .forms import ArticleForm, CommentForm
+
+def detail(request, pk):
+    article = Article.objects.get(pk=pk)
+    comment_form = CommentForm()
+    # 특정 게시글의 모든 댓글을 조회(역참조)
+    comments = article.comment_set.all()
+    context = {
+        'article': article,
+        'comment_form':comment_form,
+        'comments': comments,
+    }
+    return render(request, 'articles/detail.html', context)
+```
+```html
+<!-- articles/detail.html -->
+
+  <form action="{% url "articles:comments_create" article.pk %}" method='POST'>
+    {% csrf_token %}
+    {{ comment_form }}
+    <input type="submit">
+  </form>
+```
+```python
+# 3
+# 댓글 create 구현
+
+# articles/urls.py
+
+path('<int:pk>/comments/', views.comments_create, name='comments_create'),
+
+# 4
+# save의 commit 인자를 활용해 외래 키 데이터 추가 입력
+
+def comments_create(request, pk):
+    # 게시글 조회
+    article = Article.objects.get(pk=pk)
+    # CommentForm으로 사용자로 부터 입력 받은 데이터
+    comment_form = CommentForm(request.POST)
+    if comment_form.is_valid():
+        # 저장을 잠깐 멈춤 save는 기본적으로 commit = True임
+        comment = comment_form.save(commit=False)
+        comment.article = article
+        comment_form.save()
+        return redirect('articles:detail', article.pk)
+    context = {
+        'article' : article,
+        'comment_form': comment_form,
+    }
+    return render(request, 'articles/detail.html', context)
+```
+### 게시판에서 댓글 읽기 구현하기
+#### detail view 함수에서 전체 댓글 데이터를 조회
+```python
+def detail(request, pk):
+    article = Article.objects.get(pk=pk)
+    comment_form = CommentForm()
+    # 특정 게시글의 모든 댓글을 조회(역참조)
+    comments = article.comment_set.all()
+    context = {
+        'article': article,
+        'comment_form':comment_form,
+        'comments': comments,
+    }
+    return render(request, 'articles/detail.html', context)
+```
+```html
+  <h4>댓글 목록</h4>
+  <ul>
+    {% for comment in comments %}
+      <li>{{ comment.content }}
+        <form action="{% url "articles:comments_delete" article.pk comment.pk %}" method='POST'>
+          {% csrf_token %}
+          <input type="submit" value='삭제'>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+```
+### 댓글 삭제 구현하기
+```python
+# articles/urls.py
+
+path('<int:article_pk>/comments/<int:comment_pk>/delete/', views.comments_delete, name='comments_delete'),
+
+# articles/views.py
+from .models import Article, Comment
+
+def comments_delete(request, article_pk, comment_pk):
+    # 댓글 조회
+    comment = Comment.objects.get(pk=comment_pk)
+    comment.delete()
+    return redirect('articles:detail', article_pk)
+```
+```html
+<!-- articles/detail.html -->
+
+<!-- 삭제 버튼 구현 -->
+<form action="{% url "articles:comments_delete" article.pk comment.pk %}" method='POST'>
+  {% csrf_token %}
+  <input type="submit" value='삭제'>
+</form>
 ```
