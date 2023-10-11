@@ -787,5 +787,4 @@ CREATE TABLE users (
   -- 비워두면 안되는 주소창에 디폴트를 선언해주면 해당 필드를 비우고 새로운 값을 추가해주어도 생성된다
   address NOT NULL DEFAULT 'no address'
 );
-
 ```
