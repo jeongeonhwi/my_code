@@ -1,4 +1,5 @@
 # DB:SQL
+## SQLite
 ### 기존의 데이터 저장 방식
 1. 파일(File) 이용
 2. 스프레드 시트(Spreadsheet) 이용 예: 엑셀
@@ -788,3 +789,29 @@ CREATE TABLE users (
   address NOT NULL DEFAULT 'no address'
 );
 ```
+## Data Modeling
+### Data Modeling
+* 데이터베이스 시스템을 시각적으로 표현하는 프로세스
+  - 데이터 유형, 데이터 간의 관계 및 분석 등을 통해 비즈니스 요구사항을 만들어 낼 수 있도록 도움
+### ERD (Entity-Relationship Diagram)
+* 다이어그램을 사용하여 데이터베이스의 Entity 간 관계를 나타내는 방법
+### ERD 구성 요소
+* 사각형(도형) : Entity == Table
+* 원(도형) : Attribute == Field
+* 마름모(도형) : Relation == PK, FK
+### Relationship 표현 방법
+#### Cardinality
+1. 1:1
+2. N:1
+3. N:M
+#### Optionality
+필수 & 선택
+* 회원:게시글이 N:1관계라면 회원은 필수, 게시글은 선택
+### Cardinality와 Optionality을 ㅈ합
+* '하나의 회원은 여러 개의 글을 작성할 수 있고, 하나의 글은 한 명의 회원이 작성할 수 있다.'
+* 글과 회원의 관계는 N:1이며, 글은 **필수적**으로 회원과 연결되어야 하지만 회원은 **선택적**으로 글과 연결될 수 있는 관계
+### 데이터 모델링의 중요성
+* 데이터베이스 소프트웨어 개발 오류 감소
+* 데이터베이스 설계 및 생성 속도와 효율성 촉진
+* 조직 전체에서 데이터 문서화 및 시스템 설계의 일관성 조성
+* 데이터 엔지니어와 비즈니스 팀 간의 커뮤니케이션 촉진
