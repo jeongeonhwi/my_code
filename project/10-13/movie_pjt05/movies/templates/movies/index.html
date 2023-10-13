@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>INDEX PAGE</h1>
+{% for movie in movies %}
+<p>{{ movie.title }}</p>
+<p>{{ movie.description }}</p>
+<form action="{% url "movies:detail" movie.pk %}">
+  <input type="submit" value='Detail'>
+</form>
+{% endfor %}
+{% endblock content %}
