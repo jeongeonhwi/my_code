@@ -63,8 +63,8 @@ for i in range(2*H+1):
 for _ in range(M):
     a,b = map(int, input().split())
     arr[2*(a)-1][2*b] = 1
-# for i in arr:
-#     print(i)
+for i in arr:
+    print(i)
 num = []
 for i in range(2*H):
     for j in range(2*N):

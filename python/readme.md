@@ -1214,3 +1214,21 @@ print("성능 측정 :",end_time-start_time)
 성능 측정 : 13.048523664474487
 성능 측정 : 0.002000570297241211
 ```
+### 조합
+```python
+arr = [j for j in range(1, 6)]
+sets = [0] * 3
+N = len(arr)
+
+
+def combi(s, k, e):
+
+    if s == e:
+        print(sets)
+
+    else:
+        for i in range(k, N):
+            sets[s] = arr[i]
+            combi(s+1, i+1, e)
+combi(0, 0, 3)
+```
