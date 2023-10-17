@@ -116,3 +116,7 @@ def likes(request, movie_pk):
             movie.like_users.add(request.user)
         return redirect("movies:index")
     return redirect("accounts:login")
+
+
+def hashtag(request, hashtag_pk):
+    return render(request, 'movies/hashtag.html')

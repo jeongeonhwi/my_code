@@ -16,4 +16,5 @@ urlpatterns = [
         name="comments_delete",
     ),
     path("<int:movie_pk>/likes/", views.likes, name="likes"),
+    path('<int:hashtag_pk>/hashtag/', views.hashtag, name='hashtag'),
 ]

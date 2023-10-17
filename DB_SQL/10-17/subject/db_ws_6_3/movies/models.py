@@ -25,3 +25,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
+
+class Hashtag(models.Model):
+    hashtags = models.ManyToManyField(Movie, blank=True)
+    content = models.CharField(max_length=50, unique=True)
+
+
