@@ -5,7 +5,7 @@ from django.views.decorators.http import (
     require_safe,
 )
 from django.contrib.auth.decorators import login_required
-from .models import Movie, Comment
+from .models import Movie, Comment, Hashtag
 from .forms import MovieForm, CommentForm
 
 
@@ -26,8 +26,21 @@ def create(request):
         form = MovieForm(request.POST)
         if form.is_valid():
             movie = form.save(commit=False)
+            data = movie.content
+            shyap = ''
+            check = False
+            for i in data:
+                if i == '#':
+                    check = True
+                if check:
+                    shyap += i
+            hashtag_list = shyap.split(' ')
             movie.user = request.user
             movie.save()
+            for h in hashtag_list:
+                h = Hashtag.objects.get_or_create(content=h)[0]
+                movie.hashtag_set.add(h.pk)
+            
             return redirect("movies:detail", movie.pk)
     else:
         form = MovieForm()
