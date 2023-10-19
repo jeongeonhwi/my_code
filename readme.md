@@ -1516,6 +1516,7 @@ API Server를 개발하기 위한 일종의 소프트웨어 설계 방법론 '�
 #### Serialization : 직렬화
 * 어떠한 언어나 환경에서도 나중에 다시 쉽게 사용할 수 있는 포맷으로 변환하는 과정
 ## 장고로 serializer 사용해서 조회, 생성, 수정, 삭제 구현하기
+### 게시글 구현하기
 ```python
 # articles/serializers.py
 from rest_framework import serializers
@@ -1576,4 +1577,174 @@ def article_detail(request, article_pk):
         a = {'delete':f'데이터 {article_pk}번 글이 삭제되었습니다.'}
         article.delete()
         return Response(a, status=status.HTTP_204_NO_CONTENT)
+```
+### 댓글 구현하기
+|URL|GET|POST|PUT|DELET|
+|--|--|--|--|--|
+|commtents/|댓글 목록 조회||||
+|comments/1/|단일 댓글 조회||단일 댓글 수정|단일 댓글 삭제|
+|articles/1/comments/||댓글생성|||
+
+```python
+# articles/models.py
+
+from django.db import models
+
+
+# Create your models here.
+class Article(models.Model):
+    title = models.CharField(max_length=10)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+  
+# articles/serializers.py
+
+from rest_framework import serializers
+from .models import Article, Comment
+
+
+class ArticleListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = ('id', 'title', 'content',)
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    class ArticleSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Article
+            fields=('id', 'title',)
+
+    # override
+    article = ArticleSerializer(read_only=True)
+
+    class Meta:
+        model = Comment
+        fields = '__all__'
+        # read_only_fields = ('article',)
+
+
+class ArticleSerializer(serializers.ModelSerializer):
+    comment_set = CommentSerializer(many=True, read_only=True)
+    # 이렇게 댓글 수를 보내주면 프론트에서 댓글수를 안찾아도 됨
+    comment_count = serializers.IntegerField(source='comment_set.count', read_only=True)
+
+    class Meta:
+        model = Article
+        fields = '__all__'
+  
+# articles/urls.py
+
+from django.urls import path
+from articles import views
+
+
+urlpatterns = [
+    path('articles/', views.article_list),
+    path('articles/<int:article_pk>/', views.article_detail),
+    path('comments/', views.comment_list),
+    path('comments/<int:comment_pk>/', views.comment_detail),
+    path('articles/<int:article_pk>/comments/', views.comment_create),
+]
+
+# articles/views.py
+
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
+from django.shortcuts import get_object_or_404, get_list_or_404
+from .models import Article, Comment
+from .serializers import ArticleListSerializer, ArticleSerializer, CommentSerializer
+
+
+@api_view(['GET', 'POST'])
+def article_list(request):
+    if request.method == 'GET':
+        # articles = Article.objects.all()
+        articles = get_list_or_404(Article)
+        serializer = ArticleListSerializer(articles, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = ArticleSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'DELETE', 'PUT'])
+def article_detail(request, article_pk):
+    # article = Article.objects.get(pk=article_pk)
+    article = get_object_or_404(Article, pk=article_pk)
+
+    if request.method == 'GET':
+        serializer = ArticleSerializer(article)
+        return Response(serializer.data)
+
+    elif request.method == 'DELETE':
+        article.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    elif request.method == 'PUT':
+        serializer = ArticleSerializer(article, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def comment_list(request):
+    # comments = Comment.objects.all()
+    comments = get_list_or_404(Comment)
+    # 첫번째 인자가 딕셔너리가 아닌 쿼리셋이라면 many=True를 써줌
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET', 'DELETE', 'PUT'])
+def comment_detail(request, comment_pk):
+    # comment = Comment.objects.get(pk=comment_pk)
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if request.method == 'GET':
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+    
+    elif request.method == 'DELETE':
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    elif request.method == 'PUT':
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+
+@api_view(['POST'])
+def comment_create(request, article_pk):
+    # article = Article.objects.get(pk=article_pk)
+    article = get_object_or_404(Article, pk=article_pk)
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(article=article)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+```
+
+### django.shortcuts : 정확한 오류를 알려주기 위해 사용
+```python
+from django.shortcuts import get_object_or_404, get_list_or_404
+# articles = Article.objects.all()
+articles = get_list_or_404(Article)
+
+# article = Article.objects.get(pk=article_pk)
+article = get_object_or_404(Article, pk=article_pk)
 ```
