@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>INDEX PAGE</h1>
+<h3>
+  {{ user }}님 환영합니다 ^^b
+</h3>
+<hr>
+<a href="{% url "movies:create" %}">새글 작성하기</a>
+<hr>
+{% for movie in movies %}
+<p>
+  <a href="{% url "movies:detail" movie.pk %}">
+  {{ movie.title }}
+  </a>
+</p>
+<p>
+  {{ movie.content }}
+</p>
+<p>작성자 : {{ movie.user }}</p>
+<p>
+  {{ movie.created_at }}
+</p>
+<p>
+  좋아요 {{ movie.like_users.count }}
+  <form action="{% url "movies:likes" movie.pk %}" method='POST'>
+    {% csrf_token %}
+    {% if request.user in movie.like_users.all %}
+    <input type="submit" value='좋아요 취소'>
+    {% else %}
+    <input type="submit" value='좋아요'>
+    {% endif %}
+  </form>
+</p>
+<hr>
+{% endfor %}
+<hr>
+{% endblock content %}

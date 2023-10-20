@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div>
+    <h1>{{ person.username }}님의 프로필</h1>
+
+    <h2>영화 목록</h2>
+    {% for movie in person.movie_set.all %}
+      <p class="color: gray">{{ movie.title }}</p>
+    {% endfor %}
+
+    <h3>좋아요를 누른 개수 : {{ person.like_articles.all|length }}</h3>
+
+    <div>
+      <div>
+        팔로워 : {{ person.followers.all|length }}
+      </div>
+      <div>
+        팔로잉 : {{ person.followings.all|length }}
+      </div>
+      {% if request.user != person %}
+        <div>
+          <form action="{% url "accounts:follow" person.pk %}" method="POST">
+            {% csrf_token %}
+            {% if request.user in person.followers.all %}
+              <input type="submit" value="Unfollow">
+            {% else %}
+              <input type="submit" value="Follow">
+            {% endif %}
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}
