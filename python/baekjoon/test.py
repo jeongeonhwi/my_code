@@ -1,10 +1,26 @@
-a = '가나다라마바사아자차카타 #윤여정 #사랑해 #코미디'
-b = ''
-check = False
-for i in a:
-    if i == '#':
-        check = True
-    if check:
-        b+=i
-c = b.split(' ')
-print(c)
+import sys
+input = sys.stdin.readline
+
+
+
+
+
+
+K, N = map(int, input().split())
+arr = [int(input()) for _ in range(K)]
+
+start = 1
+end = max(arr)
+while start <= end:
+    mid = (start+end)//2
+    cnt = 0
+    for i in arr:
+        cnt+= i//mid
+
+    if cnt < N:
+        end = mid-1
+
+    if cnt >= N:
+        start = mid+1
+
+print(end)

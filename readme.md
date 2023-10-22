@@ -1748,3 +1748,22 @@ articles = get_list_or_404(Article)
 # article = Article.objects.get(pk=article_pk)
 article = get_object_or_404(Article, pk=article_pk)
 ```
+### 더미데이터 제이슨으로 보내기 fixtures
+```bash
+# 3개의 모델을 하나의 json파일로
+$ python manage.py dumpdata --indent 4 articles.article articles.comment accounts.user > data.json
+
+# 모든 모델을 하나의 json 파일로
+$ python manage.py dumpdata --indent 4 > data.json
+
+# 해당 위치로 fixture 파일 이동
+article/fixtures/data.json
+
+# loaddata 활용
+$ python manage.py loaddata data.jon
+```
+#### 로드데이터 시 인코딩 관련 에러가 발생하는 경우
+메모장 활용
+1. 메모장으로 json파일 열기
+2. 다른 이름으로 저장 클릭
+3. 인코딩을 UTF8로 선택 후 저장
