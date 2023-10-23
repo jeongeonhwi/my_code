@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Following List</h1>
+<a href="{% url "movies:index" %}">Back</a>
+<hr>
+<ul>
+  {% for f in fs %}
+    <li>
+      <a href="{% url "accounts:profile" f %}">
+        {{ f }}
+      </a>
+    </li>
+  {% empty %}
+    <p>인원이 없습니다.</p>
+  {% endfor %}
+</ul>
+{% endblock content %}

@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash, get_user_model
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from movies.models import Movie
 
 
 def login(request):
@@ -103,5 +104,38 @@ def follow(request, user_pk):
         else:
             person.followers.add(me)
     return redirect('accounts:profile', person.username)
+
+
+@login_required
+def likedmovielist(request, user_pk):
+    User = get_user_model()
+    person = User.objects.get(pk=user_pk)
+    movies = person.like_movies.all()
+    context = {
+        'movies':movies,
+    }
+    return render(request, 'accounts/likedmovielist.html', context)
+
+
+@login_required
+def followerlist(request, user_pk):
+    User = get_user_model()
+    person = User.objects.get(pk=user_pk)
+    fs = person.followers.all()
+    context = {
+        'fs':fs,
+    }
+    return render(request, 'accounts/followerlist.html', context)
+
+
+@login_required
+def followinglist(request, user_pk):
+    User = get_user_model()
+    person = User.objects.get(pk=user_pk)
+    fs = person.followings.all()
+    context = {
+        'fs':fs,
+    }
+    return render(request, 'accounts/followings.html', context)
 
 

@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_list_or_404,get_object_or_404
 from .models import Movie, Comment
-from .forms import CommentForm, MovieForm
+from .forms import CommentForm, MovieForm, RecommentForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
+
 
 # Create your views here.
 def index(request):
-    movies = get_list_or_404(Movie)
+    movies = Movie.objects.all()
     context = {
         'movies':movies,
     }
@@ -87,6 +89,19 @@ def comment_create(request, movie_pk):
 
 
 @login_required
+def recomment(request, movie_pk, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    recomment_form = RecommentForm(request.POST)
+    if recomment_form.is_valid():
+        recomment = recomment_form.save(commit=False)
+        recomment.comment = comment
+        recomment.user = request.user
+        recomment_form.save()
+        return redirect('movies:detail', movie_pk)
+    
+
+
+@login_required
 def comment_delete(request, movie_pk, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
     if request.user == comment.user:
@@ -102,3 +117,4 @@ def likes(request, movie_pk):
     else:
         movie.like_users.add(request.user)
     return redirect('movies:index')
+

@@ -9,14 +9,22 @@
       <p class="color: gray">{{ movie.title }}</p>
     {% endfor %}
 
-    <h3>좋아요를 누른 개수 : {{ person.like_articles.all|length }}</h3>
-
+    <h3>좋아요를 누른 개수 : {{ person.like_movies.all|length }}</h3>
+    <a href="{% url "accounts:likedmovielist" person.pk %}">
+      좋아요 영화 확인
+    </a>
     <div>
       <div>
-        팔로워 : {{ person.followers.all|length }}
+        <a href="{% url "accounts:followerlist" person.pk %}">
+          팔로워
+        </a>
+         : {{ person.followers.all|length }}
       </div>
       <div>
-        팔로잉 : {{ person.followings.all|length }}
+        <a href="{% url "accounts:followinglist" person.pk %}">
+          팔로잉
+        </a>
+        : {{ person.followings.all|length }}
       </div>
       {% if request.user != person %}
         <div>

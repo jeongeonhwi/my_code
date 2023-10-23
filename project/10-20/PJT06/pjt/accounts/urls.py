@@ -11,4 +11,7 @@ urlpatterns = [
     path('<int:user_pk>/password/', views.change_password, name='change_password'),
     path('profile/<username>/', views.profile, name='profile'),
     path('<int:user_pk>/follow', views.follow, name='follow'),
+    path('<int:user_pk>/likedmovielist/', views.likedmovielist, name = 'likedmovielist'),
+    path('<int:user_pk>/followerlist/', views.followerlist, name='followerlist'),
+    path('<int:user_pk>/followinglist/', views.followinglist, name='followinglist'),
 ]
