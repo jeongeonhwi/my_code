@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_list_or_404,get_object_or_404
-from .models import Movie, Comment
+from .models import Movie, Comment, Recomment
 from .forms import CommentForm, MovieForm, RecommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
@@ -18,10 +18,12 @@ def detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     comment_form = CommentForm()
     comments = movie.comment_set.all()
+    recomment_form = RecommentForm()
     context = {
         'movie':movie,
         'comment_form':comment_form,
-        'comments':comments
+        'comments':comments,
+        'recomment_form':recomment_form,
     }
     return render(request, 'movies/detail.html', context)
 
@@ -90,14 +92,20 @@ def comment_create(request, movie_pk):
 
 @login_required
 def recomment(request, movie_pk, comment_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
     comment = get_object_or_404(Comment, pk=comment_pk)
     recomment_form = RecommentForm(request.POST)
     if recomment_form.is_valid():
         recomment = recomment_form.save(commit=False)
-        recomment.comment = comment
+        recomment.recomment = comment
         recomment.user = request.user
         recomment_form.save()
         return redirect('movies:detail', movie_pk)
+    context = {
+        'movie':movie,
+        'recomment_form':recomment_form,
+    }
+    return render(request, 'movies/detail.html', context)
     
 
 
@@ -110,6 +118,14 @@ def comment_delete(request, movie_pk, comment_pk):
 
 
 @login_required
+def recomment_delete(request, movie_pk, recomment_pk):
+    recomment = get_object_or_404(Recomment, pk=recomment_pk)
+    if request.user == recomment.user:
+        recomment.delete()
+    return redirect('movies:detail', movie_pk)
+
+
+@login_required
 def likes(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     if request.user in movie.like_users.all():
@@ -118,3 +134,23 @@ def likes(request, movie_pk):
         movie.like_users.add(request.user)
     return redirect('movies:index')
 
+
+@login_required
+def comment_update(request, movie_pk, comment_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if request.user == comment.user:
+        if request.method == 'POST':
+            form = CommentForm(request.POST, instance=comment)
+            if form.is_valid():
+                form.save()
+                return redirect('movies:detail', movie.pk)
+        else:
+            form = CommentForm(instance=comment)
+    else:
+        return redirect('movies:detail', movie_pk)
+    context = {
+        'movie': movie,
+        'form':form,
+    }
+    return render(request, 'movies/update.html', context)

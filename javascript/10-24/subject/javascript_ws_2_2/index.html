@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 동등 연산자를 활용한 조건문
+    if (0 == []) {
+      console.log('true?')
+    } else {
+      console.log('false?')
+    }
+    // 실행 결과 : true?. 두 연산자가 같은 값으로 평가되는지 비교후 boolean값을 반환
+
+    // 일치 연산자를 활용한 조건문
+    if ({} === false) {
+      console.log('true?')
+    } else {
+      console.log('false?')
+    }
+    // 실행 결과 : false?. 두 연산자의 타입과 값이 모두 같은 경우에만 true를 반환
+
+    // 논리 연산자를 활용한 단축 평가
+    console.log(0 && 13)
+    // 실행 결과 : 0. and 연산은 앞에 0 혹은 false가 나오면 뒤까지 안가고 앞을 반환
+    console.log(0 || 13)
+    // 실행 결과 : 13. or 연산은 앞이 0 혹은 false가 나오더라도 뒤까지 확인하고 뒤를 반환
+    
+    let num = 12
+    num /= 3
+    console.log(num)
+    // 실행 결과 : 4. let 변수는 재할당이 가능하다.
+
+    const number = 13
+    number++
+    // 실행 결과 : const 변수는 재할당 할시 Uncaught TypeError가 나온다.
+  </script>
+</body>
+</html>
