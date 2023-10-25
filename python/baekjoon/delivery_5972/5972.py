@@ -1,5 +1,6 @@
 import sys
-sys.stdin = open('input.txt', 'r')
+# sys.stdin = open('input.txt', 'r')
+input = sys.stdin.readline
 
 
 from heapq import heappop, heappush
@@ -11,9 +12,13 @@ def daic(start):
         c, i = heappop(hq)
         if visited[i] < c:
             continue
-        for ni in arr[i]:
-
-
+        for ni,cow in arr[i]:
+            nc = c+cow
+            if visited[ni] <= nc:
+                continue
+            visited[ni] = nc
+            heappush(hq, (nc,ni))
+    return visited[N-1]
 
 
 
@@ -25,4 +30,5 @@ for _ in range(M):
     a,b,cnt = map(int, input().split())
     arr[a-1].append((b-1, cnt))
     arr[b-1].append((a-1, cnt))
-daic((0,0))
+ans = daic((0,0))
+print(ans)

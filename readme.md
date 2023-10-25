@@ -129,8 +129,32 @@
   - Node.removeChild()
     - Dom에서 자식 Node를 제거
     - 제거된 Node를 반환  
+```html
+<script>
+  // 생성
+  const h1Tag = document.createElement('h1')
+  h1Tag.textContent = '제목'
+  
+  // 추가
+  const divTag = document.querySelector('div')
+  divTag.appendChild(h1Tag)
+  
+  // 삭제
+  divTag.removeChild(h1Tag)
+</script>
+```
 * style 조작
   - 'style' property : 해당 요소의 모든 style 속성 목록을 포함하는 속성
+```html
+<script>
+  const pTag = document.querySelector('p')
+
+  pTag.style.color = 'crimson'
+  pTag.style.fontSize = '2rem'
+  pTag.style.border = '1px solid black'
+  console.log(pTag.style)
+</script>
+```
 #### Node
 * DOM의 기본 구성 단위
 * DOM 트리의 각 부분은 Node라는 객체로 표현됨

@@ -12,4 +12,6 @@ for i in range(N):
         susi.add(arr[(i+k)%N])
     susi.add(C)
     max_v = max(max_v, len(susi))
+    if max_v == K+1:
+        break
 print(max_v)
