@@ -23,20 +23,23 @@
   const inputTag = document.querySelector('input')
   const ulTag = document.querySelector('ul')
 
+  
+  
   function addTodo (event) {
     // 이벤트를 취소한다.
     event.preventDefault()
-
+    
     // 입력 element를 찾고 해당 입력 element의 value 값을 저장한다.
     const inputdata = inputTag.value
-
+    
+    if (inputdata.trim()) {
     // li element를 생성 후 input element의 value 값을 데이터로 저장한다
-    const liTag = document.createElement('li')
+    const liTag = document.createElement('li');
     liTag.textContent = inputdata
-
+    
     // ul 태그의 자식 태그로 위에서 생성한 li element를 넣는다.
     ulTag.appendChild(liTag)
-
+    
     // 삭제 버튼을 생성 후 li 태그의 자식 태그로 넣는다.
     const deletbnt = document.createElement('button')
     deletbnt.textContent = 'X'
@@ -45,14 +48,26 @@
     // 삭제 버튼을 클릭하면 해당 li element를 삭제한다
     deletbnt.addEventListener('click', clickX)
     // li element를 클릭하면 취소선이 토글된다.
+    liTag.addEventListener('click', clickLi);
+    } else {
+      alert('내용을 채워주세요!!')
+    }
   }
-
-
-  function clickX (event) {
-    console.log('클릭')
-    console.log(event.currentTarget)
-    
+  
+  
+  function clickX (event)  {
+    const deletebnt = event.currentTarget
+    const pbnt = deletebnt.parentNode
+    ulTag.removeChild(pbnt)
   }
+  
+  
+    function clickLi() {
+      console.log('클릭')
+      const liTag = event.currentTarget
+      // console.log(liTag)
+      liTag.classList.toggle('done')
+    }
 
 
   form.addEventListener('submit', addTodo)
