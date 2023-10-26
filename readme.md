@@ -1128,3 +1128,323 @@ const number = 20  <!-- 2. 재할당 불가능 -->
 * 배열의 요소를 대괄호 접근법을 사용해 접근하는 건 객체 문법과 같음
 * 다만 배열의 키는 숫자라는 점
 * 숫자형 키를 사용함으로써 배열은 객체 기본 기능 이외에도 순서가 있는 컬렉션을 제어하게 해주는 특별한 메서드를 제공
+## Controlling event
+### 이벤트
+#### 이벤트 종류
+* mouse, input, keyboard, touch... mdn 참조
+#### event handler
+* 이벤트가 발생했을 때 실행되는 함수
+  - 사용자의 행동에 어떻게 반응할지를 JavaScript 코드로 표현한 것
+#### .addEventListener()
+* 대표적인 이벤트 핸들러 중 하나
+  - 특정 이벤트를 DOM 요소가 수신할 때마다 콜백 함수를 호출
+#### addEventListener 활용 1/2
+* 버튼을 클릭하면 버튼 요소 출력하기
+  - 버튼에 이벤트 처리기를 부착하여 클릭 이벤트가 발생하면 이벤트가 발생한 버튼정보를 출력
+* 요소에 addEventListener를 부착하게 되면 내부의 this 값은 대상 요소를 가리키게 됨(event 객체의 currentTarget 속성 값과 동일)
+```html
+<script>
+  // 1. 버튼 선택
+  const btn = document.querySelector('#btn')
+
+  // 2. 콜백 함수
+  const detectClick = function (event) {
+    console.log(event)
+    console.log(event.target)
+    console.log(event.currentTarget)
+    console.log(this)
+  }
+
+  // 3. 버튼에 이벤트 핸들러를 부착
+  btn.addEventListener('click', detectClick)
+</script>
+```
+#### addEventListener의 콜백함수 특징
+* 발생할 이벤트를 나타내는 Event 객체를 유일한 매개변수로 받음
+* 아무것도 반환하지 않음
+#### 버블링 개요
+* 핸들러는 form 요소에 할당되어 있지만 div나 p 요소 같은 중첩된 요소를 클릭해도 동작함
+  - 왜 div나 p를 클릭했는데 form에 할당된 핸들러가 동작할까?
+```html
+<body>
+    <form id="form">
+    form
+    <div id="div">
+      div
+      <p id="p">p</p>
+    </div>
+  </form>
+<script>
+    const formElement = document.querySelector('#form')
+
+    const clickHandler1 = function (event) {
+      console.log('form이 클릭되었습니다.')
+    }
+
+    formElement.addEventListener('click', clickHandler1)
+</script>
+</body>
+```
+#### 버블링
+* 한요소에 이벤트가 발생하면, 이 요소에 할당된 핸들러가 동작하고, 이어서 부모 요소의 핸들러가 동작하는 현상
+* 가장 최상단의 조상 요소(document)를 만날 때까지 이 과정이 반복되면서 요소 각각에 할당된 핸들러가 동작
+  - 이벤트가 제일 깊은 곳에 있는 요소에서 시작해 부모 요소를 거슬러 올라가며 발생하는 것이 마치 물속 거품과 닮았기 때문
+#### 버블링 예시
+```html
+  <style>
+    #outerouter {
+      width: 300px;
+      height: 300px;
+      background-color: yellowgreen;
+    }
+
+    #outer {
+      width: 200px;
+      height: 200px;
+      background-color: crimson;
+    }
+
+    #inner {
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="outerouter">
+    outerouter
+    <div id="outer">
+      outer
+      <div id="inner">inner</div>
+    </div>
+  </div>
+
+  <script>
+    const outerOuterElement = document.querySelector('#outerouter')
+
+    const clickHandler = function (event) {
+      console.log('currentTarget:', event.currentTarget.id)
+      console.log('target:', event.target.id)
+    }
+
+    outerOuterElement.addEventListener('click', clickHandler)
+  </script>
+</body>
+```
+#### target & currentTarget 속성
+* target 속성
+  - 이벤트가 발생한 가장 안쪽의 요소(target)를 참조하는 속성
+  - 실제 이벤트가 시작된 target 요소
+  - 버블링이 진행 되어도 변하지 않음
+* currentTarget 속성
+  - 현재 요소
+  - 항상 이벤트 핸들러가 연결된 요소만을 참조하는 속성
+  - 'this'와 같음
+### event handler 활용
+#### click 이벤트 실습
+* 버튼을 클릭하면 숫자를 1씩 증가
+```html
+<body>
+  <button id="btn">버튼</button>
+  <p>클릭횟수 : <span id="counter">0</span></p>
+
+  <script>
+    // 1. 초기값 할당
+    let counterNumber = 0
+
+    // 2. 버튼 요소 선택
+    const btn = document.querySelector('#btn')
+
+    // 3. 콜백 함수 (버튼에 클릭 이벤트가 발생할때마다 실행할 코드)
+    const clickHandler = function () {
+      // 3.1 초기값 += 1
+      counterNumber += 1
+
+      // 3.2 span 요소를 선택
+      const spanTag = document.querySelector('#counter')
+
+      // 3.3 span 요소의 컨텐츠를 1 증가한 초기값으로 설정
+      spanTag.textContent = counterNumber
+    }
+
+    // 4. 버튼에 이벤트 핸들러 부착 (클릭 이벤트)
+    btn.addEventListener('click', clickHandler)
+  </script>
+</body>
+```
+#### input 이벤트 실습
+* 사용자의 입력 값을 실시간으로 출력하기
+```html
+<body>
+  <input type="text" id="text-input">
+  <p></p>
+
+  <script>
+    // 1. input 요소 선택
+    const inputTag = document.getElementById('text-input')
+    // 2. p 요소 선택
+    const pTag = document.querySelector('p')
+    // 3. 콜백 함수 (input 요소에 input 이벤트가 발생할때마다 실행할 코드)
+    // 3.1 작성하는 데이터가 어디에 누적되고 있는지 찾기
+    const inputHandler = function (event) {
+      console.log(event)
+      console.log(event.currentTarget)
+      // 3.2 p요소의 컨텐츠에 작성하는 데이터를 추가
+      pTag.textContent = this.value
+    }
+    // 4. input 요소에 이벤트 핸들러 부착 (input 이벤트)
+    inputTag.addEventListener('input', inputHandler)
+  </script>
+</body>
+```
+#### click & input 이벤트 실습
+* 사용자의 입력 값을 실시간으로 출력
+  - +버튼을 클릭하면 출력한 값의 css 스타일 변경하기
+```html
+<body>
+  <input type="text" id="text-input">
+  <p></p>
+
+  <script>
+    // 1. input 요소 선택
+    const inputTag = document.getElementById('text-input')
+    // 2. p 요소 선택
+    const pTag = document.querySelector('p')
+    // 3. 콜백 함수 (input 요소에 input 이벤트가 발생할때마다 실행할 코드)
+    // 3.1 작성하는 데이터가 어디에 누적되고 있는지 찾기
+    const inputHandler = function (event) {
+      console.log(event)
+      console.log(event.currentTarget)
+      // 3.2 p요소의 컨텐츠에 작성하는 데이터를 추가
+      pTag.textContent = this.value
+    }
+    // 4. input 요소에 이벤트 핸들러 부착 (input 이벤트)
+    inputTag.addEventListener('input', inputHandler)
+  </script>
+</body>
+```
+#### todo 실습
+```html
+<body>
+  <input type="text" class="input-text">
+  <button id="btn">+</button>
+  <ul></ul>
+
+  <script>
+    // 1. 필요한 요소 선택
+    const inputTag = document.querySelector('input')
+    const btn = document.getElementById('btn')
+    const ulTag = document.querySelector('ul')
+
+    const addTodo = function (event) {
+      // 2.1 사용자 입력 데이터 저장
+      const inputSave = inputTag.value
+      if (inputSave.trim()) {
+      // 2.2 데이터를 저장할 li 요소를 생성
+      const liTag = document.createElement('li')
+      // 2.3 li 요소 컨텐츠에 데이터 입력
+      liTag.textContent = inputSave
+      // 2.4 li 요소를 부모 ul 요소의 자식 요소로 추가
+      ulTag.appendChild(liTag)
+      // 2.5 todo 추가 후 input의 입력 데이터는 초기화
+      inputTag.value = ''
+    } else {
+      alert('투두를 입력하세요!!!')
+    }
+    }
+
+    // 2. 버튼에 이벤트 핸들러를 부착
+    btn.addEventListener('click', addTodo)
+
+  </script>
+</body>
+```
+#### 로또 번호 생성기 실습
+* 자바스크립트의 라이브러리인 lodash를 사용해보자
+* 궁금한게 있으면 lodash 공식 도큐먼트를 참고할것
+```html
+<body>
+  <h1>로또 추천 번호</h1>
+  <button id="btn">행운 번호 받기</button>
+  <div></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    // 1. 필요한 요소 선택
+    const btn = document.querySelector('#btn')
+    const divTag = document.querySelector('div')
+    // 2. 로또 번호를 생성하는 함수
+    const getLottery = function (event) {
+      // 2.1 1부터 45까지의 값이 필요
+      const numbers = _.range(1,46)
+      // 2.2 45개의 요소가 있는 배열에서 6개 번호 추출
+      const sixNumbers = _.sampleSize(numbers, 6)
+      console.log(sixNumbers)
+      // 2.5 6개의 li 요소를 담을 ul 요소 생성
+      const ulTag = document.createElement('ul')
+      // 2.3 추출한 번호 배열을 "반복"하면서 li 요소를 생성
+      sixNumbers.forEach(function (number) {
+        // 2.4 번호를 담을 li 요소 생성 후 입력
+        const liTag = document.createElement('li')
+        liTag.textContent = number
+        // 2.6 만들어진 li를 ul 요소에 추가
+        ulTag.appendChild(liTag)
+        console.log(ulTag)
+      })
+
+      // 2.7 완성한 ul 요소를 div 요소에 추가
+      divTag.appendChild(ulTag)
+    }
+
+    // 3. 버튼 요소에 이벤트 핸들러를 부착
+    btn.addEventListener('click', getLottery)
+  </script>
+</body>
+```
+#### 이벤트 동작 취소 실습
+* copy 이벤트 동작 취소
+```html
+<body>
+  <h1>중요한 내용</h1>
+
+  <form id="my-form">
+    <input type="text" name="username">
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    // 1
+    const h1Tag = document.querySelector('h1')
+
+    h1Tag.addEventListener('copy', function (event) {
+      console.log(event)
+      event.preventDefault()
+      alert('복사 할 수 없습니다.')
+    })
+  </script>
+</body>
+```
+* form 제출 시 새로고침 동작 취소
+```html
+<body>
+  <h1>중요한 내용</h1>
+
+  <form id="my-form">
+    <input type="text" name="username">
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const formTag = document.querySelector('#my-form')
+
+    const handleSubmit = function (event) {
+      event.preventDefault()
+    }
+
+    formTag.addEventListener('submit', handleSubmit)
+
+  </script>
+</body>
+```

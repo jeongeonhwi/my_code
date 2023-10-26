@@ -38,14 +38,76 @@
 
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script>
     /* 
       사용자가 form 에 title과 content를 입력하고 submit하면, 예시와 같은 카드를 생성하여 div#cardSection에 추가하는 코드를 작성하시오.
       카드가 생성되면 기존 input과 textarea의 내용은 삭제되어야 합니다.
       (완성 이후 카드 예시는 삭제)
     */
+    const sectionTag1 = document.querySelector('#cardsSection')
+
+
+    const divTag = document.querySelector('div')
+    const inputTitle = document.querySelector('#title')
+    const inputContent = document.querySelector('#content')
+    const btn = document.querySelector('button')
     const sectionTag = document.createElement('section')
+    divTag.appendChild(sectionTag)
     
+    // sectionTag.classList.add('d-inline')
+    sectionTag.classList.add('row')
+    const createCard = function (event) {
+      event.preventDefault()
+      const title = inputTitle.value
+      const content = inputContent.value
+      
+      // sectionTag.classList.add('row')
+      
+      // sectionTag.setAttribute('style', 'width:200px;')
+      const articleTag = document.createElement('article')
+      articleTag.classList.add('col-4')
+      sectionTag.appendChild(articleTag)
+      const divTag1 = document.createElement('div')
+      divTag1.classList.add('card')
+      divTag1.classList.add('m-1')
+      articleTag.appendChild(divTag1)
+      const divTag2 = document.createElement('div')
+      divTag2.classList.add('card-body')
+      divTag1.appendChild(divTag2)
+      const h5Tag = document.createElement('h5')
+      const pTag = document.createElement('p')
+      h5Tag.classList.add('card-title')
+      pTag.classList.add('card-text')
+      divTag2.appendChild(h5Tag)
+      divTag2.appendChild(pTag)
+      h5Tag.textContent = title
+      pTag.textContent = content
+      inputTitle.value = ''
+      inputContent.value = ''
+    }
+    btn.addEventListener('click', createCard)
+    // 기존내용 삭제
+    divTag.removeChild(sectionTag1)
+
   </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <style>
+  </style>
+</head>
+<body>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>
