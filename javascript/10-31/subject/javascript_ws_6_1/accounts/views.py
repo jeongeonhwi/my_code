@@ -1,15 +1,20 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.forms import (
+    AuthenticationForm, 
+    UserCreationForm, 
+    PasswordChangeForm
+)
+from django.views.decorators.http import require_http_methods, require_POST
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from .forms import CustomUserCreationForm, CustomUserChangeForm
 from django.http import JsonResponse
-
+from .forms import CustomUserChangeForm, CustomUserCreationForm
 
 # Create your views here.
+@require_http_methods(['GET', 'POST'])
 def login(request):
     if request.user.is_authenticated:
         return redirect('articles:index')
@@ -17,8 +22,9 @@ def login(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
+            # 로그인 !
             auth_login(request, form.get_user())
-            return redirect('articles:index')
+            return redirect(request.GET.get('next') or 'articles:index')
     else:
         form = AuthenticationForm()
     context = {
@@ -27,12 +33,14 @@ def login(request):
     return render(request, 'accounts/login.html', context)
 
 
-@login_required
+@require_POST
 def logout(request):
-    auth_logout(request)
+    if request.user.is_authenticated:
+        auth_logout(request)
     return redirect('articles:index')
 
 
+@require_http_methods(['GET', 'POST'])
 def signup(request):
     if request.user.is_authenticated:
         return redirect('articles:index')
@@ -40,7 +48,8 @@ def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            auth_login(request, user)
             return redirect('articles:index')
     else:
         form = CustomUserCreationForm()
@@ -50,13 +59,16 @@ def signup(request):
     return render(request, 'accounts/signup.html', context)
 
 
-@login_required
+@require_POST
 def delete(request):
-    request.user.delete()
-    return redirect('articles:index')
+    if request.user.is_authenticated:
+        request.user.delete()
+        auth_logout(request)
+    return redirect('articles:index') 
 
 
 @login_required
+@require_http_methods(['GET', 'POST'])
 def update(request):
     if request.method == 'POST':
         form = CustomUserChangeForm(request.POST, instance=request.user)
@@ -72,12 +84,13 @@ def update(request):
 
 
 @login_required
-def change_password(request, user_pk):
+@require_http_methods(['GET', 'POST'])
+def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)
+            form.save()
+            update_session_auth_hash(request, form.user)
             return redirect('articles:index')
     else:
         form = PasswordChangeForm(request.user)
@@ -88,31 +101,29 @@ def change_password(request, user_pk):
 
 
 def profile(request, username):
-    User = get_user_model()
-    person = User.objects.get(username=username)
+    person = get_object_or_404(get_user_model(), username=username)
     context = {
         'person': person,
     }
     return render(request, 'accounts/profile.html', context)
 
 
-@login_required
+@require_POST
 def follow(request, user_pk):
-    User = get_user_model()
-    you = User.objects.get(pk=user_pk)
-    me = request.user
-
-    if me != you:
-        if me in you.followers.all():
-            you.followers.remove(me)
-            is_followed = False
-        else:
-            you.followers.add(me)
-            is_followed = True
-        context = {
-            'is_followed':is_followed,
-            'followings_count': you.followings.count(),
-            'followers_count' : you.followers.count(),
-        }
+    if request.user.is_authenticated:
+        person = get_object_or_404(get_user_model(), pk=user_pk)
+        if person != request.user:
+            if person.followers.filter(pk=request.user.pk).exists():
+            # if request.user in person.followers.all():
+                person.followers.remove(request.user)
+                is_followed = False
+            else:
+                person.followers.add(request.user)
+                is_followed = True
+            context = {
+                'is_followed':is_followed,
+                'followings_count': person.followings.count(),
+                'followers_count': person.followers.count(),
+            }
         return JsonResponse(context)
-    return redirect('accounts:profile', you.username)
+    return redirect('accounts:login')

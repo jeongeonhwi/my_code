@@ -1767,11 +1767,3 @@ $ python manage.py loaddata data.jon
 1. 메모장으로 json파일 열기
 2. 다른 이름으로 저장 클릭
 3. 인코딩을 UTF8로 선택 후 저장
-## Ajax with Django
-### Ajax와 서버
-#### Ajax
-* Asynchronus JavaScript + XML
-  - JavaScript의 비동기 구조와 XML 객체를 활용해 비동기적으로 서버와 통신하여 웹 페이지의 일부분만을 업데이트하는 웹 개발 기술
-
-### Ajax with follow
-### Ajax with likes
