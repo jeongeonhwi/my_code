@@ -1,14 +1,6 @@
-n = 'bbbbbaaaaaabbbbb'
-ncnt = len(n)
-for i in range(ncnt):
-    bcheck = False
-    if N[i] == 'b':
-        for j in range(bcnt):
-            if N[(i + j) % ncnt] != 'b':
-                bcheck = True
-                break
-        else:
-            min_v = min(min_v, c)
-            return
-    if bcheck:
-        break
+N = [1,2,3,4]
+nset = {tuple(N)}
+
+a = tuple(N)
+if tuple(N) in nset:
+    print('yes')
