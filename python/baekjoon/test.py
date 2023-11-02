@@ -1,6 +1,8 @@
 N = [1,2,3,4]
-nset = {tuple(N)}
+nset = {(tuple(N),1)}
 
-a = tuple(N)
-if tuple(N) in nset:
-    print('yes')
+a = [1,2,3,4]
+
+
+if (tuple(a), 1) in nset:
+    print(type((tuple(a), 1)))

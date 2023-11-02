@@ -18,26 +18,32 @@ def f(p, c):
                     break
             else:
                 min_v = min(min_v, c)
+                print(N, c, min_v)
                 return
     for i in range(ncnt):
         if p == i:
             continue
-        if N[p] == N[i]:
-            continue
         if p >= ncnt:
             return
-        N[p],N[i] = N[i],N[p]
-        if tuple(N) in nset:
-            N[p], N[i] = N[i], N[p]
+        if N[p] == N[i]:
             continue
-        nset.add(tuple(N))
+        N[p],N[i] = N[i],N[p]
+        check = False
+        for cc in range(c+2):
+            if (tuple(N),cc) in nset:
+                check = True
+                N[p], N[i] = N[i], N[p]
+                break
+        if check:
+            continue
+        nset.add((tuple(N),c+1))
         f(p+1,c+1)
         N[p], N[i] = N[i], N[p]
 
 
 
 N = list(input())
-nset = {tuple(N)}
+nset = {(tuple(N),0)}
 ncnt = len(N)
 acnt = N.count('a')
 bcnt = N.count('b')
