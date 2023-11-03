@@ -1767,3 +1767,9 @@ $ python manage.py loaddata data.jon
 1. 메모장으로 json파일 열기
 2. 다른 이름으로 저장 클릭
 3. 인코딩을 UTF8로 선택 후 저장
+#### .exists를 사용하기 all보다 연산이 작다.
+```python
+if request.user in article.like_users.all():
+
+if article.like_users.filter(pk=request.user.pk).exists():
+```

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>추천 영화 목록</h1>
+
+  {% for movie in recommended_movies %}
+    <br>
+    {% if movie in most_recommended %}
+      {% comment %} <a href="{% url 'movies:detail' movie.pk %}" id='hot'>{{ movie.title }}</a> {% endcomment %}
+      <span>
+        <a href="{% url 'movies:detail' movie.pk %}" style='background-color:yellow'>{{ movie.title }}</a>
+        <strong style='color:red'>'HOT!'</strong>
+      </span>
+    {% else %}
+      <a href="{% url 'movies:detail' movie.pk %}">{{ movie.title }}</a>
+    {% endif %}
+    <br>
+    <hr>
+  {% endfor %}
+  <hr>
+  <a href="{% url "movies:index" %}">[back]</a>
+  {% comment %} <script>
+    const mostRecommendeds = document.querySelectorAll('#hot')
+  </script> {% endcomment %}
+{% endblock %}
