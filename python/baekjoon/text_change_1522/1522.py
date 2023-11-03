@@ -3,7 +3,7 @@ import sys
 sys.stdin = open('input.txt', 'r')
 
 
-def f(p, c, check):
+def f(p, c):
     global min_v
     if N.count('a') == ncnt:
         min_v = 0
@@ -21,36 +21,24 @@ def f(p, c, check):
                 print(N, c, min_v)
                 return
     for i in range(ncnt):
-        if check:
-            if N[i] == 'b':
-                continue
-        else:
-            if N[i] == 'a':
-                continue
         if p == i:
             continue
         if p >= ncnt:
             return
-        if N[p] == N[i]:
+        if N[p] == 'a':
             continue
         if visited[i]:
             continue
         N[p],N[i] = N[i],N[p]
-        # check = False
-        # for cc in range(c+2):
-        #     if (tuple(N),cc) in nset:
-        #         check = True
-        #         N[p], N[i] = N[i], N[p]
-        #         break
-        # if check:
-        #     continue
-        # nset.add((tuple(N),c+1))
         visited[i] = 1
-        inputcheck = 0
-        if check == 0:
-            inputcheck = 1
-        print(visited, c, min_v)
-        f(i,c+1, inputcheck)
+        for j in range(ncnt):
+            if visited[j]:
+                continue
+            if N[j] == 'b':
+                continue
+            visited[j] = 1
+            f(j,c+1)
+            visited[j] = 0
         visited[i] = 0
         N[p], N[i] = N[i], N[p]
 
@@ -67,6 +55,6 @@ for i in range(ncnt):
     if N[i] == 'b':
         continue
     visited[i] = 1
-    f(i, 0 , 0)
+    f(i, 0)
     visited[i] = 0
 print(min_v)
