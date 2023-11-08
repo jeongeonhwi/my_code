@@ -1128,3 +1128,148 @@ onMounted(() => {
 * 새로운 프로젝트나 모듈을 시작하기 위해 초기 구조와 기본 코드를 자동으로 생성하는 과정
 * 개발자들이 프로젝트를 시작하는 데 도움을 주는 틀이나 기반을 제공하는 작업
 * 초기 설정, 폴더 구조, 파일 템플릿, 기본 코드 등을 자동으로 생성하여 개발자가 시작할 때 시간과 노력을 절약하고 일관된 구조를 유지할 수 있도록 도와줌
+## Component State Flow
+### Passing Props
+#### 같은 데이터 하지만 다른 컴포넌트
+* 동일한 사진 데이터가 한 화면에 다양한 위치에서 여러번 출력되고 있음
+* 하지만 해당 페이지를 구성하는 컴포넌트가 여러 개라면 각 컴포넌트가 개별적으로 동일한 데이터를 관리해야 할까?
+* 그렇다면 사진을 변경 해야 할 때 모든 컴포넌트에 대해 변경 요청을 해야함
+* **공통된 부모 컴포넌트에서 관리하자**
+* 부모는 자식에게 데이터를 전달 (pass Props)하며, 자식은 자신에게 일어난 일을 부모에게 알림(Emit event)
+#### Props
+* 부모 컴포넌트로부터 자식 컴포넌트로 데이터를 전달하는데 사용되는 속성
+#### One-Way Data Flow
+모든 props는 자식 속성과 부모 속성 사이에 하향식 단방향 바인딩을 형성(one-way-down binding)
+#### Propt 특징
+* 부모 속성이 업데이트되면 자식으로 흐르지만 그 반대는 안됨
+* 즉, 자식 컴포넌트 내부에서 props를 변경하려고 시도해서는 안되며 불가능
+* 또한 부모 컴포넌트가 업데이트될 때마다 자식 컴포넌트의 모든 props가 최신 값으로 업데이트 됨
+* **부모 컴포넌트에서만 변경하고 이를 내려 받는 자식 컴포넌트는 자연스럽게 갱신**
+#### 단방향인 이유
+* 하위 컴포넌트가 실수로 상위 컴포넌트의 상태를 병경하여 앱에서의 데이터 흐름을 이해하기 어렵게 만드는 것을 방지하기 위해
+#### Props 선언
+* 부모 컴포넌트에서 보낸 Props를 사용하기 위해서는 자식 컴포넌트에서 명시적인 props 선언이 필요
+* 부모 컴포넌트 Parent에서 자식 컴포넌트 ParentChild에 보낼 Props 작성
+```vue
+<!-- 추가 작성하는 거 없이 이것만 작성 -->
+<template>
+    <div>
+        <ParentChild my-msg="message" />
+    </div>
+</template>
+```
+#### Props 선언 2가지 방법
+1. 문자열 배열을 사용한 선언
+2. 객체를 사용한 선언
+#### 문자열 배열을 사용한 선언
+* defineProps()를 사용하여 props를 선언
+```vue
+<template>
+    <div>
+        {{ myMsg }}
+    </div>
+</template>
+
+<script setup>
+defineProps([myMsg])
+</script>
+```
+#### 객체를 사용한 선언
+* 객체 선언 문법의 각 객체 속성의 키는 props의 이름이 되며, 객체 속성의 값은 값이 될 데이터의 타입에 해당하는 생성자 함수(Number, String...)여야 함
+* **객체 선언 문법 사용 권장**
+```vue
+<template>
+    <div>
+        {{ myMsg }}
+    </div>
+</template>
+
+<script setup>
+defineProps({
+    myMsg: String,
+    }
+)
+</script>
+```
+#### prop 데이터 사용
+* 템플릿에서 반응형 변수와 같은 방식으로 활용
+* props를 객체로 반환하므로 필요한 경우 JavaScript에서 접근 가능
+```vue
+<script setup>
+  const props = defineProps({ myMsg: String })
+</script>
+```
+#### Props 한단계 더 내려보내기
+* 위와 동일
+#### Props 세부사항
+1. Props Name Casing (Props 이름 컨벤션)
+2. Static Props & Dynamic Props
+#### Props Name Casing
+* 선언 및 템플릿 참조 시 (->camelCase)
+```vue
+<div>{{ myMsg }}</div>
+<script setup>
+  const props = defineProps({ myMsg: String })
+</script>
+```
+* 자식 컨포넌트로 전달 시 (-> kebap-case)
+```vue
+<ParentGrandChild :my-msg="myMsg" />
+```
+* **기술적으로는 카멜케이스도 가능하나 HTML속성 표기법과 동일하게 케밥케이스로 표기할 것을 권장**
+#### Static Props & Dynamic Props
+* 지금까지 작성한 것은 Static(정적) props
+* v-bind를 사용하여 **동적으로 할당된 props**를 사용할 수 있음
+```vue
+<ParentChild my-msg="message" :dynamic-props="name"/>
+
+<script setup>
+import { ref } from 'vue'
+
+const name = ref('Alice')
+</script>
+
+<!-- ParentChild.vue -->
+<script setup>
+defineProps({
+    myMsg: String,
+    dynamicProps: String})
+</script>
+```
+### Component Events
+#### 자식의 데이터를 변경할때 부모의 데이터도 변경하고 싶다면
+* 부모는 자식에게 데이터를 전달(Pass Props)하며, 자식은 자신에게 일어난 일을 부모에게 알림(Emit event) **부모가 prop 데이터를 변경하도록 소리쳐야 한다.**
+#### $emit()
+* 자식 컴포넌트가 이벤트를 발생시켜 부모 컴포넌트로 데이터를 전달하는 역할의 메서드
+  - '$'표기는 Vue 인스턴스나 컴포넌트 내에서 제공되는 전역 속성이나 메서드를 식별하기 위한 접두어
+#### 이벤트 발신 및 수신(Emitting and Listening to Events)
+* $emit을 사용하여 템플릿 표현식에서 직접 사용자 정의 이벤트를 발신
+```html
+<button @click="$emit('someEvent')">클릭</button>
+```
+* 그러면 부모는 v-on을 사용하여 수신할 수 있음
+```vue
+<ParentComp @some-event="someCallback" />
+```
+#### 이벤트 발신 및 수신하기
+* ParentChild에서 someEvent라는 이름의 사용자 정의 이벤트를 발신
+```html
+<!-- 자식에서 이벤트를 보냄 -->
+<button @click="$emit('someEvent')">클릭</button>
+
+<!-- 부모가 자식의 이벤트를 받음 -->
+<template>
+    <div>
+        <ParentChild @some-event="someCallback" my-msg="message" :dynamic-props="name"/>
+    </div>
+</template>
+
+<script setup>
+const someCallback = function () {
+    console.log('Parentchild가 발신한 이벤트를 수신했어요')
+}
+</script>
+```
+#### emit 이벤트 선언
+* defineEmits()를 사용하여 명시적으로 발신할 이벤트를 선언할 수 있음
+* script에서 $emit 메서드를 접근할 수 없기 때문에 defineEmits()는 $emit 대신 사용할 수 있는 동등한 함수를 반환
