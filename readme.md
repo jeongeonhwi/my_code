@@ -1273,3 +1273,188 @@ const someCallback = function () {
 #### emit 이벤트 선언
 * defineEmits()를 사용하여 명시적으로 발신할 이벤트를 선언할 수 있음
 * script에서 $emit 메서드를 접근할 수 없기 때문에 defineEmits()는 $emit 대신 사용할 수 있는 동등한 함수를 반환
+## Router
+### Routing
+#### Routing
+* 네트워크에서 경로를 선택하는 프로세스
+  - 웹 애플리케이션에서 다른 페이지 간의 전환과 경로를 관리하는 기술
+### Vue Router
+#### Vue Router
+* vue 공식 라우터 (The official Router for Vue.js)
+#### views
+* RoutView 위치에 렌더링 할 컴포넌트를 배치
+* 기존 components 폴더와 기능적으로 다른 것은 없으며 단순 분류의 의미로 구성됨
+  - **일반 컴포넌트와 구분하기 위해 컴포넌트 이름을 View로 끝나도록 작성하는 것을 권장**
+#### 라우팅 기본
+* index.js에 라우터 관련 설정 작성(주소, 이름, 컴포넌트)
+* RoutLink의 'to' 속성으로 index.js에서 정의한 주소 속성 값(path)을 사용
+#### Named Routes : index.js에서 정해진 이름을 사용하는 법
+* 경로에 이름을 지정하는 라우팅
+* 경로에 연결하려면 RouterLink에 v-bind를 사용해 'to' prop 객체로 전달
+```html
+<RouterLink :to="{ name:'home' }">Home</RouterLink>
+<RouterLink :to="{ name:'about' }">About</RouterLink>
+```
+#### Named Routes 장점
+* 하드 코딩 된 URL을 사용하지 않아도 됨
+* URL 입력 시 오타 방지
+### Dynamic Route Matching with Params
+#### 매개 변수를 사용한 동적 경로 매칭
+* 주어진 패턴 경로를 동일한 컴포넌트에 매핑 해야 하는 경우 활용
+* 예를 들어 모든 사용자의 ID를 활용하여 프로필 페이지 url을 설계 한다면?
+  - user/1
+  - user/2
+  - user/3
+    - 일정한 패턴의 url작성을 반복해야함
+#### 매개 변수를 사용한 동적 경로 매칭 : index.js
+* UserView 컴포넌트 라우트 등록
+* 매개변수는 콜론(:)으로 표기
+```javascript
+{
+  path: '/user/:id', 
+  name: 'user',
+  component: userView
+}
+```
+#### 매개 변수를 컴포넌트에서 사용하는 법
+* 라우트의 매개변수는 컴포넌트에서 $route.params로 참조 가능
+```html
+<h2>{{ $route.params.id }}번 유저의 페이지입니다.</h2>
+```
+#### 매개 변수를 컴포넌트의 스크립트에서 사용하는 법
+```javascript
+<script setup>
+import { ref } from 'vue'
+import { useRoute } from 'vue-router';
+
+const route = useRoute()
+const userId = ref(route.params.id)
+</script>
+```
+### Programmatic Navigation
+#### 프로그래밍 방식 네비게이션
+* router의 인스턴스 메서드를 사용해 RouterLink로 a태그를 만드는 것처럼 프로그래밍으로 네비게이션 관련 작업을 수행할 수 있음
+* 다른 위치로 이동하기
+  - router.push()
+* 현재 위치 바꾸기
+  - router.replace()
+#### router.push()
+* 다른 url로 이동하는 메서드
+* 새 항목을 history stack에 push하므로 사용자가 브라우저 뒤로 가기 버튼을 클릭하면 이전 url로 이동할 수 있음
+* RouterLink를 클릭했을때 내부적으로 호출되는 메서드 이므로 RouterLink를 클릭하는 것은 route.push()를 호출하는 것과 같음
+  - 선언적 : \<RouterLink : to='...'>\
+  - 프로그래밍적 : router.push(...)
+```javascript
+import { useRoute, useRouter } from 'vue-router';
+
+const goHome = function() {
+    router.push({ name:'home' })
+}
+```
+* 버튼 클릭으로 보내주면 됨 : 뒤로가기가 됨
+#### router.replace()
+* 현재 위치 바꾸기
+* push 메서드와 달리 다른 url로 이동한뒤 뒤로가기 불가능
+  - 선언적 : \<RouterLink : to='...' replace>\
+  - 프로그래밍적 : router.replace(...)
+### Navigation Guard
+#### Navigation Guard
+* Vue router를 통해 특정 url에 접근할 때 다른 url로 redirect를 하거나 취소하여 네비게이션을 보호
+  - ex) 인증 정보가 없으면 특정 페이지에 접근하지 못하게 함
+#### Navigation Guard 종류
+* Globally (전역 가드)
+  - 애플리케이션 전역에서 동작
+  - index.js에서 정의
+* Per-route (라우터 가드)
+  - 특정 route에서만 동작
+  - index.js의 각 routes에 정의
+* In-component (컴포넌트 가드)
+  - 특정 컴포넌트 내에서만 동작
+  - 컴포넌트 script에 정의
+### Globally Guard
+#### router.beforeEach()
+* 다른 url로 이동하기 직전에 실행되는 함수
+```javascript
+router.beforeEach((to, from) => {
+  ...
+  return false
+})
+```
+* to : 이동 할 url 정보가 담긴 Route 객체
+* from : 현재 url 정보가 담긴 Route 객체
+* 선택적 반환(return) 값
+  1. false
+  2. Route Location
+* false
+  - 현재 내비게이션을 취소
+* Route Location
+  - router.push()를 호출하는 것처럼 경로 위치를 전달하여 다른 위치로 redirect
+    - **return이 없다면 'to' url Route 객체로 이동**
+#### router.beforeEach 예시 : index.js
+```javascript
+router.beforeEach((to, from) => {
+  ...
+  return false
+})
+
+// index.js에 쓰면 어디서 어디로 가는지 알수 있음
+router.beforeEach((to, from) => {
+  console.log(to)
+  console.log(from)
+})
+```
+#### router.beforeEach를 활용하여 로그인이 되어있지 않으면 진입을 막기
+```javascript
+// index.js
+
+router.beforeEach((to, from) => {
+  console.log(to)
+  console.log(from)
+  const isAuthenticated = false
+  
+  if (!isAuthenticated && to.name !== 'login') {
+    console.log('로그인이 필요합니다.')
+    return { name: 'login'}
+  }
+})
+```
+#### router.beforeEnter : 이미 로그인한 상태라면 login페이지 진입을 막고 다른곳으로 이동시키기
+```javascript
+// index.js
+
+{
+  path: '/login', 
+  name: 'login',
+  component: LoginView,
+  beforeEnter: (to, from) => {
+    if (isAuthenticated === true) {
+      console.log('이미 로그인 되어 있습니다.')
+      return { name : 'home' }
+    }
+  }
+}
+```
+#### onBeforeRouteLeave 활용 : 사용자가 userView를 떠날 시 팝업 창 출력
+```javascript
+// userView 내부.
+import { useRoute, useRouter, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
+// Inn-component Guard
+onBeforeRouteLeave((to, from) => {
+    const answer = window.confirm('정말 떠나실 건가요?')
+    if (answer === false) {
+        return false
+    }
+})
+```
+#### onBeforeRouteUpdate 활용 : UserView 페이지에서 다른 id를 가진 User의 페이지로 이동하기
+```javascript
+import { useRoute, useRouter, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
+// 2.
+const goAnotherUser = function () {
+    router.push({name: 'user', params: {id: 100}})
+}
+
+onBeforeRouteUpdate((to, from) => {
+    userId.value = to.params.id
+})
+```
