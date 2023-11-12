@@ -1,6 +1,2 @@
-N = [1,2,3,4]
-nset = {(tuple(N),1)}
-
-a = [1,2,3,4]
-
-
+for i in range(6,4):
+    print(i)
