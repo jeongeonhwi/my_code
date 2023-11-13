@@ -1292,8 +1292,12 @@ const someCallback = function () {
 * 경로에 이름을 지정하는 라우팅
 * 경로에 연결하려면 RouterLink에 v-bind를 사용해 'to' prop 객체로 전달
 ```html
+import { RouterLink, RouterView } from 'vue-router'
+
 <RouterLink :to="{ name:'home' }">Home</RouterLink>
 <RouterLink :to="{ name:'about' }">About</RouterLink>
+
+<RouterView />
 ```
 #### Named Routes 장점
 * 하드 코딩 된 URL을 사용하지 않아도 됨
@@ -1450,11 +1454,114 @@ onBeforeRouteLeave((to, from) => {
 ```javascript
 import { useRoute, useRouter, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
 // 2.
+const router = useRouter()
 const goAnotherUser = function () {
     router.push({name: 'user', params: {id: 100}})
 }
+
+// 받은 템플릿에서 쓰는법
+  import { useRoute, useRouter } from 'vue-router';
+  const route = useRoute()
+  const userName = ref(route.params.name)
+
 
 onBeforeRouteUpdate((to, from) => {
     userId.value = to.params.id
 })
 ```
+## state Management
+### state Management
+#### state Management
+* vue 컴포넌트는 이미 반응형 상태를 관리하고 있음
+  - 상태 === 데이터
+#### 컴포넌트 구조의 단순화
+* 상태(state)
+  - 앱 구동에 필요한 기본 데이터
+* 뷰(View)
+  - 상태를 선언적으로 매핑하여 시각화
+* 기능(Actions)
+  - 뷰에서 사용자 입력에 대해 반응적으로 상태를 변경할 수 있게 정의된 동작
+* **단방향 데이터 흐름의 간단한 표현**
+#### 상태 관리의 단순성이 무너지는 시점
+* 여러 컴포넌트가 상태를 공유할 때
+  - 여러 뷰가 동일한 상태에 종속되는 경우
+    - 공유 상태를 공통 조상 컴포넌트로 끌어올린 다음 props로 전달하는 것
+    - 하지만 계층 구조가 깊어질 경우 비효율적, 관리가 어려워 짐
+  - 서로 다른 뷰의 기능이 동일한 상태를 변경시켜야 하는 경우
+    - 발신(emit)된 이벤트를 통해 상태의 여러 복사본을 변경 및 동기화 하는 것
+    - 마찬가지로 관리의 패턴이 깨지기 쉽고 유지 관리할 수 없는 코드가 됨
+#### 상태 관리의 해결책
+* 각 컴포넌트의 공유 상태를 추출하여, 전역ㅇ서 참조할 수 있는 저장소에서 관리
+* 컴포넌트 트리는 하나의 큰 '뷰'가 되고 모든 컴포넌트는 트리 계층 구조에 관계 없이 상태에 접근하거나 기능을 사용할 수 있음
+* vue의 공식 상태 관리 라이브러리 === 'pinia'
+### state management library (Pinia)
+#### Pinia
+* vue 공식 상태 관리 라이브러리
+#### Pinia 설치
+* vite 프로젝트 빌드 시 Pinia 라이브러리 추가
+#### Pinia 구성 요소
+1. store
+2. state
+3. getters
+4. actions
+5. plugin
+#### Pinia 구성 요소 - 'store'
+* 중앙 저장소
+* 모든 컴포넌트가 공유하는 상태, 기능 등이 작성됨
+#### Pinia 구성 요소 - 'state'
+* 반응형 상태(데이터)
+* ref() === state
+#### Pinia 구성 요소 - 'getters'
+* 계산된 값
+* computed() === getters
+#### Pinia 구성 요소 - 'actions'
+* 메서드
+* function() === actions
+#### Pinia 구성 요소 - 'plugin'
+* 애플리케이션의 상태관리에 필요한 추가 기능을 제공하거나 확장하는 도구나 모듈
+* 애플리케이션의 상태 관리를 더욱 간편하고 유연하게 만들어주며 패키지 매니저로 설치 이후 별도 설정을 통해 추가 됨
+#### Pinia 구성 요소 종합
+* pinia는 store라는 저장소를 가짐
+* store는 state, getters, actions으로 이루어지며 각각 ref(), computed(), function()과 동일함
+#### State
+* store 인스턴스로 state에 접근하여 직접 읽고 쓸 수 있음
+* 만약 store에 state를 정의하지 않았다면 컴포넌트에서 새로 추가할 수 없음
+```html
+<script setup>
+import { useCounterStore } from '@/stores/counter'
+
+const store = useCounterStore()
+</script>
+<template>
+  <div>
+    <p>
+      {{ store.count }}
+    </p>
+  </div>
+</template>
+```
+#### Getters
+* store의 모든 getters를 state처럼 직접 접근 할 수 있음
+#### Actions
+* store의 모든 actions를 직접 접근 및 호출 할 수 있음
+* getters와 달리 state 조작, 비동기, API 호출이나 다른 로직을 진행할 수 있음
+```html
+<template>
+  <div>
+    <p>
+      {{ store.count }}
+    </p>
+    <p>
+      <button @click="store.increment()">버튼</button>
+    </p>
+  </div>
+</template>
+```
+### Pinia 실습
+#### Pinia를 활용한 Todo 프로젝트 구형
+* Todo CRUD
+* Todo 개수 계산
+  - 전체 Todo
+  - 완료된 Todo
+  - 미완료된 Todo
+#### Todo PJT 전체 코드

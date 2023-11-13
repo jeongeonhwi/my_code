@@ -1,5 +1,6 @@
 import sys
 sys.stdin = open('input.txt', 'r')
+# input = sys.stdin.readline
 
 # 로봇은 왼쪽 오른쪽 아래쪽으로 이동가능,
 # 한번 탐사한 지역은 탐사하지 않음
@@ -7,24 +8,27 @@ sys.stdin = open('input.txt', 'r')
 
 N, M = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
-dp = [[0]*M for _ in range(N)]
+dp = [[-101]*M for _ in range(N)]
 dp[0][0] = arr[0][0]
-tmpdp = [[0]*M for _ in range(N)]
+tmpdp = [[-101]*M for _ in range(N)]
 for i in range(1,M):
     dp[0][i] = arr[0][i]+dp[0][i-1]
-# for i in range(1,N):
-#     dp[i][0] = arr[i][0] + dp[i-1][0]
-# for i in dp:
-#     print(i)
 for i in range(1,N):
     for j in range(M):
         dp[i][j] = arr[i][j] + dp[i-1][j]
     for j in range(M):
-        for right in range(j+1,M):
-            dp[i][right] = max(dp[i][right-1]+arr[i][right],dp[i][right])
-        for left in range(j-1,-1,-1):
-            tmpdp[i][left] = max(max(dp[i][left+1]+arr[i][left], dp[i][left]), tmpdp[i][left])
+        now = dp[i][j]
+        idx = j+1
+        while idx < M:
+            now += arr[i][idx]
+            tmpdp[i][idx] = max(tmpdp[i][idx], now)
+            idx+=1
+        now = dp[i][j]
+        idx = j - 1
+        while idx >= 0:
+            now += arr[i][idx]
+            tmpdp[i][idx] = max(tmpdp[i][idx], now)
+            idx-=1
     for j in range(M):
         dp[i][j] = max(dp[i][j], tmpdp[i][j])
-for i in dp:
-    print(i)
+print(dp[N-1][M-1])
