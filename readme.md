@@ -2,7 +2,7 @@
 ## Django
 * [Django의 readme.md로 가기](./Django/readme.md)
 ## Vue
-* [Vue의 readme.md로 가기](./Vue/readme.md)
+* [Vue의 readme.md로 가기](./vue/readme.md)
 ## DB_SQL
 * [DB_SQL의 readme.md로 가기](./DB_SQL/readme.md)
 ## python
