@@ -1595,4 +1595,29 @@ vue/11-14/class의 스켈레톤 코드 참고
 * 기본적으로 웹 브라우저는 같은 출처에서만 요청하는 것을 허용하며, 다른 출처로의 요청은 보안상의 이유로 차단됨
   - SOP에 의해 다른 출처의 리소스와 상호작용 하는 것이 기본적으로 제한되기 때문
 * CORS는 웹 서버가 리소스에 대한 서로 다른 출처 간 접근을 허용하도록 선택할 수 있는 기능을 제공
-### Article CR 구현
+## Vue with DRF 2
+### DRF Authentication
+#### DRF가 제공하는 인증 체계
+1. BasicAuthentication
+2. TokenAuthentication
+3. SessionAuthentication
+4. RemoteUserAuthentication
+#### TokenAuthentication
+* 간단한 token 기반 HTTP 인증 체계
+* 기본 데스크톱 및 모바일 클라이언트와 같은 클라이언트-서버 설정에 적합
+  - 서버가 사용자에게 토큰을 발급하여 사용자는 매 요청마다 발급받은 토큰을 요청과 함께 보내 인증 과정을 거침
+#### 토큰 생성 코드 작성
+* accounts/signals.py 주석 해제
+  - 모든 사용자가 자동으로 생성된 토큰을 가지도록 하는 역할
+#### Dj-Rest-Auth : 인증에 특화된 라이브러리
+* 회원가입, 인증(소셜미디어 인증 포함), 비밀번호 재설정, 사용자 세부 정보 검색, 회원 정보 수정 등 다양한 인증 관련 기능을 제공하는 라이브러리
+* https://github.com/iMerica/dj-rest-auth
+#### 중요
+* **발급 받은 Token을 인증이 필요한 요청마다 함께 보내야함**
+#### DRF가 제공하는 권한 정책
+1. IsAuthenticated
+2. IsAdminUser
+3. IsAuthenticatedOrReadOnly
+#### IsAuthenticated 권한
+* 인증되지 않은 사용자에 대한 권한을 거부하고 그렇지 않은 경우 권한을 허용
+* 등록된 사용자만 API에 엑세스 할 수 있도록 하려는 경우에 적합
