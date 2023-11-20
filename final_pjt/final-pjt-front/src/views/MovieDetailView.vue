@@ -21,7 +21,7 @@
                 <img :src="`https://image.tmdb.org/t/p/w200${director.profile_path}`" alt="profile_path">
                 {{ director.name }}
             </div>
-
+            
             <p>actor</p>
             <!-- {{ actors }} -->
             <div v-for="actor in actors"
@@ -36,6 +36,7 @@
             v-for="review in reviews"
             :key="review.id"
             :movie-to-review="review"
+            :movie-to-review-movie="movie"
             />
             <form @submit.prevent="createReview">
               <p>별점과 리뷰를 작성해주세요.</p>

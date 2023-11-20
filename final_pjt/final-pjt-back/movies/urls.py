@@ -11,6 +11,7 @@ urlpatterns = [
 
     # 리뷰 관련
     path('review/<int:movie_pk>/', views.review),
+    path('review/<int:movie_pk>/<int:review_pk>/', views.review_update_delete),
     
     # 추천 알고리즘
     path('recommended/', views.popularity_recommend_movie),

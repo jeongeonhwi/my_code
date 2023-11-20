@@ -69,19 +69,26 @@ def review(request, movie_pk):
 
 
 @api_view(['PUT', 'DELETE'])
+@authentication_classes([TokenAuthentication])
 def review_update_delete(request, movie_pk, review_pk):
+    print('안녕!!!!!!!!!!!!!!!!!!!!!!!!')
     movie = get_object_or_404(Movie, pk=movie_pk)
     if request.method == 'PUT':
         review = get_object_or_404(Review, pk=review_pk, movie=movie)
-        serializer = ReviewListSerializer(review, data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data)
+        if review.user.pk == request.user.pk:
+            serializer = ReviewListSerializer(review, data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data)
 
     elif request.method == 'DELETE':
         review = get_object_or_404(Review, pk=review_pk, movie=movie)
-        review.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        # 리뷰작성자와 로그인 유저가 같은지 확인
+        if review.user.pk == request.user.pk:
+            # print(review.user.pk)
+            # print(request.user.pk)
+            review.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
  #### 영화추천알고리즘 
 
 # Json데이터의 popularity 기반으로 영화 추천
