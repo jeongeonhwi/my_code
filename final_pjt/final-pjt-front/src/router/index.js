@@ -6,6 +6,7 @@ import MovieDetailView from '@/views/MovieDetailView.vue'
 import RecommendMovieView from '@/views/RecommendMovieView.vue'
 import overview from '@/components/overview.vue'
 import cast from '@/components/cast.vue'
+import PopularActorView from '@/views/PopularActorView.vue'
 
 
 const router = createRouter({
@@ -31,23 +32,16 @@ const router = createRouter({
       path: '/detail/:movie_pk',
       name: 'movieDetail',
       component: MovieDetailView,
-      children: [
-        {
-          path: '',
-          name: 'overview',
-          component:overview
-        },
-        {
-          path: 'cast',
-          name: 'cast',
-          component:cast
-        },
-      ]
     },
     {
       path: '/recommend',
       name: 'RecommendMovieView',
       component: RecommendMovieView
+    },
+    {
+      path: '/popularActors',
+      name: 'popularActors',
+      component: PopularActorView
     },
   ]
 })

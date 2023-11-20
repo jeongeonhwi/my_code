@@ -1,7 +1,7 @@
 <template>
-    <div @click="goToDetailView(props.mainToDetail.pk)">
-        <img :src="`https://image.tmdb.org/t/p/w200${props.mainToDetail.fields.poster_path}`" alt="poster_path">
-        {{ props.mainToDetail.pk }}
+    <div @click="goToDetailView(props.mainToDetail.id)">
+        <img :src="`https://image.tmdb.org/t/p/w200${props.mainToDetail.poster_path}`" alt="poster_path">
+        {{ props.mainToDetail.id }}
     </div>
 </template>
 
