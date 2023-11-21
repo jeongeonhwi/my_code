@@ -7,6 +7,8 @@ import RecommendMovieView from '@/views/RecommendMovieView.vue'
 import overview from '@/components/overview.vue'
 import cast from '@/components/cast.vue'
 import PopularActorView from '@/views/PopularActorView.vue'
+import MyPageView from '@/views/MyPageView.vue'
+import SearchResultsView from '@/views/SearchResultsView.vue'
 
 
 const router = createRouter({
@@ -43,6 +45,19 @@ const router = createRouter({
       name: 'popularActors',
       component: PopularActorView
     },
+    {
+      path: '/mypage/:id',
+      name: 'mypage',
+      component: MyPageView,
+      meta: {
+        requiresAuth: true // 로그인 상태를 확인하기 위한 메타 필드 추가
+      }
+    },
+    {
+      path: '/search-results',
+      name: 'SearchResults',
+      component: SearchResultsView
+    }
   ]
 })
 

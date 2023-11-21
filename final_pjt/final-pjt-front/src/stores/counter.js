@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, watch, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
@@ -8,6 +8,8 @@ export const useCounterStore = defineStore('counter', () => {
   const API_URL = 'http://127.0.0.1:8000'
   const token = ref(null)
   const showUsername = ref(null)
+  const userId = ref(null)
+  const loginUser = ref(null)
   const router = useRouter()
   const isLogin = computed(() => {
     if (token.value === null) {
@@ -78,7 +80,33 @@ export const useCounterStore = defineStore('counter', () => {
         console.log(err)
       })
   }
+
+  watch(showUsername, (newValue, oldValue) => {
+    console.log('워치~~~~~~~~~')
+    axios({
+      method: 'get',
+      url: `${API_URL}/accounts/${showUsername.value}/check_user_id/`,
+    })
+      .then((res) => {
+        console.log(res.data.id)
+        userId.value = res.data.id
+        loginUser.value = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  })
+
+   // 검색기능용
+   const state = reactive({
+    // ... (existing state properties)
+    searchResults: reactive([]),
+  });
+
+  const setSearchResults = (results) => {
+    state.searchResults = results;
+  }
   
 
-  return { signup, logIn, isLogin, logOut, token, movies, API_URL, router, showUsername }
+  return { state, setSearchResults, signup, logIn, isLogin, logOut, token, movies, API_URL, router, loginUser, showUsername, userId }
 }, { persist: true })

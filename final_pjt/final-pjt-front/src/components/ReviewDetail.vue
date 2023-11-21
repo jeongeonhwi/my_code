@@ -2,7 +2,10 @@
     <div>
         <h4>리뷰컴포넌트</h4>
         <span v-show="putToggle">
-            {{ props.movieToReview.score }} | {{ props.movieToReview.content }}
+            <span @click="goToMyPage(props.movieToReview.user)">
+                유저 : {{ props.movieToReview.user }} | 
+            </span>
+            별점 : {{ props.movieToReview.score }} | {{ props.movieToReview.content }}
         </span>
         <form @submit.prevent="reviewPut" v-show="!putToggle">
             <select v-model="score">
@@ -83,6 +86,10 @@ const reviewPut = function() {
         .catch((err) => {
             console.log(err)
         })
+}
+
+const goToMyPage = function (userId) {
+    router.push({name:'mypage', params: {id:userId}})
 }
 </script>
 

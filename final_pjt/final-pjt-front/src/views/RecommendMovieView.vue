@@ -3,20 +3,29 @@
       <h1>추천 영화</h1>
       <h2>인기 있는 영화!!</h2>
       <div class="mainbox">
-        <li v-for="movie in recommendedMovies" :key="movie.pk">{{ movie.title }}
-        <img :src="getPosterUrl(movie)" alt="poster_path">
+        <li v-for="movie in recommendedMovies" :key="movie.pk"
+        @click="goToDetail(movie.id)"
+        >
+          {{ movie.title }}
+          <img :src="getPosterUrl(movie)" alt="poster_path">
         </li>
       </div>
       <h2>인기 있는 배우를 보고 싶다면?</h2>
       <div class="mainbox2">
-        <li v-for="movie in actorPopulationMovies.related_movies" :key="movie.title">{{ movie.title }}
+        <li v-for="movie in actorPopulationMovies.related_movies" :key="movie.title"
+        @click="goToDetail(movie.id)"
+        >
+        {{ movie.title }}
         <img :src="getPosterUrl(movie)" alt="poster_path">
         </li>
       </div>
 
       <h2>유명한 감독!</h2>
       <div class="mainbox3">
-        <li v-for="movie in directorPopulationMovies.related_movies" :key="movie.pk">{{ movie.title }}
+        <li v-for="movie in directorPopulationMovies.related_movies" :key="movie.pk"
+        @click="goToDetail(movie.id)"
+        >
+        {{ movie.title }}
         <img :src="getPosterUrl(movie)" alt="poster_path">
         </li>
       </div>
@@ -25,9 +34,12 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useCounterStore } from '@/stores/counter'
 import axios from 'axios'
 
+
+const router = useRouter()
 const store = useCounterStore()
 const recommendedMovies = ref([])
 const actorPopulationMovies = ref([])
@@ -76,7 +88,9 @@ const getPosterUrl = (movie) => {
 return `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
 };
 
-
+const goToDetail = function(movieId) {
+  router.push({name:'movieDetail', params: {movie_pk:movieId}})
+}
 
 </script>
 

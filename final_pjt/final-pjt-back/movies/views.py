@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import authentication_classes
 from rest_framework.authentication import TokenAuthentication, BasicAuthentication
 from django.db.models import Avg
+from datetime import datetime
 
 
 # Create your views here.
@@ -94,6 +95,27 @@ def review_update_delete(request, movie_pk, review_pk):
 # Json데이터의 popularity 기반으로 영화 추천
 #
 
+
+ # 1. 최신영화순서
+@api_view(['GET'])
+def latest_movie(request):
+    today = datetime.now().date()
+
+    # 오늘 이전에 개봉한 영화를 최신순으로 10개 가져옵니다.
+    movies = Movie.objects.filter(release_date__lt=today).order_by('-release_date')[:10]
+
+    # 가져온 영화 정보를 시리얼라이즈합니다.
+    serialized_movies = []
+    for movie in movies:
+        # release_date를 문자열에서 datetime 객체로 변환합니다.
+        movie.release_date = datetime.strptime(movie.release_date, "%Y-%m-%d").date()
+        serialized_movies.append(movie)
+
+    serializer = MovieListSerializer(serialized_movies, many=True)
+
+    return JsonResponse(serializer.data, safe=False)
+
+
 # 1. 영화 인기도 순
 @api_view(['GET'])
 def popularity_recommend_movie(request):
@@ -136,6 +158,7 @@ def actor_population_movies(request):
     result_data = []
     for related_movie in related_movies:
         result_data.append({
+            'id': related_movie.pk,
             'title': related_movie.title,
             'average_actor_popularity': related_movie.average_actor_popularity,
             'poster_path': related_movie.poster_path
@@ -160,6 +183,7 @@ def director_population_movies(request):
     result_data = []
     for related_movie in related_movies:
         result_data.append({
+            'id': related_movie.pk,
             'title': related_movie.title,
             'average_director_popularity': related_movie.average_director_popularity,
             'poster_path': related_movie.poster_path

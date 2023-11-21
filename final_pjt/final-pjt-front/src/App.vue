@@ -1,27 +1,100 @@
 <template>
   <div>
     <nav>
-      <RouterLink :to="{ name: 'main' }">Home</RouterLink> /
-      <RouterLink :to="{ name: 'SignUpView' }" v-if="!store.isLogin">회원가입 /</RouterLink>
-      <RouterLink :to="{ name: 'LogInView' }" v-if="!store.isLogin"> 로그인 / </RouterLink>
-      <span @click="store.logOut" v-if="store.isLogin">로그아웃 / </span>
-      <RouterLink :to="{ name: 'RecommendMovieView' }">추천 영화</RouterLink> / 
-      <RouterLink :to="{ name: 'popularActors' }">인기배우</RouterLink>
-    </nav>
+      <div class="left-nav">
+          <!-- Home, 추천 영화, 인기 배우 -->
+          <RouterLink :to="{ name: 'main' }">Home</RouterLink> /
+          <RouterLink :to="{ name: 'RecommendMovieView' }">추천 영화</RouterLink> / 
+          <RouterLink :to="{ name: 'popularActors' }">인기배우</RouterLink>
+      </div>
 
+      <div>
+        <input type="text" placeholder="영화 제목을 입력하세요." 
+        :value="inputData" 
+        @input="onInput">
+        <button
+        @click="findMovie"
+        >검색</button>
+      </div>
+
+      <div class="right-nav" v-if="!store.isLogin">
+        <!-- 회원가입/로그인 -->
+        <RouterLink :to="{ name: 'SignUpView' }">회원가입</RouterLink> /
+        <RouterLink :to="{ name: 'LogInView' }">로그인</RouterLink>
+      </div>
+      <div class="right-nav" v-if="store.isLogin">
+        <!-- 로그아웃/마이페이지 -->
+        <span @click="store.logOut">로그아웃</span> /
+        <RouterLink :to="{ name: 'mypage', params : {id: store.userId} }">마이페이지</RouterLink>
+      </div>
+    </nav>
   </div>
-  <h2 v-if="store.isLogin">{{ store.showUsername }}님 환영합니다</h2>
+  <!-- <h2 v-if="store.isLogin">{{ store.showUsername }}님 환영합니다</h2> -->
   <RouterView />
 </template>
 
 <script setup>
+import { ref, reactive } from 'vue'
+import axios from 'axios';
 import { useCounterStore } from '@/stores/counter'
-import { RouterView, RouterLink } from 'vue-router'
+import { RouterView, RouterLink, useRouter } from 'vue-router'
 
 
 const store = useCounterStore()
+
+const inputData = ref('')
+const youtubeAPI = 'AIzaSyC3aKDsjdqG_4MLn4H4TJM0GtWWMXatAwc'
+const router = useRouter()
+const youtubeList = reactive([]);
+const onInput = function (event) {
+    inputData.value = event.currentTarget.value
+}
+
+
+const findMovie = function () {
+  const searchWord = inputData.value;
+  const youtubeURL = `https://www.googleapis.com/youtube/v3/search?key=${youtubeAPI}&part=snippet&type=video&q=${searchWord}`;
+  axios.get(youtubeURL)
+    .then((response) => {
+      youtubeList.length = 0;
+      youtubeList.push(...response.data.items);
+
+      // Set search results in the store
+      store.setSearchResults(youtubeList);
+
+      console.log('검색 결과:', youtubeList);
+
+      if (youtubeList.length > 0) {
+        router.push({ name: 'SearchResults' });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 </script>
 
 <style scoped>
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid black
+  
+}
 
+.left-nav {
+  display: flex;
+  gap: 10px;
+}
+
+.right-nav {
+  display: flex;
+  gap: 10px;
+}
+
+.welcome-message {
+  margin-top: 10px;
+}
 </style>

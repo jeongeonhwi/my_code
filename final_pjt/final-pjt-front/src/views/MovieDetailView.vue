@@ -54,6 +54,11 @@
         </div>
         <div v-show="previewShow">
             <h4>preview</h4>
+            <div v-if="youtubeList">
+                <!-- 첫 번째 예고편만을 출력합니다. -->
+                <iframe :src="'https://www.youtube.com/embed/'+ youtubeList[0].id.videoId" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+                <p>{{ youtubeList[0].snippet.title }}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -138,11 +143,26 @@ const reviewClick = function () {
     previewShow.value = false
 }
 
+const youtubeList = ref('')
 const previewClick = function () {
     overviewShow.value = false
     castShow.value = false
     reviewShow.value = false
     previewShow.value = true
+    
+
+    const youtubeAPI = 'AIzaSyC3aKDsjdqG_4MLn4H4TJM0GtWWMXatAwc'
+    const searchWord = `${movie.value.title} 예고편`
+    const youtubeURL = `https://www.googleapis.com/youtube/v3/search?key=${youtubeAPI}&part=snippet&type=video&q=${searchWord}`
+   
+    // API를 통해 예고편 데이터를 가져옴
+    axios.get(youtubeURL)
+        .then((response) => {
+            youtubeList.value = response.data.items
+            // console.log(youtubeList.value[0].id.videoId)
+        }).catch((error) => {
+            console.log(error)
+        })
 }
 
 const redirectReview = function () {

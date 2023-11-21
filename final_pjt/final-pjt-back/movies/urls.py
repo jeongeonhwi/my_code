@@ -14,6 +14,7 @@ urlpatterns = [
     path('review/<int:movie_pk>/<int:review_pk>/', views.review_update_delete),
     
     # 추천 알고리즘
+    path('latest/', views.latest_movie),
     path('recommended/', views.popularity_recommend_movie),
     path('popular_actor/', views.popular_actor),
     path('popular_director/', views.popular_director),
