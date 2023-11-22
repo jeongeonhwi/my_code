@@ -1,16 +1,19 @@
 <template>
-    <div>
-        <p @click="goToMyPage(props.mypageToLike)">유저 : {{ props.mypageToLike }}</p>
+    <div v-for="user in props.allUser">
+        <p @click="goToMyPage(props.mypageToLike)" v-if="props.mypageToLike=== user.id">유저 : {{ user.username }}</p>
     </div>
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
 import { useRouter} from 'vue-router'
 
 const router = useRouter()
 
+
 const props = defineProps({
     mypageToLike:Number,
+    allUser:Array,
 })
 
 const goToMyPage = function(userId) {
@@ -23,6 +26,7 @@ const goToMyPage = function(userId) {
         location.reload();
     }, 100);
 }
+
 
 </script>
 

@@ -3,7 +3,7 @@
         <h1>인기배우</h1>
         <div class="mainbox">
           <li v-for="actor in popularActors" :key="actor.pk">{{ actor.name }}
-          <img :src="getPosterUrl(actor)" alt="profile_path">
+            <img :src="getPosterUrl(actor)" alt="profile_path">
           </li>
         </div>
     </div>

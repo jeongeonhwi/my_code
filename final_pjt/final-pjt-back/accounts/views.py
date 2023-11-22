@@ -80,3 +80,11 @@ def user_hate(request, user_id):
     else:
         print('싫어요 추가실패')
     return Response()
+
+
+@api_view(['GET'])
+def all_user(request):
+    print('올유저 도착!!')
+    user = User.objects.all()
+    serializer = UserInfoSerializer(user, many=True)
+    return Response(serializer.data)

@@ -24,22 +24,27 @@
         싫어요 취소
       </span>
     </p>
+    <br>
     <!-- <p>{{ user }}</p> -->
-    <h2>{{ user.username }}가 작성한 리뷰목록</h2>
+    <h3>{{ user.username }}가 작성한 리뷰목록</h3>
     <MyPageReview
     v-for="review in reviews"
     :key="review.id"
     :mypage-to-review="review"
     />
-    <h2>{{ user.username }}가 좋아요 누른 유저목록</h2>
+    <br>
+    <h3>{{ user.username }}가 좋아요 누른 유저목록</h3>
     <likeUser
     v-for="like in user.like"
     :mypage-to-like="like"
+    :all-user="allUser"
     />
-    <h2>{{ user.username }}가 싫어요 누른 유저목록</h2>
+    <br>
+    <h3>{{ user.username }}가 싫어요 누른 유저목록</h3>
     <hateUser
     v-for="hate in user.hate"
     :mypage-to-hate="hate"
+    :all-user="allUser"
     />
   </div>
 </template>
@@ -60,6 +65,7 @@ const store = useCounterStore()
 const user = ref(null)
 const reviews = ref(null)
 const loginUser = ref(store.loginUser)
+const allUser = ref(null)
 
 onMounted(() => {
     axios({
@@ -77,6 +83,13 @@ onMounted(() => {
             .then((res) => {
               reviews.value = res.data
               
+              return axios({
+                method: 'get',
+                url: `${store.API_URL}/accounts/`
+              })
+                .then((res) => {
+                  allUser.value = res.data
+                })
             })
             .catch((err) => {
               
@@ -138,5 +151,7 @@ const goToHate = function () {
 </script>
 
 <style scoped>
-
+div {
+  text-align: center;
+}
 </style>

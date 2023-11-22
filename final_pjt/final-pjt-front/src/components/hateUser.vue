@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <p @click="goToMyPage(props.mypageToHate)">유저 : {{ props.mypageToHate }}</p>
+    <div v-for="user in allUser">
+        <p @click="goToMyPage(props.mypageToHate)" v-if="props.mypageToHate===user.id">유저 : {{ user.username }}</p>
     </div>
 </template>
 
@@ -10,6 +10,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const props = defineProps({
     mypageToHate:Number,
+    allUser:Array,
 })
 
 const goToMyPage = function(userId) {
