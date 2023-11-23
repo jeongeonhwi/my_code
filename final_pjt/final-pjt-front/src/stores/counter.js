@@ -8,7 +8,7 @@ export const useCounterStore = defineStore('counter', () => {
   const API_URL = 'http://127.0.0.1:8000'
   const token = ref(null)
   const showUsername = ref(null)
-  const userList = []
+  const userList = ref([])
   const userId = ref(null)
   const loginUser = ref(null)
   const router = useRouter()

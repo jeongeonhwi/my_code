@@ -10,7 +10,7 @@ import PopularActorView from '@/views/PopularActorView.vue'
 import MyPageView from '@/views/MyPageView.vue'
 import SearchResultsView from '@/views/SearchResultsView.vue'
 import ThreeDPage from '@/views/ThreeDPage.vue'
-
+import { useCounterStore } from '@/stores/counter'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,6 +57,17 @@ const router = createRouter({
       component: MyPageView,
       meta: {
         requiresAuth: true // 로그인 상태를 확인하기 위한 메타 필드 추가
+      },
+      beforeEnter: (to, from) => {
+        const store = useCounterStore()
+        console.log(to.params.id)
+        console.log(store.userId)
+        console.log(store.userList)
+        if ((store.userId != to.params.id)&&(store.userList.some(obj => obj.id == to.params.id))) {
+          router.push({name:'main'})
+        } else {
+          console.log(store.userList.some(obj => obj.id === to.params.id))
+        }
       }
     },
     {

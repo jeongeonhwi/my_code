@@ -2,8 +2,8 @@
   <div v-if="user">
     <br>
     <p v-if="loginUser.id === user.id">
-      <span v-show="allowToggle">공개</span>
-      <span v-show="!allowToggle">비공개</span>
+      <span v-show="allowToggle" @click="allowChoose">공개</span>
+      <span v-show="!allowToggle" @click="allowChoose">비공개</span>
     </p>
   </div>
   <div  v-if="user" class="login-box d-flex flex-column align-items-center mt-5">
@@ -84,6 +84,13 @@ onMounted(() => {
             // console.log(res.data)
           user.value = res.data
 
+          if ((user.value)&&(store.userList.some(obj => obj.id == user.value.id))) {
+            allowToggle.value = false
+          } else {
+            console.log()
+            allowToggle.value = true
+          }
+
           return axios({
             method: 'get',
             url: `${store.API_URL}/accounts/${route.params.id}/user_review/`
@@ -108,8 +115,23 @@ onMounted(() => {
             console.log(err)
         })
     
-    
+
 })
+
+const allowChoose = function () {
+  if (store.userList.includes(loginUser.value)) {
+    const newList = store.userList.filter(item => item.id !== loginUser.value.id)
+    console.log('시작')
+    console.log(newList)
+    store.userList = newList
+    allowToggle.value = !allowToggle.value
+    console.log(store.userList[0].id)
+  } else {
+    store.userList.push(loginUser.value)
+    allowToggle.value = !allowToggle.value
+    console.log(store.userList)
+  }
+}
 
 const goToLike = function () {
   axios({
