@@ -22,6 +22,15 @@ def movie_list(request):
     
 
 @api_view(['GET'])
+def find_movie(request, movie_name):
+    print(movie_name)
+    if request.method == 'GET':
+        movies = Movie.objects.filter(title__icontains=movie_name)
+        serializer = MovieListSerializer(movies, many=True)
+        return Response(serializer.data)
+    
+
+@api_view(['GET'])
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
 
@@ -99,6 +108,7 @@ def review_update_delete(request, movie_pk, review_pk):
  # 1. 최신영화순서
 @api_view(['GET'])
 def latest_movie(request):
+    print('안녕하세요 최신무비입니다.')
     today = datetime.now().date()
 
     # 오늘 이전에 개봉한 영화를 최신순으로 10개 가져옵니다.
@@ -112,15 +122,15 @@ def latest_movie(request):
         serialized_movies.append(movie)
 
     serializer = MovieListSerializer(serialized_movies, many=True)
-
-    return JsonResponse(serializer.data, safe=False)
+    # print(serialized_movies)
+    return Response(serializer.data)
 
 
 # 1. 영화 인기도 순
 @api_view(['GET'])
 def popularity_recommend_movie(request):
     # 영화를 인기도(popularity) 기준으로 내림차순 정렬하여 가져옵니다.
-    recommended_movies = Movie.objects.all().order_by('-popularity')[:10]
+    recommended_movies = Movie.objects.all().order_by('-popularity')[:16]
 
     # 가져온 영화 정보를 시리얼라이즈합니다.
     serializer = MovieListSerializer(recommended_movies, many=True)
@@ -151,7 +161,7 @@ def actor_population_movies(request):
     # 모든 영화에 출연한 배우들의 인기도를 평균내서 정렬
     related_movies = (
         Movie.objects.annotate(average_actor_popularity=Avg('actors__popularity'))
-        .order_by('-average_actor_popularity')[:10]
+        .order_by('-average_actor_popularity')[:16]
     )
 
     # 시리얼라이즈
@@ -176,7 +186,7 @@ def director_population_movies(request):
     # 모든 영화에 제작진으로 참여한 감독들의 인기도를 평균내서 정렬
     related_movies = (
         Movie.objects.annotate(average_director_popularity=Avg('directors__popularity'))
-        .order_by('-average_director_popularity')[:10]
+        .order_by('-average_director_popularity')[:16]
     )
 
     # 시리얼라이즈

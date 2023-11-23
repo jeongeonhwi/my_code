@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d+9ig0rb(oz=k4po7vj#j0b92@@09ewmu5f@n+7sa88!cfsw)d'
+SECRET_KEY = 'django-insecure-oeaasxe08^dk2a@=)qe(=fm(c8@y83ps+z7kp_kh9z=#q387a5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'chat',
     'accounts',
     'movies',
 
@@ -43,11 +45,13 @@ INSTALLED_APPS = [
     # Auth
     'dj_rest_auth',
 
+
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,6 +60,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+ASGI_APPLICATION = "noiZe.asgi.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 SITE_ID = 1
 
@@ -75,6 +89,11 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # 프론트엔드 서버의 주소에 맞게 수정
+    "http://localhost:5174",  # 다른 필요한 주소도 추가할 수 있음
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -90,10 +109,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-
-
-
 
 ROOT_URLCONF = 'noiZe.urls'
 
@@ -115,11 +130,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'noiZe.wsgi.application'
 
-# 수정해야 할 수 도 있음 지역 주소 확인하고 수정
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://localhost:5174',
-]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

@@ -1,5 +1,12 @@
 <template>
-  <div  v-if="user">
+  <div v-if="user">
+    <br>
+    <p v-if="loginUser.id === user.id">
+      <span v-show="allowToggle">공개</span>
+      <span v-show="!allowToggle">비공개</span>
+    </p>
+  </div>
+  <div  v-if="user" class="login-box d-flex flex-column align-items-center mt-5">
     <h1>{{ user.username }}님의 페이지</h1>
     <p v-if="loginUser.id != user.id">
       <span v-if="!loginUser.like.includes(user.id)"
@@ -66,6 +73,7 @@ const user = ref(null)
 const reviews = ref(null)
 const loginUser = ref(store.loginUser)
 const allUser = ref(null)
+const allowToggle = ref(true)
 
 onMounted(() => {
     axios({
@@ -99,6 +107,8 @@ onMounted(() => {
         .catch((err) => {
             console.log(err)
         })
+    
+    
 })
 
 const goToLike = function () {
@@ -153,5 +163,19 @@ const goToHate = function () {
 <style scoped>
 div {
   text-align: center;
+}
+
+.login-box {
+    width: 400px;
+    height: auto;
+    border: 2px solid white;
+    margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 </style>

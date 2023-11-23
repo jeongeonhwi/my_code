@@ -9,6 +9,7 @@ import cast from '@/components/cast.vue'
 import PopularActorView from '@/views/PopularActorView.vue'
 import MyPageView from '@/views/MyPageView.vue'
 import SearchResultsView from '@/views/SearchResultsView.vue'
+import ThreeDPage from '@/views/ThreeDPage.vue'
 
 
 const router = createRouter({
@@ -16,6 +17,11 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'ThreeDPage',
+      component: ThreeDPage,
+    },
+    {
+      path: '/main',
       name: 'main',
       component: MainPageView
     },

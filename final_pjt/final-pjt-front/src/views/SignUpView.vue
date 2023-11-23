@@ -1,18 +1,26 @@
 <template>
-    <div>
+    <div class="sign-up-box d-flex flex-column align-items-center mt-5">
         <!--회원가입 입력사항좀 추가하기-->
         <h1>회원가입</h1>
         <form @submit.prevent="signUp">
-            <label for="username">아이디 : </label>
-            <input type="text" id="username" v-model.trim="username"><br>
+            <div class="form-group mt-5">
+                <label for="username">아이디  </label>
+                <input type="text" id="username" v-model.trim="username">
+            </div>
 
-            <label for="password1">비밀번호 : </label>
-            <input type="password" id="password1" v-model.trim="password1"><br>
+            <div class="form-group">
+                <label for="password1">비밀번호  </label>
+                <input type="password" id="password1" v-model.trim="password1">
+            </div>
 
-            <label for="password2">비밀번호 확인 : </label>
-            <input type="password" id="password2" v-model.trim="password2">
+            <div class="form-group">
+                <label for="password2">비밀번호 확인 </label>
+                <input type="password" id="password2" v-model.trim="password2">
+            </div>
 
-            <input type="submit" value="회원가입">
+            <div class="d-flex flex-column align-items-center mt-3">
+                <input type="submit" value="회원가입">
+            </div>
         </form>
     </div>
 </template>
@@ -41,5 +49,17 @@ const signUp = function () {
 </script>
 
 <style scoped>
+.sign-up-box {
+    width: 400px;
+    height: 400px;
+    border: 2px solid white;
+    margin: 0 auto;
+}
 
+.form-group {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 </style>

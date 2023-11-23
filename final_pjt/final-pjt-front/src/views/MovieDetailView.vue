@@ -305,6 +305,7 @@ const caculateStar = function() {
 }
 
 .opacity-img {
+  margin-top: 20px;
   opacity: 1;
   position: absolute;
   top: 70px;

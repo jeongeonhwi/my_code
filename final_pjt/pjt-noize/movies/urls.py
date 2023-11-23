@@ -8,6 +8,7 @@ urlpatterns = [
     path('movies/<int:movie_pk>/', views.movie_detail),
     path('movies/<int:movie_pk>/actor/', views.movie_detail_actor),
     path('movies/<int:movie_pk>/director/', views.movie_detail_director),
+    path('movies/<movie_name>/', views.find_movie),
 
     # 리뷰 관련
     path('review/<int:movie_pk>/', views.review),

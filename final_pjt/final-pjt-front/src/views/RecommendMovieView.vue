@@ -1,33 +1,32 @@
 <template>
   <div>
       <h1>추천 영화</h1>
-      <h2>인기 있는 영화!!</h2>
-      <div class="mainbox">
-        <li v-for="movie in recommendedMovies" :key="movie.pk"
+
+      <h2>인기 있는 영화</h2>
+      <div class="mainbox d-flex flex-wrap m-4">
+        <div v-for="movie in recommendedMovies" :key="movie.pk"
         @click="goToDetail(movie.id)"
         >
-          {{ movie.title }}
-          <img :src="getPosterUrl(movie)" alt="poster_path">
-        </li>
-      </div>
-      <h2>인기 있는 배우를 보고 싶다면?</h2>
-      <div class="mainbox2">
-        <li v-for="movie in actorPopulationMovies.related_movies" :key="movie.title"
-        @click="goToDetail(movie.id)"
-        >
-        {{ movie.title }}
-        <img :src="getPosterUrl(movie)" alt="poster_path">
-        </li>
+          <img :src="getPosterUrl(movie)" alt="poster_path" class="img1 m-2">
+        </div>
       </div>
 
-      <h2>유명한 감독!</h2>
-      <div class="mainbox3">
-        <li v-for="movie in directorPopulationMovies.related_movies" :key="movie.pk"
+      <h2>인기 있는 배우를 보고 싶다면?</h2>
+      <div class="mainbox d-flex flex-wrap m-4">
+        <div v-for="movie in actorPopulationMovies.related_movies" :key="movie.title"
         @click="goToDetail(movie.id)"
         >
-        {{ movie.title }}
-        <img :src="getPosterUrl(movie)" alt="poster_path">
-        </li>
+          <img :src="getPosterUrl(movie)" alt="poster_path" class="img2 m-2">
+        </div>
+      </div>
+
+      <h2>유명한 감독</h2>
+      <div class="mainbox d-flex flex-wrap m-4">
+        <div v-for="movie in directorPopulationMovies.related_movies" :key="movie.pk"
+        @click="goToDetail(movie.id)"
+        >
+          <img :src="getPosterUrl(movie)" alt="poster_path" class="img3 m-2">
+        </div>
       </div>
   </div>
 </template>
@@ -95,16 +94,51 @@ const goToDetail = function(movieId) {
 </script>
 
 <style scoped>
+
 .mainbox {
-display: flex;  
+display: flex;
 }
 
-.mainbox2 {
-display: flex;  
+h1 {
+  
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
-.mainbox3 {
-display: flex;  
+h2 {
+  margin-top: 100px;
+  margin-left: 20px;
+}
+.img1:hover {
+
+  -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+  -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+
+
+.img2:hover {
+  -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+  -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+
+}
+
+.img3:hover {
+  -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+  -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+
 }
 
 </style>

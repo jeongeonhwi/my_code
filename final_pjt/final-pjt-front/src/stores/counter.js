@@ -8,6 +8,7 @@ export const useCounterStore = defineStore('counter', () => {
   const API_URL = 'http://127.0.0.1:8000'
   const token = ref(null)
   const showUsername = ref(null)
+  const userList = []
   const userId = ref(null)
   const loginUser = ref(null)
   const router = useRouter()
@@ -57,6 +58,7 @@ export const useCounterStore = defineStore('counter', () => {
         token.value = response.data.key
         showUsername.value = username
         console.log('로그인성공')
+        console.log(showUsername)
         router.push({ name: "main"})
       })
       .catch((error) => {
@@ -108,5 +110,5 @@ export const useCounterStore = defineStore('counter', () => {
   }
   
 
-  return { state, setSearchResults, signup, logIn, isLogin, logOut, token, movies, API_URL, router, loginUser, showUsername, userId }
+  return { state, userList, setSearchResults, signup, logIn, isLogin, logOut, token, movies, API_URL, router, loginUser, showUsername, userId }
 }, { persist: true })
