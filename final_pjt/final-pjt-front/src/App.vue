@@ -8,14 +8,14 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
               <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
             </svg>
-            <router-link :to="{ name: 'main' }" class="btn text-white">Home</router-link>
+              <router-link :to="{ name: 'main' }" class="btn text-white">Home</router-link>
           </div>
 
           <div class="d-flex flex-column align-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
               <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
             </svg>
-            <router-link :to="{ name: 'RecommendMovieView' }" class="btn text-white">추천영화</router-link>
+              <router-link :to="{ name: 'RecommendMovieView' }" class="btn text-white">추천영화</router-link>
           </div>
           
           <div class="d-flex flex-column align-items-center">
@@ -59,13 +59,15 @@
     </div>
   </div>
   <!-- <h2 v-if="store.isLogin">{{ store.showUsername }}님 환영합니다</h2> -->
-  <RouterView />
+  <transition name="fade-up" mode="out-in">
+    <RouterView />
+  </transition>
 </template>
 
 <script setup>
 import { useCounterStore } from '@/stores/counter'
 import { RouterView, RouterLink, useRouter } from 'vue-router'
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import axios from 'axios'
 
 const store = useCounterStore()
@@ -73,7 +75,11 @@ const inputData = ref('')
 const youtubeAPI = 'AIzaSyC3aKDsjdqG_4MLn4H4TJM0GtWWMXatAwc'
 const router = useRouter()
 const youtubeList = reactive([]);
+// const currentRoute = ref(router.currentRoute.value.name);
 
+// watch(() => {
+//   currentRoute.value = router.currentRoute.value.name;
+// }, { immediate: true });
 
 const onInput = function (event) {
     inputData.value = event.currentTarget.value
@@ -142,4 +148,20 @@ nav {
   border-radius: 10px;
   text-align: center;
 }
+.fade-up-enter-active, .fade-up-leave-active {
+  animation: fade-up-down 1.5s;
+}
+
+@keyframes fade-up-down {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 </style>

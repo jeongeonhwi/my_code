@@ -58,17 +58,17 @@ const router = createRouter({
       meta: {
         requiresAuth: true // 로그인 상태를 확인하기 위한 메타 필드 추가
       },
-      beforeEnter: (to, from) => {
-        const store = useCounterStore()
-        console.log(to.params.id)
-        console.log(store.userId)
-        console.log(store.userList)
-        if ((store.userId != to.params.id)&&(store.userList.some(obj => obj.id == to.params.id))) {
-          router.push({name:'main'})
-        } else {
-          console.log(store.userList.some(obj => obj.id === to.params.id))
-        }
-      }
+      // beforeEnter: (to, from) => {
+      //   const store = useCounterStore()
+      //   console.log(to.params.id)
+      //   console.log(store.userId)
+      //   console.log(store.userList)
+      //   if ((store.userId != to.params.id)&&(store.userList.some(obj => obj.id == to.params.id))) {
+      //     router.push({name:'main'})
+      //   } else {
+      //     console.log(store.userList.some(obj => obj.id === to.params.id))
+      //   }
+      // }
     },
     {
       path: '/search-results',

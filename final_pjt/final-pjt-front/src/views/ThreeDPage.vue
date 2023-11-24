@@ -1,16 +1,15 @@
 <template>
   <div>
     <!-- 3D 애니메이션을 표시할 컨테이너 -->
-    <div ref="canvasContainer" class="3d"></div>
-
-    <!-- 확인 버튼 -->
-    
-    <router-link :to="{ name: 'main' }">메인 페이지로 이동</router-link>
+    <div ref="canvasContainer" class="3d" @click="onCubeClick"></div>
   </div>
 </template>
 
 <script>
 import * as THREE from 'three';
+
+// 이미지를 불러오기 위한 require 함수 대신 import 사용
+import whiteTexture from '@/assets/white.png';
 
 export default {
   mounted() {
@@ -19,28 +18,40 @@ export default {
     // 이 부분은 Three.js 사용법에 따라 작성되어야 합니다.
     // https://threejs.org/docs/
 
-    // 예시: 빨간색 큐브 생성
+    // 예시: PlaneGeometry에 텍스처를 입히기
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     this.$refs.canvasContainer.appendChild(renderer.domElement);
 
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    // 텍스처 로더 생성
+    const textureLoader = new THREE.TextureLoader();
+    // 텍스처 로드 (이미지 경로에 맞게 수정)
+    const texture = textureLoader.load(whiteTexture);
+
+    // PlaneGeometry를 이용하여 이미지를 나타낼 면 생성
+    const geometry = new THREE.PlaneGeometry(5, 5);
+    // 텍스처를 적용한 재질 생성
+    const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
+    const imagePlane = new THREE.Mesh(geometry, material);
+    scene.add(imagePlane);
 
     camera.position.z = 5;
 
     const animate = function () {
       requestAnimationFrame(animate);
 
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      // 이미지가 회전하도록 설정
+      // imagePlane.rotation.x += 0.005;
+      imagePlane.rotation.y += 0.01;
 
       renderer.render(scene, camera);
     };
+
+    setTimeout(() => {
+      this.goToMainPage();
+    }, 4100);
 
     animate();
   },
@@ -48,6 +59,10 @@ export default {
     goToMainPage() {
       // 메인 페이지로 이동하는 코드
       this.$router.push({ path: '/main' });
+    },
+    onCubeClick() {
+      // 이미지를 클릭했을 때 호출되는 메소드
+      this.goToMainPage();
     },
   },
   beforeRouteEnter(to, from, next) {
@@ -68,5 +83,4 @@ export default {
 .nav-bar {
   display: none;
 }
-
 </style>

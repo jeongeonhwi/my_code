@@ -1,11 +1,11 @@
 <template>
-  <div v-if="user">
+  <!-- <div v-if="user">
     <br>
     <p v-if="loginUser.id === user.id">
-      <span v-show="allowToggle" @click="allowChoose">공개</span>
-      <span v-show="!allowToggle" @click="allowChoose">비공개</span>
+      <span v-show="allowToggle" @click="allowOpen">공개</span>
+      <span v-show="!allowToggle" @click="allowClose">비공개</span>
     </p>
-  </div>
+  </div> -->
   <div  v-if="user" class="login-box d-flex flex-column align-items-center mt-5">
     <h1>{{ user.username }}님의 페이지</h1>
     <p v-if="loginUser.id != user.id">
@@ -84,12 +84,15 @@ onMounted(() => {
             // console.log(res.data)
           user.value = res.data
 
-          if ((user.value)&&(store.userList.some(obj => obj.id == user.value.id))) {
-            allowToggle.value = false
-          } else {
-            console.log()
-            allowToggle.value = true
-          }
+          // if ((user.value)&&(store.userList.some(obj => obj.id == user.value.id))) {
+          //   allowToggle.value = false
+          //   console.log(allowToggle.value)
+          //   console.log('토글확인')
+          // } else {
+          //   console.log('2222')
+          //   console.log(store.userList)
+          //   allowToggle.value = true
+          // }
 
           return axios({
             method: 'get',
@@ -118,20 +121,22 @@ onMounted(() => {
 
 })
 
-const allowChoose = function () {
-  if (store.userList.includes(loginUser.value)) {
-    const newList = store.userList.filter(item => item.id !== loginUser.value.id)
-    console.log('시작')
-    console.log(newList)
-    store.userList = newList
-    allowToggle.value = !allowToggle.value
-    console.log(store.userList[0].id)
-  } else {
-    store.userList.push(loginUser.value)
-    allowToggle.value = !allowToggle.value
-    console.log(store.userList)
-  }
-}
+// const allowOpen = function () {
+//   if (loginUser.value) {
+//     console.log('시작')
+//     console.log(loginUser.value.id)
+//     const newList = store.userList.filter(item => item.id != loginUser.value.id)
+//     store.userList = newList
+//     allowToggle.value = !allowToggle.value
+//     // console.log(store.userList[0].id)
+//   }
+// }
+
+// const allowClose = function () {
+//   store.userList.push(loginUser.value)
+//   allowToggle.value = !allowToggle.value
+//   console.log(store.userList)
+// }
 
 const goToLike = function () {
   axios({

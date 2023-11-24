@@ -140,7 +140,7 @@ def popularity_recommend_movie(request):
 # 2. 배우 인기도 순
 @api_view(['GET'])
 def popular_actor(request):
-    actors = Actor.objects.all().order_by('-popularity')[:10]
+    actors = Actor.objects.all().order_by('-popularity')[:100]
     serializer = ActorSerializer(actors, many=True)
     return JsonResponse(serializer.data, safe=False)
 
