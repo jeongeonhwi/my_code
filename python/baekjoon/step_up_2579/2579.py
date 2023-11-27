@@ -3,17 +3,16 @@ sys.stdin = open('input.txt', 'r')
 
 
 N = int(input())
-arr = [int(input()) for _ in range(N)]
-dp = [0]*N
-p = -1
-while True:
-    if p >= N-3:
-        if p == N -3:
+arr = [0]*301
+for i in range(N):
+    arr[i] = int(input())
+dp = [0]*301
 
-    p+=3
-    tmp1 = arr[p-2]+arr[p-1]
-    tmp2 = arr[p-2]+arr[p]
-    dp[p] = max(tmp1, tmp2)
-    if p == 2:
-        continue
-    dp[p] += dp[p-3]
+dp[0] = arr[0]
+dp[1] = arr[0]+arr[1]
+dp[2] = max(arr[0]+arr[2], arr[1]+arr[2])
+
+for i in range(3, N):
+    dp[i] = max(dp[i-3]+arr[i-1]+arr[i], dp[i-2]+ arr[i])
+
+print(dp[N-1])
