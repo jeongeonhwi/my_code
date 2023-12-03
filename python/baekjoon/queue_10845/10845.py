@@ -9,22 +9,13 @@ for _ in range(N):
     data = input().strip()
     if data[:2] == 'pu':
         order, num = data.split()
-        if order == 'push_back':
-            q.append(num)
-        else:
-            q.appendleft(num)
+        q.append(num)
         continue
-    if data == 'pop_front':
+    if data == 'pop':
         if len(q) == 0:
             print(-1)
         else:
             print(q.popleft())
-        continue
-    if data == 'pop_back':
-        if len(q) == 0:
-            print(-1)
-        else:
-            print(q.pop())
         continue
     if data == 'size':
         print(len(q))
