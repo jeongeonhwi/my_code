@@ -3,46 +3,23 @@ import sys
 input = sys.stdin.readline
 
 from collections import deque
-N = int(input())
-q = deque()
-for _ in range(N):
-    data = input().strip()
-    if data[:2] == 'pu':
-        order, num = data.split()
-        if order == 'push_back':
-            q.append(num)
-        else:
-            q.appendleft(num)
+N,K = map(int, input().split())
+pus = [i for i in range(1,N+1)]
+pus = deque(pus)
+now = 1
+result = []
+while pus:
+    tmp = pus.popleft()
+    if now==K:
+        result.append(tmp)
+        now = 1
         continue
-    if data == 'pop_front':
-        if len(q) == 0:
-            print(-1)
-        else:
-            print(q.popleft())
+    now +=1
+    pus.append(tmp)
+print('<', end='')
+for i in range(len(result)):
+    if i == len(result)-1:
+        print(result[i], end='')
         continue
-    if data == 'pop_back':
-        if len(q) == 0:
-            print(-1)
-        else:
-            print(q.pop())
-        continue
-    if data == 'size':
-        print(len(q))
-        continue
-    if data == 'empty':
-        if len(q) == 0:
-            print(1)
-        else:
-            print(0)
-        continue
-    if data == 'front':
-        if len(q) == 0:
-            print(-1)
-        else:
-            print(q[0])
-        continue
-    if data == 'back':
-        if len(q) == 0:
-            print(-1)
-        else:
-            print(q[-1])
+    print(f'{result[i]}, ', end='')
+print('>')
