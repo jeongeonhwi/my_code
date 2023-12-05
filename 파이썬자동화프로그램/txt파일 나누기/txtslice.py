@@ -1,22 +1,22 @@
-# 2등분 내는 코드
 def split_text(input_file):
-    with open(input_file, 'r') as file:
+    with open(input_file, 'r', encoding='utf-8') as file:
         content = file.read()
 
-    # 텍스트의 중간 지점을 찾아서 나눕니다.
-    middle = len(content) // 2
-
     # 나뉜 텍스트를 파일로 저장합니다.
-    chunk1 = content[:middle]
-    chunk2 = content[middle:]
+    total_chunks = 10
+    chunk_size = len(content) // total_chunks
 
-    with open("output_chunk_1.txt", 'w') as file:
-        file.write(chunk1)
-        print("Chunk 1 saved to output_chunk_1.txt")
+    for i in range(total_chunks):
+        start = i * chunk_size
+        end = (i + 1) * chunk_size if i < total_chunks - 1 else None
 
-    with open("output_chunk_2.txt", 'w') as file:
-        file.write(chunk2)
-        print("Chunk 2 saved to output_chunk_2.txt")
+        # 나뉜 텍스트를 파일로 저장합니다.
+        chunk = content[start:end]
+        output_file_path = f"output_chunk_{i + 1}.txt"
+
+        with open(output_file_path, 'w', encoding='utf-8') as file:
+            file.write(chunk)
+            print(f"Chunk {i + 1} saved to {output_file_path}")
 
 if __name__ == "__main__":
     # 텍스트 파일 경로를 설정합니다.
