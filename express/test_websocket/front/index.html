@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Websocket 실습</title>
+    <script>
+      const ws = new WebSocket("ws://localhost:8001");
+
+      function sendMsg() {
+        const userName = document.getElementById("userName");
+        const message = document.getElementById("message");
+        // const message = prompt("Enter your message:");
+        if (message) {
+          ws.send(`${userName.value} : ${message.value}`);
+        }
+      }
+
+      ws.onmessage = (event) => {
+        // 서버로부터 메시지를 받아서 화면에 출력
+        const logElement = document.getElementById("chat-log");
+        logElement.innerHTML += `<p>${event.data}</p>`;
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Websocket 실습 과제</h1>
+    <p>
+      유저닉네임:
+      <input type="text" id="userName" />
+    </p>
+    <p>
+      메세지:
+      <input type="text" id="message" />
+    </p>
+    <button onclick="sendMsg()">전송</button>
+    <div id="chat-log"></div>
+  </body>
+</html>
