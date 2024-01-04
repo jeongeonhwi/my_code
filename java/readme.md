@@ -1,7 +1,11 @@
 # java 알고리즘 정리
+
 ## 기본적으로 외워야 할 것들
+
 ### input
-* 숫자 하나
+
+- 숫자 하나
+
 ```java
 import java.util.Scanner
 
@@ -11,7 +15,9 @@ int a = scanner.nextInt();
 
 scanner.close();
 ```
-* 숫자 하나 (빠르게 인풋 받음)
+
+- 숫자 하나 (빠르게 인풋 받음)
+
 ```java
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,11 +32,24 @@ public class Main {
     }
 }
 ```
-* 여러줄 인풋받기
-    - br.readLine() 쓰면 한줄 입력받음
-    - 내가 N값을 받았으면 포문을 돌려서 br.readLine()으로 받으면 됨
+
+- 한줄에 숫자 여러개 받기
+
+```java
+Scanner in = new Scanner(System.in);
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+```
+
+- 여러줄 인풋받기
+  - br.readLine() 쓰면 한줄 입력받음
+  - 내가 N값을 받았으면 포문을 돌려서 br.readLine()으로 받으면 됨
+
 ### sort
-* 배열 정렬
+
+- 배열 정렬
+
 ```java
 import java.util.Arrays;
 
@@ -46,7 +65,9 @@ public class ArraySortExample {
     }
 }
 ```
-* 컬렉션 정렬
+
+- 컬렉션 정렬
+
 ```java
 import java.util.ArrayList;
 import java.util.Collections;
@@ -72,5 +93,6 @@ public class CollectionSortExample {
     }
 }
 ```
-* 컬렉션 접근은 대괄호가 아닌 .get으로 접근
-* 컬렉션의 해당 인덱스 내용을 변경하고 싶으면 set(index, 변경하고 싶은 내용) 사용
+
+- 컬렉션 접근은 대괄호가 아닌 .get으로 접근
+- 컬렉션의 해당 인덱스 내용을 변경하고 싶으면 set(index, 변경하고 싶은 내용) 사용
