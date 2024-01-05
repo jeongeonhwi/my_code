@@ -1,28 +1,17 @@
-// import logo from "./logo.svg";
-import "./App.css";
+import React, { Component } from "react";
+import ScrollBox from "./ScrollBox";
 
-function App() {
-  const name = "리액트";
-  // const style = {
-  //   backgroundColor: "black",
-  //   color: "aqua",
-  //   fontSize: "48px",
-  //   fontWeight: "bold",
-  //   padding: 16,
-  // };
-
-  return (
-    <div>
-      {/* dfeffe */}
-      <form>
-        성: <br></br>
-        <input></input>
-        <br></br>
-        이름: <br></br>
-        <input></input>
-      </form>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <ScrollBox ref={(ref) => (this.ScrollBox = ref)} />
+        <button onClick={() => this.ScrollBox.scrollToBottom()}>
+          go to bottum
+        </button>
+      </div>
+    );
+  }
 }
 
 export default App;

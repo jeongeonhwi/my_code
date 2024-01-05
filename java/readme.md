@@ -37,9 +37,10 @@ public class Main {
 
 ```java
 Scanner in = new Scanner(System.in);
-        int a = in.nextInt();
-        int b = in.nextInt();
-        int c = in.nextInt();
+
+int a = in.nextInt();
+int b = in.nextInt();
+int c = in.nextInt();
 ```
 
 - 여러줄 인풋받기
