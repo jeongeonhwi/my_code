@@ -7,22 +7,18 @@ sys.stdin = open('input.txt', 'r')
 from itertools import combinations
 N, M, H = map(int, input().split())
 arr = [[0]*(N) for _ in range(H)]
-abset = set()
+
 for _ in range(M):
     a,b = map(int, input().split())
     arr[a-1][b-1] = 1
     arr[a-1][b] = -1
-    abset.add((a-1,b-1))
-num = []
+num = set()
 for i in range(H):
-    for j in range(N-1):
-        if j >= 1:
-            if arr[i][j] != 0 or arr[i][j-1] != 0 or arr[i][j+1] !=0:
-                continue
-        else:
-            if arr[i][j] != 0 or arr[i][j+1] !=0:
-                continue
-        num.append((i,j))
+    for j in range(N):
+        if j != N-1 and j > 0:
+            if arr[i][j] == 0 and arr[i][j-1] == 0 :
+                num.add((i,j))
+
 ans = -1
 pcheck = False
 for m in range(4):
@@ -30,18 +26,6 @@ for m in range(4):
         combi = combinations(num,m)
         for com in combi:
             check = 0
-            for p in com:
-                double = set(com)|abset
-                if (p[0], p[1] + 1) in double:
-                    pcheck = True
-                    break
-                elif (p[0], p[1] - 1) in double:
-                    pcheck = True
-                    break
-            if pcheck:
-                pcheck = False
-                continue
-
             for p in com:
                 arr[p[0]][p[1]] = 1
                 arr[p[0]][p[1]+1] = -1

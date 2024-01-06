@@ -16,32 +16,41 @@ def union(x,y):
     if x<y:
         parent[y] = x
     else:
-        parent[x] =y
+        parent[x] = y
 
 
 T = 1
 while True:
     N,M = map(int, input().split())
+    # print(N,M)
     if N == 0 and M == 0:
         break
     parent = [i for i in range(N)]
+    onemore = set()
     tree = 0
-    check = 0
+    check = set()
     cs = set()
-    arr = [[] for _ in range(N)]
     for _ in range(M):
         x,y = map(int, input().split())
-
         if find_set(x-1) != find_set(y-1):
+            # print(x-1,y-1)
             union(x-1,y-1)
+            # print(parent[x-1], parent[y-1])
+            onemore.add((x-1, y-1))
         else:
-            check += 1
-            cs.add(find_set(x-1))
+            cs.add(x-1)
+            cs.add(y-1)
+    for i,j in onemore:
+        union(i,j)
+    for i in cs:
+        check.add(find_set(i))
 
     cycle = set(parent)
-    tree = len(set(parent))-len(cs)
-    print(parent)
-    print(cs)
+    tree = len(cycle)-len(check)
+    # print(parent)
+    # print(cycle)
+    # print(cs)
+    # print(check)
     if tree == 0:
         print(f'Case {T}: No trees.')
     elif tree == 1:

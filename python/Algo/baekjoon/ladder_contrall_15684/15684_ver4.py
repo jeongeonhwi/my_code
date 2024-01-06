@@ -1,6 +1,6 @@
 import sys
-# sys.stdin = open('input.txt', 'r')
-input = sys.stdin.readline
+sys.stdin = open('input.txt', 'r')
+# input = sys.stdin.readline
 
 
 
@@ -16,17 +16,13 @@ for _ in range(M):
     a,b = map(int, input().split())
     arr[2*(a)-1][2*b] = 1
     abset.add((2*(a)-1,2*b))
-num = []
+num = set()
 for i in range(2*H):
     for j in range(2*N):
         if j != 0 and i%2==1 and j%2==0:
-            if arr[i][j] == 1:
-                continue
-            if arr[i][j-2] != 1:
-                if j+2>=2*N:
-                    num.append((i,j))
-                elif arr[i][j+2] != 1:
-                    num.append((i,j))
+            if arr[i][j-2] != 1 and arr[i][j] != 1:
+                if j+2>=2*N or arr[i][j+2] != 1:
+                    num.add((i,j))
 ans = -1
 pcheck = False
 for m in range(4):
@@ -36,10 +32,7 @@ for m in range(4):
             check = 0
             for p in com:
                 double = set(com)|abset
-                if (p[0], p[1] + 2) in double:
-                    pcheck = True
-                    break
-                elif (p[0], p[1] - 2) in double:
+                if (p[0], p[1] + 2) in double or (p[0], p[1] - 2) in double:
                     pcheck = True
                     break
             if pcheck:
@@ -49,9 +42,6 @@ for m in range(4):
                 arr[p[0]][p[1]] = 1
             jcheck = False
             for j in range(2 * N):
-                if jcheck:
-                    jcheck = False
-                    break
                 visited = [[0] * (N + N) for _ in range(2 * H + 1)]
                 if arr[0][j] == 1:
                     ni, nj = 0, j
