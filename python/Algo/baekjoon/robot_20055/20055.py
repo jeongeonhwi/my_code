@@ -18,9 +18,8 @@ while True:
             robot[i] = -1
     tmp = []
     for i in robot:
-        if i == -1:
-            continue
-        tmp.append(i)
+        if i != -1:
+            tmp.append(i)
     robot = tmp[:]
     # 한칸더 갈수 있으면 가기
     tmp = []
