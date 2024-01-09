@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce8cbcec-b0ca-493f-9c00-ee681ef1c6c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/paelin_10942/10942.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/paelin_10942/10942_ver2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/paelin_10942/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/python.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/robot_20055/20055.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/robot_20055/20055.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react/ReactTeck/ch1-start_react/hello-react/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/ReactTeck/ch1-start_react/hello-react/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react/ReactTeck/ch1-start_react/hello-react/src/LifeCycleSample.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/ReactTeck/ch1-start_react/hello-react/src/LifeCycleSample.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/paelin_10942/10942_ver2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/paelin_10942/10942_ver2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/ReactTeck/ch1-start_react/hooks-tutorial/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/ReactTeck/ch1-start_react/hooks-tutorial/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/ReactTeck/ch1-start_react/hooks-tutorial/src/Info.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/ReactTeck/ch1-start_react/hooks-tutorial/src/Info.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +44,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Python.10942.executor": "Run",
+    "Python.10942_ver2.executor": "Run",
     "Python.11279.executor": "Run",
     "Python.20055.executor": "Run",
     "Python.4803.executor": "Run",
@@ -59,7 +55,7 @@
     "settings.editor.selected.configurable": "configurable.group.appearance"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.10942">
+  <component name="RunManager" selected="Python.10942_ver2">
     <configuration name="10942" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
       <option name="ENV_FILES" value="" />
@@ -82,6 +78,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="10942_ver2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="python" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/paelin_10942" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/paelin_10942/10942_ver2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="11403" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
       <option name="ENV_FILES" value="" />
@@ -96,28 +114,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/route_search_11403/11403.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="15684_ver4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="python" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/ladder_contrall_15684" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/ladder_contrall_15684/15684_ver4.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -172,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.10942_ver2" />
         <item itemvalue="Python.10942" />
         <item itemvalue="Python.20055" />
         <item itemvalue="Python.11403" />
         <item itemvalue="Python.15684_ver5" />
-        <item itemvalue="Python.15684_ver4" />
       </list>
     </recent_temporary>
   </component>
