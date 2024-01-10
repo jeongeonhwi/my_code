@@ -1,0 +1,15 @@
+@import "~open-color/open-color";
+
+$red: #fa5252;
+$orange: #fd7e14;
+$yellow: yellow;
+$green: green;
+$blue: blue;
+$indigo: indigo;
+$violet: violet;
+
+@mixin square($size) {
+  $calculated: 32px * $size;
+  width: $calculated;
+  height: $calculated;
+}
