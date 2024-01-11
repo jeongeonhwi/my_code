@@ -5,404 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce8cbcec-b0ca-493f-9c00-ee681ef1c6c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/fast_train_1833/1833.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/fast_train_1833/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/PJT05/05_PJT_관통_버전1_요구사항.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/PJT05/05_PJT_관통_버전2_요구사항.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/PJT05/05_PJT_라이브.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/PJT05/examples/example.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/PJT05/examples/example1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/PJT05/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/PJT05/soup.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/templates/accounts/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/templates/accounts/signup.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/accounts/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/templates/movies/create.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/templates/movies/detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/templates/movies/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/movies/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/mypjt/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/mypjt/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/mypjt/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/mypjt/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/mypjt/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-13/movie_pjt05/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/06_PJT_관통_버전1_요구사항.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/06_PJT_관통_버전2_요구사항.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/06_PJT_라이브.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/migrations/0002_user_followings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/templates/accounts/change_password.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/templates/accounts/followerlist.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/templates/accounts/followings.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/templates/accounts/likedmovielist.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/templates/accounts/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/templates/accounts/profile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/templates/accounts/signup.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/templates/accounts/update.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/accounts/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/templates/movies/create.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/templates/movies/detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/templates/movies/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/templates/movies/update.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/movies/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/pjt_06/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/pjt_06/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/pjt_06/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/pjt_06/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/pjt_06/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/templates/_navbar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/pjt/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/templates/accounts/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/templates/accounts/signup.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/accounts/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/templates/boards/create.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/templates/boards/detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/templates/boards/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/templates/boards/update.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/boards/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/mypjt/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/mypjt/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/mypjt/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/mypjt/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/mypjt/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/templates/_navbar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-20/PJT06/skeleton/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/templates/accounts/change_password.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/templates/accounts/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/templates/accounts/signup.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/templates/accounts/update.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/accounts/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/templates/movies/create.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/templates/movies/detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/templates/movies/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/templates/movies/update.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/movies/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/mypjt/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/mypjt/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/mypjt/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/mypjt/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/mypjt/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/Movie_Track/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/04_PJT_관통_버전1_요구사항.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/04_PJT_관통_버전2_요구사항.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/04_PJT_라이브.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/accounts/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/accounts/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/accounts/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/accounts/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/accounts/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/accounts/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/accounts/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/example/austin_weather.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/firstgraph.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/myapp/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/myapp/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/myapp/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/myapp/data/austin_weather.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/myapp/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/myapp/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/myapp/templates/myapp/example.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/myapp/templates/myapp/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/myapp/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/myapp/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/myapp/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/mypjt/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/mypjt/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/mypjt/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/mypjt/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/mypjt/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/PJT04/test1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/10-6/test1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/src/router/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/src/views/HomeView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/src/views/MovieDetailView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/src/views/MovieListView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/src/views/ReviewSearchView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/src/views/dd.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/09_pjt/09-pjt/vite.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/09_PJT_관통_버전1_요구사항.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/09_PJT_관통_버전2_요구사항.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/09_PJT_라이브.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/assets/base.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/assets/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/assets/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/components/TheWelcome.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/components/WelcomeItem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/components/icons/IconCommunity.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/components/icons/IconDocumentation.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/components/icons/IconEcosystem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/components/icons/IconSupport.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/components/icons/IconTooling.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/router/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/views/CartView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/views/HomeView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/src/views/ProductDetailView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-10/PJT09/pjt09-example/vite.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/08_PJT_라이브.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/locust_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/performence_test/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/performence_test/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/performence_test/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/performence_test/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/performence_test/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/test_app/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/test_app/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/test_app/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/test_app/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/test_app/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/test_app/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/test_app/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/performence_test/test_app/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전1_도전과제/08_PJT_관통_버전1_요구사항.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전1_도전과제/[참고]numpy&amp;pandas/1.Numpy_Basic.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전1_도전과제/[참고]numpy&amp;pandas/2.Pandas_Basic.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전1_도전과제/[참고]numpy&amp;pandas/3.Pandas_Advanced.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전1_도전과제/[참고]numpy&amp;pandas/4.matplotlib_basic.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전1_도전과제/[참고]numpy&amp;pandas/data/test_data.CSV" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전1_도전과제/[참고]numpy&amp;pandas/data/test_data_has_null.CSV" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_PJT_관통_버전2_요구사항.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/templates/accounts/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/templates/accounts/profile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/templates/accounts/signup.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/accounts/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/templates/community/create.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/templates/community/detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/templates/community/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/community/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/fixtures/movies.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/templates/movies/detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/templates/movies/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/templates/movies/recommended.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/movies/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/mypjt/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/mypjt/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/mypjt/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/mypjt/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/mypjt/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/readme_template.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/11-3/PJT08/버전2_도전과제/08_pjt/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/9-8/PJT_03_README_ver_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/9-8/images/free-icon-github-2175377.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/9-8/images/free-icon-kakao-talk-3991999.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/9-8/images/free-icon-naver-11423248.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/9-8/images/river.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/9-8/intro.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/9-8/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/assets/ERD7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/assets/컴포넌트4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/assets/white.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/components/MovieDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/components/MovieSwiper.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/components/MyPageReview.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/components/ReviewDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/components/cast.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/components/hateUser.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/components/likeUser.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/components/overview.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/router/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/stores/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/views/LoginView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/views/MainPageView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/views/MovieDetailView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/views/MyPageView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/views/PopularActorView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/views/RecommendMovieView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/views/SearchResultsView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/views/SignUpView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/src/views/ThreeDPage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/final-pjt-front/vite.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/accounts/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/accounts/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/accounts/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/accounts/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/accounts/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/accounts/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/accounts/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/accounts/signals.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/accounts/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/accounts/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/accounts/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/chat/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/chat/consumers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/chat/routing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/chat/templates/chat/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/chat/templates/chat/room.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/chat/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/chat/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/fixtures/actors_db.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/fixtures/create_db.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/fixtures/directors_db.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/fixtures/movies_db.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/movies/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/noiZe/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/noiZe/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/noiZe/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/noiZe/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/noiZe/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/final_pjt/pjt-noize/requirements2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/readme.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/fast_train_1833/1833.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/fast_train_1833/1833.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -434,23 +38,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.10942.executor&quot;: &quot;Run&quot;,
-    &quot;Python.10942_ver2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.11279.executor&quot;: &quot;Run&quot;,
-    &quot;Python.20055.executor&quot;: &quot;Run&quot;,
-    &quot;Python.21608.executor&quot;: &quot;Run&quot;,
-    &quot;Python.4803.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.10942.executor": "Run",
+    "Python.10942_ver2.executor": "Run",
+    "Python.11279.executor": "Run",
+    "Python.1833.executor": "Run",
+    "Python.20055.executor": "Run",
+    "Python.21608.executor": "Run",
+    "Python.4803.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "configurable.group.appearance"
   }
-}</component>
-  <component name="RunManager" selected="Python.21608">
+}]]></component>
+  <component name="RunManager" selected="Python.1833">
     <configuration name="10942" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
       <option name="ENV_FILES" value="" />
@@ -495,7 +100,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="11403" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="1833" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -504,11 +109,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/route_search_11403" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/fast_train_1833" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/route_search_11403/11403.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/fast_train_1833/1833.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -563,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.1833" />
         <item itemvalue="Python.21608" />
         <item itemvalue="Python.10942_ver2" />
         <item itemvalue="Python.10942" />
         <item itemvalue="Python.20055" />
-        <item itemvalue="Python.11403" />
       </list>
     </recent_temporary>
   </component>
