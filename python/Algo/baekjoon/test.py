@@ -1,7 +1,5 @@
-import sys
-# sys.stdin = open('input.txt', 'r')
-input = sys.stdin.readline
-# print = sys.stdin.write
+a = [(1,(1,1)), (2,(2,2))]
+from heapq import heappop, heappush
 
-a = {1, 2} & {2}
+heappush(a, (3,(3,3)))
 print(a)

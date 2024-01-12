@@ -9,13 +9,23 @@ sys.stdin = open('input.txt', 'r')
 from heapq import heappop, heappush
 
 def daic(s):
-    visited = [float('inf')]*(N)
-    hq = [(0,s,[])]
-    visited[s] = 0
+    visited = [(float('inf'),1,1)]*(N)
+    hq = [(0,s,-1)]
+    visited[s] = (0,s,-1)
     while hq:
-        cnt,i,t = heappop(hq)
-        for n in range(N):
-            if 
+        cnt,i, pi = heappop(hq)
+        print(i,hq)
+        if visited[i][0] < cnt:
+            continue
+        for ni in range(N):
+            next_cnt = cnt + arr[i][ni]
+            if visited[ni][0] <= next_cnt:
+                continue
+            visited[ni] = (next_cnt,pi,i)
+            heappush(hq, (next_cnt,ni, i))
+            print(next_cnt,ni,i)
+    return visited
+
 
 N = int(input())
 arr = [list(map(int, input().split())) for _ in range(N)]
@@ -27,4 +37,4 @@ for i in range(N):
             arr[i][j] = 0
 cost //= 2
 
-print(arr)
+print(daic(0))
