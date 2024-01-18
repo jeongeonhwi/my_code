@@ -2,40 +2,45 @@ import sys
 sys.stdin = open('input.txt', 'r')
 # input = sys.stdin.readline
 
-def check(start, end):
-    stmp = lego[start]+lego[end]
-    etmp = lego[start]+lego[end]
-    ss,se = start,end
-    es,ee = start,end
-    while ss>= 0:
-        ss-=1
-        if x == stmp:
-            return (ss,se)
-        elif x < stmp:
-            return (-1,-1)
-    while ee>= 0:
-        ee+=1
-        if x == etmp:
-            return (es,ee)
-        elif x < etmp:
-            return (-1,-1)
-    return (-1,-1)
-
-
+# 만약 정해진 값보다 크면 start 혹은 end를 낮추어준다.
+# 만약 정해진 값보다 작으면 start 혹은 end를 늘려준다.
 # 1cm = 10000000nano
-x = int(input())
-n = int(input())
-lego = [int(input()) for _ in range(n)]
-x *= 10000000
-lego.sort()
-start, end = 0, n-1
-while start<end+1:
-    tmp = lego[start]+lego[end]
-    if x == tmp and start != end:
-        print(f'yes {lego[start]} {lego[end]}')
-        exit()
-    elif x > tmp:
-        start += 1
-    else:
-        end -= 1
-print('danger')
+try:
+    while True:
+        x = int(input())
+        n = int(input())
+        lego = [int(input()) for _ in range(n)]
+        lego.sort()
+        if n==0 or n==1:
+            print('danger')
+        elif n == 2:
+            if lego[0] + lego[1] == x*10000000:
+                print(f'yes {lego[0]} {lego[1]}')
+            else:
+                print('danger')
+        else:
+            x *= 10000000
+            mid = x/2
+            one = []
+            two = []
+            m = []
+            for i in range(n):
+                if lego[i] < mid:
+                    one.append(lego[i])
+                elif lego[i] > mid:
+                    two.append(lego[i])
+                else:
+                    m.append(lego[i])
+            print(one,two,m)
+            two2 = set(two)
+            for i in one:
+                if x-i in two2:
+                    print(f'yes {i} {x-i}')
+                    break
+            else:
+                if len(m) >= 2:
+                    print(f'yes {m[0]} {m[0]}')
+                else:
+                    print('danger')
+except:
+    pass
