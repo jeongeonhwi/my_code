@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce8cbcec-b0ca-493f-9c00-ee681ef1c6c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/2xn_tiling_11726/11726.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/xy_19532/19532.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/xy_19532/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/Next+React/z-com/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../react/Next+React/z-com/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/Next+React/z-com/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../react/Next+React/z-com/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(afterLogin)/[username]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(afterLogin)/[username]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(afterLogin)/explore/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(afterLogin)/explore/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(afterLogin)/home/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(afterLogin)/home/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(afterLogin)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(afterLogin)/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(afterLogin)/search/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(afterLogin)/search/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(beforeLogin)/_component/LoginModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(beforeLogin)/_component/LoginModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(beforeLogin)/_component/main.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(beforeLogin)/_component/main.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(beforeLogin)/_component/signup.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/(beforeLogin)/_component/signup.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/../react/Next+React/z-com/src/app/globals.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,30 +50,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.10942.executor&quot;: &quot;Run&quot;,
-    &quot;Python.10942_ver2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.11279.executor&quot;: &quot;Run&quot;,
-    &quot;Python.11726.executor&quot;: &quot;Run&quot;,
-    &quot;Python.1833.executor&quot;: &quot;Run&quot;,
-    &quot;Python.20055.executor&quot;: &quot;Run&quot;,
-    &quot;Python.21608.executor&quot;: &quot;Run&quot;,
-    &quot;Python.3649.executor&quot;: &quot;Run&quot;,
-    &quot;Python.3649_ver2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.4803.executor&quot;: &quot;Run&quot;,
-    &quot;Python.9251.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.truck_13335.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.10942.executor": "Run",
+    "Python.10942_ver2.executor": "Run",
+    "Python.11279.executor": "Run",
+    "Python.11726.executor": "Run",
+    "Python.1833.executor": "Run",
+    "Python.19532.executor": "Run",
+    "Python.20055.executor": "Run",
+    "Python.21608.executor": "Run",
+    "Python.3649.executor": "Run",
+    "Python.3649_ver2.executor": "Run",
+    "Python.4803.executor": "Run",
+    "Python.9251.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.truck_13335.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "configurable.group.appearance"
   }
-}</component>
-  <component name="RunManager" selected="Python.test">
+}]]></component>
+  <component name="RunManager" selected="Python.19532">
     <configuration name="11726" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
       <option name="ENV_FILES" value="" />
@@ -77,6 +89,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/2xn_tiling_11726/11726.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="19532" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="python" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/xy_19532" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/xy_19532/19532.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -129,28 +163,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="9251" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="python" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/LCS_9251" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/LCS_9251/9251.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
       <option name="ENV_FILES" value="" />
@@ -175,11 +187,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.19532" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.11726" />
         <item itemvalue="Python.3649" />
         <item itemvalue="Python.3649_ver2" />
-        <item itemvalue="Python.9251" />
       </list>
     </recent_temporary>
   </component>
