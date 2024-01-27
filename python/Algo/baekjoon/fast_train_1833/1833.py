@@ -18,13 +18,15 @@ def union(x,y):
 
 N = int(input())
 arr = [list(map(int, input().split())) for _ in range(N)]
-parent = [i for i in range(N+1)]
 cost = 0
 for i in range(N):
     for j in range(N):
         if arr[i][j] < 0:
-            cost += arr[i][j]
+            cost -= arr[i][j]
             arr[i][j] = 0
+            union(i,j)
+        elif arr[i][j] > 0:
+            my.append((arr[i][j], i, j))
 cost //= 2
 
-# print(daic(0))
+print(daic(0))

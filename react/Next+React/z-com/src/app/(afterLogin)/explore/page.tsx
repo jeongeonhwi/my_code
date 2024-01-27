@@ -1,3 +1,8 @@
-export default function Page() {
-  return <main>탐색</main>;
+
+export default function Home() {
+  return (
+    <main>
+      검색페이지
+    </main>
+  )
 }
