@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ce8cbcec-b0ca-493f-9c00-ee681ef1c6c2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/Link_Start_15661/15661.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/Link_Start_15661/15661.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/Link_Start_15661/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/Link_Start_15661/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +175,6 @@
         <item itemvalue="Python.15661" />
         <item itemvalue="Python.9205" />
         <item itemvalue="Python.19532" />
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.11726" />
       </list>
     </recent_temporary>
