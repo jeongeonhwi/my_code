@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce8cbcec-b0ca-493f-9c00-ee681ef1c6c2" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/Algo/baekjoon/A_B2_12919/12919.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Algo/baekjoon/A_B2_12919/input.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Algo/baekjoon/storm_14728/14728.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Algo/baekjoon/storm_14728/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/python.iml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/../SpringBoot/jpashop/src/main/java/jpabook/jpashop/repository/MemberRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/app_7579/7579.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/app_7579/input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/light_switch_2138/2138.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/light_switch_2138/input.txt" afterDir="false" />
+>>>>>>> b548fd2c1b6fcabea28b1f758f16152e7c60bac7
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Algo/baekjoon/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/test.py" afterDir="false" />
     </list>
@@ -59,6 +67,10 @@
     &quot;Python.1833.executor&quot;: &quot;Run&quot;,
     &quot;Python.19532.executor&quot;: &quot;Run&quot;,
     &quot;Python.20055.executor&quot;: &quot;Run&quot;,
+<<<<<<< HEAD
+=======
+    &quot;Python.2138.executor&quot;: &quot;Run&quot;,
+>>>>>>> b548fd2c1b6fcabea28b1f758f16152e7c60bac7
     &quot;Python.21608.executor&quot;: &quot;Run&quot;,
     &quot;Python.2try.executor&quot;: &quot;Run&quot;,
     &quot;Python.3649.executor&quot;: &quot;Run&quot;,
@@ -75,7 +87,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
   }
 }</component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Python.12919">
+=======
+  <component name="RunManager" selected="Python.test">
+>>>>>>> b548fd2c1b6fcabea28b1f758f16152e7c60bac7
     <configuration name="11003" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -97,6 +113,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="12919" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -119,6 +136,9 @@
       <method v="2" />
     </configuration>
     <configuration name="14728" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="1722" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> b548fd2c1b6fcabea28b1f758f16152e7c60bac7
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -131,6 +151,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/storm_14728/14728.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="2138" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="python" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/light_switch_2138" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/light_switch_2138/2138.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -183,11 +225,19 @@
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
         <item itemvalue="Python.12919" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.14728" />
         <item itemvalue="Python.2try" />
         <item itemvalue="Python.11003" />
+=======
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.2138" />
+        <item itemvalue="Python.2try" />
+        <item itemvalue="Python.11003" />
+        <item itemvalue="Python.1722" />
+>>>>>>> b548fd2c1b6fcabea28b1f758f16152e7c60bac7
       </list>
     </recent_temporary>
   </component>
