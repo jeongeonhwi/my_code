@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce8cbcec-b0ca-493f-9c00-ee681ef1c6c2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/People_move_16234/16234.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/People_move_16234/16234.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/make_meeting_2016/2016.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/make_meeting_2016/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/python.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,42 +41,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.10942.executor&quot;: &quot;Run&quot;,
-    &quot;Python.10942_ver2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.11003.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.11279.executor&quot;: &quot;Run&quot;,
-    &quot;Python.11726.executor&quot;: &quot;Run&quot;,
-    &quot;Python.15661.executor&quot;: &quot;Run&quot;,
-    &quot;Python.16234.executor&quot;: &quot;Run&quot;,
-    &quot;Python.16508.executor&quot;: &quot;Run&quot;,
-    &quot;Python.1722.executor&quot;: &quot;Run&quot;,
-    &quot;Python.17615.executor&quot;: &quot;Run&quot;,
-    &quot;Python.1833.executor&quot;: &quot;Run&quot;,
-    &quot;Python.19532.executor&quot;: &quot;Run&quot;,
-    &quot;Python.20055.executor&quot;: &quot;Run&quot;,
-    &quot;Python.2138.executor&quot;: &quot;Run&quot;,
-    &quot;Python.21608.executor&quot;: &quot;Run&quot;,
-    &quot;Python.2try.executor&quot;: &quot;Run&quot;,
-    &quot;Python.3649.executor&quot;: &quot;Run&quot;,
-    &quot;Python.3649_ver2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.4803.executor&quot;: &quot;Run&quot;,
-    &quot;Python.9205.executor&quot;: &quot;Run&quot;,
-    &quot;Python.9251.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.truck_13335.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.10942.executor": "Run",
+    "Python.10942_ver2.executor": "Run",
+    "Python.11003.executor": "Debug",
+    "Python.11279.executor": "Run",
+    "Python.11726.executor": "Run",
+    "Python.15661.executor": "Run",
+    "Python.16234.executor": "Run",
+    "Python.16508.executor": "Run",
+    "Python.1722.executor": "Run",
+    "Python.17615.executor": "Run",
+    "Python.1833.executor": "Run",
+    "Python.19532.executor": "Run",
+    "Python.20055.executor": "Run",
+    "Python.2016.executor": "Run",
+    "Python.2138.executor": "Run",
+    "Python.21608.executor": "Run",
+    "Python.2try.executor": "Run",
+    "Python.3649.executor": "Run",
+    "Python.3649_ver2.executor": "Run",
+    "Python.4803.executor": "Run",
+    "Python.9205.executor": "Run",
+    "Python.9251.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.truck_13335.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "configurable.group.appearance"
   }
-}</component>
-  <component name="RunManager" selected="Python.16234">
+}]]></component>
+  <component name="RunManager" selected="Python.2016">
     <configuration name="11003" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -94,6 +100,7 @@
     </configuration>
     <configuration name="16234" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -115,6 +122,7 @@
     </configuration>
     <configuration name="1722" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -134,19 +142,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="5427" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="2016" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/fire_5427" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/make_meeting_2016" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/fire_5427/5427.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/make_meeting_2016/2016.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -157,6 +166,7 @@
     </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -178,6 +188,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.2016" />
         <item itemvalue="Python.16234" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.11003" />
