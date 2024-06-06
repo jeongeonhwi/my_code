@@ -1,41 +1,30 @@
-'''
-문제접근 1. 순열과 find함수를 만들어 해결하려 했으나
-시간초과가 날 확률이 너무 크다.
-문제접근 2. 각행에 1개씩 퀸이 들어가고 맨 끝부터 몇개가
-끝까지 도착할 수 있는지 dfs로 접근하면 될것같다.
-문제접근 3. 지금은 내가 약해서 물러나지만 다음에는 풀자
-'''
-
-
 import sys
-# sys.stdout = open('output.txt', 'w')
+sys.setrecursionlimit(10**5)
 
+def boolean_visited(row, col):
+    if col_check[col] or left_diag_check[row - col + N - 1] or right_diag_check[row + col]:
+        return False
+    return True
 
-def permutation(start, end):
-    if start == end:
-        c = tuple(p)
-        my_set.add(c)
-        return
-    for j in range(end):
-        if used[j] == 0:
-            p[start] = num[j]
-            used[j] = 1
-            permutation(start+1, end)
-            used[j] = 0
-
-
-def find_Q(ntuple):
+def jegi(row):
     global cnt
-    arr = [[0]*N for _ in range(N)]
-    for i in range(N):
-        arr[i][ntuple[i]] = 2
+    if row == N:
+        cnt += 1
+        return
+    for col in range(N):
+        if boolean_visited(row, col):
+            col_check[col] = left_diag_check[row - col + N - 1] = right_diag_check[row + col] = True
+            jegi(row + 1)
+            col_check[col] = left_diag_check[row - col + N - 1] = right_diag_check[row + col] = False
 
 N = int(input())
-num = [i for i in range(N)]
-p = [0]*N
-used = [0]*N
-my_set = set()
-permutation(0, N)
 cnt = 0
-for i in my_set:
-    find_Q(i)
+# col의 여부를 확인
+col_check = [False] * N
+# 왼쪽 아래에서 오른쪽 위를 향하는 대각선 체크
+left_diag_check = [False] * (2 * N - 1)
+# 왼쪽 위에서 오른쪽 아래를 향하는 대각선 체크
+right_diag_check = [False] * (2 * N - 1)
+
+jegi(0)
+print(cnt)

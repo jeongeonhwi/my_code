@@ -1,6 +1,6 @@
 import sys
 sys.stdin = open('input.txt', 'r')
-# sys.stdout = open('output.txt', 'w')
+# sys.stdout = open('input.txt', 'w')
 
 
 
