@@ -3,64 +3,57 @@ import java.lang.*;
 import java.io.*;
 
 public class N_M_15663 {
-    static int N,M, pi, factorial;
+    static int N, M, pi, factorial;
     static int[] number, perlist, visited;
     static int[][] pwlist;
-    static HashSet<Integer> set;
 
-    public static void permutation (int si, int ei, int[] perlist) {
+    public static void permutation(int si, int ei, int[] perlist) {
         if (si >= ei) {
-            if (pi == 0 || !arrayAreEqual(perlist, pwlist[pi-1])) {
-                for (int i=0; i<M; i++) {
-                    pwlist[pi][i] = perlist[i];
-                }
-                pi++;
-            }
+            if (M >= 0) System.arraycopy(perlist, 0, pwlist[pi], 0, M);
+            pi++;
         } else {
-            for (int i=0; i<N; i++) {
+            int before = 0;
+            for (int i = 0; i < N; i++) {
                 if (visited[i] == 0) {
-                    perlist[si] = number[i];
-                    visited[i] = 1; permutation(si+1, ei, perlist); visited[i] = 0;
+                    if (before == number[i]) continue;
+                    perlist[si] = number[i]; before = number[i];
+                    visited[i] = 1;
+                    permutation(si + 1, ei, perlist);
+                    visited[i] = 0;
                 }
-                if (si == 0) set.add(number[i]);
             }
         }
     }
 
-    public static boolean arrayAreEqual (int[] alist,int[] blist) {
-        for (int i=0; i<M; i++) {
-            if (alist[i] != blist[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static void main (String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter pw = new PrintWriter(System.out);
 
         String inputline = br.readLine();
         StringTokenizer st = new StringTokenizer(inputline);
-        N = Integer.parseInt(st.nextToken()); M = Integer.parseInt(st.nextToken()); pi=0; factorial=1; number = new int[N]; perlist = new int[M]; visited = new int[N]; set = new HashSet<>();
-        for (int i=N; i>(N-M); i--) factorial*=i;
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        pi = 0;
+        factorial = 1;
+        number = new int[N];
+        perlist = new int[M];
+        visited = new int[N];
+        for (int i = N; i > (N - M); i--) factorial *= i;
         pwlist = new int[factorial][M];
-        inputline = br.readLine(); st = new StringTokenizer(inputline);
-        for (int i=0; i<N; i++) {
+        inputline = br.readLine();
+        st = new StringTokenizer(inputline);
+        for (int i = 0; i < N; i++) {
             number[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(number);
-        permutation(0,M,perlist);
+        permutation(0, M, perlist);
 
-        for (int i=0; i<pi; i++) {
-            if (pwlist[i][0] != 0) {
-                for (int j=0; j<M; j++) {
-                    pw.print(pwlist[i][j] + " ");
-                }
-                pw.println();
+        for (int i = 0; i < pi; i++) {
+            for (int j = 0; j < M; j++) {
+                pw.print(pwlist[i][j] + " ");
             }
+            pw.println("");
         }
-
         pw.flush();
     }
 }
