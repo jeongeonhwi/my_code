@@ -38,7 +38,7 @@ public class RGB_street_17404 {
             for (int i : rgb) ans = Math.min(ans,i);
         }
 
-//        for (int[] ilist : rgbhouse) {
+//        for (int[] ilist : rgbhouse) {efefe
 //            ans = Math.min(ilist[0], ans);
 //        }
         System.out.println(ans);
