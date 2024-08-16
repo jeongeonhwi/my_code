@@ -21,21 +21,36 @@ public class RGB_street_17404 {
         int ans = 10000000;
 
         for (int j = 0; j<3; j++) {
+            int[] flag = {0,0,0};
             for (int i = 0; i<N; i++) {
                 if (i == 0) {
                     for (int z = 0; z<3; z++) {
-                        if (j == z) rgb[z] = rgbhouse[i][z];
+                        if (j == z) {
+                            rgb[z] = rgbhouse[i][z];
+                            flag[z] = 1;
+                        }
                         else rgb[z] = 100000000;
                     }
                 } else {
-                    rgb[0] += Math.min(rgbhouse[i][1],rgbhouse[i][2]);
-                    rgb[1] += Math.min(rgbhouse[i][0],rgbhouse[i][2]);
-                    rgb[2] += Math.min(rgbhouse[i][1],rgbhouse[i][0]);
+                    int[] tmp = {0,0,0};
+                    tmp[0] += Math.min(rgb[1],rgb[2]) + rgbhouse[i][0];
+                    tmp[1] += Math.min(rgb[0],rgb[2]) + rgbhouse[i][1];
+                    tmp[2] += Math.min(rgb[1],rgb[0]) + rgbhouse[i][2];
+                    System.arraycopy(tmp, 0, rgb, 0, 3);
+                    if (i==N-1) {
+//                        System.out.println(Arrays.toString(flag));
+                        for (int f=0; f<3; f++) {
+                            if (flag[f] == 1) {
+                                rgb[f] += 100000000;
+                            }
+                        }
+                    }
                 }
-                System.out.println(Arrays.toString(rgb));
+//                System.out.println(Arrays.toString(rgb));
             }
-            System.out.println(Arrays.toString(rgb));
+//            System.out.println(Arrays.toString(rgb));
             for (int i : rgb) ans = Math.min(ans,i);
+//            System.out.println(ans);
         }
 
 //        for (int[] ilist : rgbhouse) {efefe
