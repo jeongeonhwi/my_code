@@ -18,6 +18,7 @@ public class tree_cut_2805 {
         }
         Arrays.sort(nlist); high = nlist[N-1];
         for (int i: nlist) deque.add(i);
+//        System.out.println(now);
         while (!deque.isEmpty()) {
             // 위에서부터 벌목할 나무를 계산
             int toptree = deque.removeLast();
@@ -27,34 +28,26 @@ public class tree_cut_2805 {
                     deque.removeLast(); tree_count += 1;
                 } else break;
             }
-            int secondtree = toptree;
+            int secondtree = 0;
             if (!deque.isEmpty()) secondtree = deque.peekLast();
-            if (secondtree == toptree) {
+            if (toptree-secondtree >= (M)/(tree_count)) {
+//                System.out.println(M+" "+tree_count+" "+toptree+" "+secondtree+" "+now);
                 if (M%tree_count == 0) {
                     now += M;
                     high -= M/tree_count;
                 }
                 else {
                     now += (M / tree_count) * (tree_count * 2);
-                    high -= (M/tree_count+1);
-                }
-                break;
-            }
-            if ((toptree-secondtree)*tree_count+now >= M) {
-                if (M%tree_count == 0) {
-                    now += M;
-                    high -= M/tree_count;
-                }
-                else {
-                    now += (M / tree_count) * (tree_count * 2);
-                    high -= (M/tree_count+1);
+                    high -= (M/tree_count)+1;
                 }
                 break;
             } else {
                 M -= (toptree-secondtree)*tree_count;
                 now += (toptree-secondtree)*tree_count;
+//                System.out.println(now);
                 high = secondtree;
             }
+//            System.out.println(toptree+" "+secondtree+" "+tree_count+" "+now);
         }
         System.out.println(high);
     }
