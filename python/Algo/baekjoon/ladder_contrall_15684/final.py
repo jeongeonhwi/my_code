@@ -15,6 +15,8 @@ def dfs(step, i,j, start):
     if i == 0 and start >= N:
         ans = step
         return
+    if ans <= step:
+        return
     dfs(step, i + 1, j+arr[i][j], start)
     if check_left(i,j):
         dfs(step+1, i+1,j-1, start)
