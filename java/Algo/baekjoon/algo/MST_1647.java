@@ -21,7 +21,10 @@ public class MST_1647 {
     static List<Edge>[] arr;
 
     public static int prim(int start) {
-        boolean[] visit = new boolean[N+1];
+        int[] visit = new int[N+1];
+        for (int i = 0; i<N+1; i++) visit[i] = Integer.MAX_VALUE;
+
+        visit[1] = 0;
 
         PriorityQueue<Edge> pq = new PriorityQueue<>();
         pq.offer(new Edge(start, 0));
@@ -33,18 +36,22 @@ public class MST_1647 {
             int v = edge.w;
             int cost = edge.cost;
 
-            if (visit[v]) continue;
-//            System.out.print(v);
-//            System.out.println(cost);
-            visit[v] = true;
-            total += cost;
+            if (visit[v] < cost ) continue;
+
+            System.out.print(v);
+            System.out.println(cost);
 
             for(Edge e : arr[v]) {
-                if(!visit[e.w]) {
-                    pq.add(e);
-                }
+                if(visit[e.w] <= e.cost + cost) continue;
+
+                visit[e.w] = e.cost + cost;
+                pq.add(e);
+
             }
         }
+
+        for (int i=1; i<N+1; i++) total = Math.max(total, visit[i]);
+
         return total;
     }
 
@@ -75,7 +82,6 @@ public class MST_1647 {
         }
 
         int min_v = prim(1);
-        for (int i = 2; i<N+1; i++) min_v = Math.min(min_v, prim(i));
-//        System.out.println(min_v);
+        System.out.println(min_v);
     }
 }
