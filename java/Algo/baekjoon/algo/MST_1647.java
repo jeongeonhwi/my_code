@@ -21,14 +21,12 @@ public class MST_1647 {
     static List<Edge>[] arr;
 
     public static int prim(int start) {
-        int[] visit = new int[N+1];
-        for (int i = 0; i<N+1; i++) visit[i] = Integer.MAX_VALUE;
-
-        visit[1] = 0;
+        boolean[] visit = new boolean[N+1];
 
         PriorityQueue<Edge> pq = new PriorityQueue<>();
         pq.offer(new Edge(start, 0));
 
+        int max_cost = 0;
         int total = 0;
 
         while(!pq.isEmpty()) {
@@ -36,28 +34,23 @@ public class MST_1647 {
             int v = edge.w;
             int cost = edge.cost;
 
-            if (visit[v] < cost ) continue;
+            if (visit[v]) continue;
 
-            System.out.print(v);
-            System.out.println(cost);
+            max_cost = Math.max(max_cost, cost);
+            total += cost;
+            visit[v] = true;
 
             for(Edge e : arr[v]) {
-                if(visit[e.w] <= e.cost + cost) continue;
-
-                visit[e.w] = e.cost + cost;
+                if(visit[e.w]) continue;
                 pq.add(e);
 
             }
         }
-
-        for (int i=1; i<N+1; i++) total = Math.max(total, visit[i]);
-
-        return total;
+        return total - max_cost;
     }
 
     public static void main (String[] args) throws IOException {
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        PrintWriter pw = new PrintWriter(System.out);
 
         String currentDir = System.getProperty("user.dir");
         String filePath = currentDir + "/Algo/baekjoon/algo/input/1647.txt";
