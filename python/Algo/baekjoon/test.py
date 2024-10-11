@@ -1,36 +1,31 @@
-a,b = input().split()
-a = list(a)
-b = list(b)
-a.reverse()
-b.reverse()
-ai = list(map(int, a))
-bi = list(map(int, b))
-ans = []
-for i in range(max(len(ai), len(bi))):
-    if i<min(len(ai), len(bi)):
-        ans.append(ai[i]+bi[i])
-    else:
-        if len(ai)>len(bi):
-            ans.append(ai[i])
-        else:
-            ans.append(bi[i])
+def find_i():
+    for i in range(n):
+        for j in range(m):
+            if arr[i][j] == 'I':
+                return i, j
 
-for i in range(len(ans)-1):
-    if ans[i] >= 2:
-        ans[i] -= 2
-        ans[i+1] += 1
+
+def dfs(si, sj):
+    visited = [[0] * m for _ in range(n)]
+    stack = [(si, sj)]
+    visited[si][sj] = 1
+    mp = 0
+    while stack:
+        i, j = stack.pop()
+        for ni, nj in [(i + 1, j), (i, j + 1), (i - 1, j), (i, j - 1), ]:
+            if 0 <= ni < n and 0 <= nj < m and visited[ni][nj] == 0 and arr[ni][nj] != 'X':
+                visited[ni][nj] = 1
+                stack.append((ni, nj))
+                if arr[ni][nj] == 'P':
+                    mp += 1
+    return mp
+
+
+n, m = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(n)]
+pi, pj = find_i()
+ans = dfs(pi, pj)
+if ans == 0:
+    print('TT')
 else:
-    if ans[-1] >= 2:
-        ans[-1] -= 2
-        ans.append(1)
-if sum(ans) == 0:
-    print(0)
-else:
-    while True:
-        if ans[-1] == 0:
-            ans.pop()
-        else:
-            break
-    ans.reverse()
-    for i in ans:
-        print(i, end="")
+    print(ans)
