@@ -15,8 +15,9 @@ public class fire_4179 {
         while (!deq.isEmpty()) {
             int[] ij = deq.removeFirst();
             int i = ij[0], j = ij[1], c = ij[2];
-            if (reach(i,j)) return c;
 
+            if ( !fire.isEmpty() && c == fire.peekFirst()[2]) fire_visited(c);
+            if (reach(i,j)) return c;
             for (int ii=0; ii<8; ii+=2) {
                 int ni = i+d[ii]; int nj = j+d[ii+1];
                 if (0<=ni && ni<N && 0<=nj && nj<M && !visited[ni][nj] && !fvisited[ni][nj] && map[ni].charAt(nj) == '.') {
@@ -24,8 +25,6 @@ public class fire_4179 {
                     visited[ni][nj] = true;
                 }
             }
-
-            fire_visited(c);
         }
         return -2;
     }
@@ -36,7 +35,7 @@ public class fire_4179 {
             for (int ii=0; ii<8; ii+=2) {
                 int ni = f[0]+d[ii], nj = f[1]+d[ii+1];
                 if (0<=ni && ni<N && 0<=nj && nj <M && map[ni].charAt(nj) != '#' && !fvisited[ni][nj]) {
-                    fvisited[f[0]][f[1]] = true;
+                    fvisited[ni][nj] = true;
                     fire.addLast(new int[]{ni,nj,c+1});
                 }
             }
