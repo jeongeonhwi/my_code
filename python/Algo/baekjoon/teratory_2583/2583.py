@@ -23,4 +23,5 @@ for m in range(M):
         if arr[m][n] == 0:
             al.append(dfs(m,n))
 print(len(al))
+al.sort()
 print(*al)
