@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce8cbcec-b0ca-493f-9c00-ee681ef1c6c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/N-Queen_9663/input.txt" afterDir="false" />
+    <list default="true" id="ce8cbcec-b0ca-493f-9c00-ee681ef1c6c2" name="Changes" comment="python topology_sort algo 2623">
+      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/last_sum_10986/10986.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Algo/baekjoon/last_sum_10986/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/python.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/N-Queen_9663/9663.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/N-Queen_9663/9663.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/N-Queen_9663/output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/dragon_15685/15685.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/dragon_15685/15685.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/music_progrem_2623/2623.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/music_progrem_2623/2623.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algo/baekjoon/music_progrem_2623/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/music_progrem_2623/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Algo/baekjoon/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algo/baekjoon/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +29,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {}
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jeongeonhwi/my_code.git&quot;,
+    &quot;accountId&quot;: &quot;65ddabcf-2131-43ff-8774-f3eca191e883&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -42,64 +53,84 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.1065.executor&quot;: &quot;Run&quot;,
-    &quot;Python.10942.executor&quot;: &quot;Run&quot;,
-    &quot;Python.10942_ver2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.11003.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.11279.executor&quot;: &quot;Run&quot;,
-    &quot;Python.11726.executor&quot;: &quot;Run&quot;,
-    &quot;Python.15661.executor&quot;: &quot;Run&quot;,
-    &quot;Python.16234.executor&quot;: &quot;Run&quot;,
-    &quot;Python.16508.executor&quot;: &quot;Run&quot;,
-    &quot;Python.1722.executor&quot;: &quot;Run&quot;,
-    &quot;Python.17615.executor&quot;: &quot;Run&quot;,
-    &quot;Python.1833.executor&quot;: &quot;Run&quot;,
-    &quot;Python.19532.executor&quot;: &quot;Run&quot;,
-    &quot;Python.20055.executor&quot;: &quot;Run&quot;,
-    &quot;Python.2016.executor&quot;: &quot;Run&quot;,
-    &quot;Python.2083.executor&quot;: &quot;Run&quot;,
-    &quot;Python.2138.executor&quot;: &quot;Run&quot;,
-    &quot;Python.21608.executor&quot;: &quot;Run&quot;,
-    &quot;Python.2330.executor&quot;: &quot;Run&quot;,
-    &quot;Python.2try.executor&quot;: &quot;Run&quot;,
-    &quot;Python.3649.executor&quot;: &quot;Run&quot;,
-    &quot;Python.3649_ver2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.4803.executor&quot;: &quot;Run&quot;,
-    &quot;Python.9205.executor&quot;: &quot;Run&quot;,
-    &quot;Python.9251.executor&quot;: &quot;Run&quot;,
-    &quot;Python.9663.executor&quot;: &quot;Run&quot;,
-    &quot;Python.9935.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.truck_13335.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.1041.executor": "Run",
+    "Python.1065.executor": "Run",
+    "Python.10942.executor": "Run",
+    "Python.10942_ver2.executor": "Run",
+    "Python.10986.executor": "Run",
+    "Python.11003.executor": "Debug",
+    "Python.11279.executor": "Run",
+    "Python.1167.executor": "Run",
+    "Python.11726.executor": "Run",
+    "Python.1197.executor": "Run",
+    "Python.1202.executor": "Run",
+    "Python.1535.executor": "Run",
+    "Python.15661.executor": "Run",
+    "Python.16172.executor": "Run",
+    "Python.16234.executor": "Run",
+    "Python.16508.executor": "Run",
+    "Python.16724.executor": "Run",
+    "Python.16946.executor": "Run",
+    "Python.1722.executor": "Run",
+    "Python.17615.executor": "Run",
+    "Python.1799.executor": "Run",
+    "Python.1833.executor": "Run",
+    "Python.19532.executor": "Run",
+    "Python.20055.executor": "Run",
+    "Python.2016.executor": "Run",
+    "Python.2083.executor": "Run",
+    "Python.2138.executor": "Run",
+    "Python.21608.executor": "Run",
+    "Python.2252.executor": "Run",
+    "Python.2330.executor": "Run",
+    "Python.2342.executor": "Run",
+    "Python.2473.executor": "Run",
+    "Python.2623.executor": "Run",
+    "Python.2638.executor": "Run",
+    "Python.2try.executor": "Run",
+    "Python.31287.executor": "Run",
+    "Python.3649.executor": "Run",
+    "Python.3649_ver2.executor": "Run",
+    "Python.4803.executor": "Run",
+    "Python.7579.executor": "Run",
+    "Python.9205.executor": "Run",
+    "Python.9251.executor": "Run",
+    "Python.9466.executor": "Run",
+    "Python.9663.executor": "Run",
+    "Python.9935.executor": "Run",
+    "Python.final.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.truck_13335.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "configurable.group.appearance"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\ssafy10\my_code\python\Algo\baekjoon\PuyoPuyo_11559" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.9663">
-    <configuration name="1065" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.2623">
+    <configuration name="1041" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/one_number_1065" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/square_1041" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/one_number_1065/1065.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/square_1041/1041.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -108,19 +139,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="2083" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="10986" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/rucby_2083" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/last_sum_10986" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/rucby_2083/2083.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/last_sum_10986/10986.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -129,19 +161,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="9663" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="2252" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/N-Queen_9663" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/line_2252" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/N-Queen_9663/9663.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/line_2252/2252.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -150,19 +183,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="9935" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="2623" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/text_bomb_9935" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algo/baekjoon/music_progrem_2623" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/text_bomb_9935/9935.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algo/baekjoon/music_progrem_2623/2623.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -173,6 +207,7 @@
     </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -194,18 +229,18 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.9663" />
-        <item itemvalue="Python.2083" />
+        <item itemvalue="Python.2623" />
+        <item itemvalue="Python.2252" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.9935" />
-        <item itemvalue="Python.1065" />
+        <item itemvalue="Python.1041" />
+        <item itemvalue="Python.10986" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+        <option value="bundled-python-sdk-ce3d9afa04ac-ba05f1cad1b1-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.20224.347" />
       </set>
     </attachedChunks>
   </component>
@@ -218,13 +253,222 @@
       <option name="presentableId" value="Default" />
       <updated>1701043258502</updated>
     </task>
+    <task id="LOCAL-00001" summary="python algo 1167">
+      <option name="closed" value="true" />
+      <created>1724312309132</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1724312309132</updated>
+    </task>
+    <task id="LOCAL-00002" summary="python algo 2473">
+      <option name="closed" value="true" />
+      <created>1724389817884</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1724389817884</updated>
+    </task>
+    <task id="LOCAL-00003" summary="python algo 31287">
+      <option name="closed" value="true" />
+      <created>1724644597259</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1724644597259</updated>
+    </task>
+    <task id="LOCAL-00004" summary="python algo 16946">
+      <option name="closed" value="true" />
+      <created>1724666508478</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1724666508478</updated>
+    </task>
+    <task id="LOCAL-00005" summary="python algo 1197">
+      <option name="closed" value="true" />
+      <created>1724729786343</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1724729786343</updated>
+    </task>
+    <task id="LOCAL-00006" summary="python algo 1799">
+      <option name="closed" value="true" />
+      <created>1724922330996</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1724922330996</updated>
+    </task>
+    <task id="LOCAL-00007" summary="python algo 16724">
+      <option name="closed" value="true" />
+      <created>1724988913606</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1724988913606</updated>
+    </task>
+    <task id="LOCAL-00008" summary="python algo 9466">
+      <option name="closed" value="true" />
+      <created>1724990480439</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1724990480439</updated>
+    </task>
+    <task id="LOCAL-00009" summary="python algo 9466">
+      <option name="closed" value="true" />
+      <created>1725002292131</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1725002292131</updated>
+    </task>
+    <task id="LOCAL-00010" summary="python algo laber">
+      <option name="closed" value="true" />
+      <created>1725004847223</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1725004847223</updated>
+    </task>
+    <task id="LOCAL-00011" summary="python algo 15684">
+      <option name="closed" value="true" />
+      <created>1725251053358</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1725251053358</updated>
+    </task>
+    <task id="LOCAL-00012" summary="python algo 16172">
+      <option name="closed" value="true" />
+      <created>1725251666614</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1725251666614</updated>
+    </task>
+    <task id="LOCAL-00013" summary="python algo 15684">
+      <option name="closed" value="true" />
+      <created>1725257312404</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1725257312404</updated>
+    </task>
+    <task id="LOCAL-00014" summary="python algo 2342">
+      <option name="closed" value="true" />
+      <created>1725340804986</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1725340804986</updated>
+    </task>
+    <task id="LOCAL-00015" summary="python knap algo 1535">
+      <option name="closed" value="true" />
+      <created>1725415228088</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1725415228088</updated>
+    </task>
+    <task id="LOCAL-00016" summary="python knap algo 7579">
+      <option name="closed" value="true" />
+      <created>1725428917118</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1725428917129</updated>
+    </task>
+    <task id="LOCAL-00017" summary="python grid algo 1202">
+      <option name="closed" value="true" />
+      <created>1725508331296</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1725508331296</updated>
+    </task>
+    <task id="LOCAL-00018" summary="python dfs algo 2638">
+      <option name="closed" value="true" />
+      <created>1725592375534</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1725592375550</updated>
+    </task>
+    <task id="LOCAL-00019" summary="python continue algo 1041">
+      <option name="closed" value="true" />
+      <created>1726194355160</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1726194355160</updated>
+    </task>
+    <task id="LOCAL-00020" summary="python algo 2239">
+      <option name="closed" value="true" />
+      <created>1728023057571</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1728023057571</updated>
+    </task>
+    <task id="LOCAL-00021" summary="python topology_sort algo 2252">
+      <option name="closed" value="true" />
+      <created>1728273929125</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1728273929125</updated>
+    </task>
+    <task id="LOCAL-00022" summary="python topology_sort algo 2623">
+      <option name="closed" value="true" />
+      <created>1728275062083</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1728275062083</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="UnknownFeatures">
     <option featureType="dependencySupport" implementationName="executable:docker" />
     <option featureType="dependencySupport" implementationName="executable:kubectl" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="python algo 1167" />
+    <MESSAGE value="python algo 2473" />
+    <MESSAGE value="python algo 31287" />
+    <MESSAGE value="python algo 16946" />
+    <MESSAGE value="python algo 1197" />
+    <MESSAGE value="python algo 1799" />
+    <MESSAGE value="python algo 16724" />
+    <MESSAGE value="python algo 9466" />
+    <MESSAGE value="python algo laber" />
+    <MESSAGE value="python algo 16172" />
+    <MESSAGE value="python algo 15684" />
+    <MESSAGE value="python algo 2342" />
+    <MESSAGE value="python knap algo 1535" />
+    <MESSAGE value="python knap algo 7579" />
+    <MESSAGE value="python grid algo 1202" />
+    <MESSAGE value="python dfs algo 2638" />
+    <MESSAGE value="python continue algo 1041" />
+    <MESSAGE value="python algo 2239" />
+    <MESSAGE value="python topology_sort algo 2252" />
+    <MESSAGE value="python topology_sort algo 2623" />
+    <option name="LAST_COMMIT_MESSAGE" value="python topology_sort algo 2623" />
   </component>
 </project>
