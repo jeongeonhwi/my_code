@@ -2,27 +2,25 @@ from collections import deque
 
 N,M = map(int, input().split())
 arr = list(map(int, input().split()))
-arr.sort()
-ln = arr[:]
-rn = arr[:]
-left = deque([i for i in range(1,N+1)])
-right = left.copy()
-lc = 0
-rc = 0
-while ln:
-    i = ln.pop(0)
+num = [i for i in range(1,N+1)]
+num = deque(num)
+cnt = 0
+for a in arr:
+    left_move = num.copy()
+    right_move = num.copy()
+    c = 0
     while True:
-        if i == left[0]:
-            left.popleft()
+        if left_move[0] == a:
+            cnt+=c
+            left_move.popleft()
+            num = left_move.copy()
             break
-        left.rotate(-1)
-        lc+=1
-while rn:
-    i = rn.pop()
-    while True:
-        if i == right[0]:
-            right.popleft()
+        elif right_move[0] == a:
+            cnt+=c
+            right_move.popleft()
+            num = right_move.copy()
             break
-        right.rotate(1)
-        rc+=1
-print(min(rc,lc))
+        left_move.rotate(-1)
+        right_move.rotate(1)
+        c+=1
+print(cnt)
