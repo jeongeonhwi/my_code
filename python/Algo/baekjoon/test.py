@@ -62,3 +62,9 @@ from heapq import heappush, heappop
 
 # print(list('abcd'))
 
+# print(ord('a'), chr(97))
+# print(ord('A'), chr(65))
+# print(ord('0'), ord('9'))
+# for i in range(ord('a'), ord('z')+1):
+#     print(chr(i))
+
